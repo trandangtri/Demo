@@ -86,6 +86,207 @@ nginx::resource::location { "ongr.dev-php":
     notify              => Class['nginx::service'];
 }
 
+
+nginx::resource::vhost { 'magento.ongr.dev':
+  ensure               => present,
+  server_name          => [
+    'magento.ongr.dev',
+    '*.magento.ongr.dev'
+  ],
+  index_files          => [
+    'index.html',
+    'index.php'
+  ],
+  listen_port          => 80,
+  www_root             => '/var/www/magento/',
+  use_default_location => false,
+  vhost_cfg_append     => {
+    'try_files'      => '$uri $uri/ @handler',
+    'expires'        => '30d',
+  }
+}
+
+nginx::resource::location { "magento.ongr.dev-deny1":
+  vhost               => 'magento.ongr.dev',
+  location            => '^~ /app/',
+  www_root             => '/var/www/magento/',
+  index_files          => [
+    'index.html',
+    'index.php'
+  ],
+  proxy               => undef,
+  ensure              => 'present',
+  location_cfg_append => {
+    'deny' => 'all',
+  },
+}
+nginx::resource::location { "magento.ongr.dev-deny2":
+  vhost               => 'magento.ongr.dev',
+  location            => '^~ /report/config.xml',
+  www_root             => '/var/www/magento/',
+  index_files          => [
+    'index.html',
+    'index.php'
+  ],
+  proxy               => undef,
+  ensure              => 'present',
+  location_cfg_append => {
+    'deny' => 'all',
+  },
+}
+nginx::resource::location { "magento.ongr.dev-deny3":
+  vhost               => 'magento.ongr.dev',
+  location            => '^~ /var/',
+  www_root             => '/var/www/magento/',
+  index_files          => [
+    'index.html',
+    'index.php'
+  ],
+  proxy               => undef,
+  ensure              => 'present',
+  location_cfg_append => {
+    'deny' => 'all',
+  },
+}
+nginx::resource::location { "magento.ongr.dev-deny4":
+  vhost               => 'magento.ongr.dev',
+  location            => '^~ /includes/',
+  www_root             => '/var/www/magento/',
+  index_files          => [
+    'index.html',
+    'index.php'
+  ],
+  proxy               => undef,
+  ensure              => 'present',
+  location_cfg_append => {
+    'deny' => 'all',
+  },
+}
+nginx::resource::location { "magento.ongr.dev-deny5":
+  vhost               => 'magento.ongr.dev',
+  location            => '^~ /lib/',
+  www_root             => '/var/www/magento/',
+  index_files          => [
+    'index.html',
+    'index.php'
+  ],
+  proxy               => undef,
+  ensure              => 'present',
+  location_cfg_append => {
+    'deny' => 'all',
+  },
+}
+nginx::resource::location { "magento.ongr.dev-deny6":
+  vhost               => 'magento.ongr.dev',
+  location            => '^~ /media/downloadable/',
+  index_files          => [
+    'index.html',
+    'index.php'
+  ],
+  www_root             => '/var/www/magento/',
+  proxy               => undef,
+  ensure              => 'present',
+  location_cfg_append => {
+    'deny' => 'all',
+  },
+}
+nginx::resource::location { "magento.ongr.dev-deny7":
+  vhost               => 'magento.ongr.dev',
+  location            => '^~ /pkginfo/',
+  www_root             => '/var/www/magento/',
+  index_files          => [
+    'index.html',
+    'index.php'
+  ],
+  proxy               => undef,
+  ensure              => 'present',
+  location_cfg_append => {
+    'deny' => 'all',
+  },
+}
+nginx::resource::location { "magento.ongr.dev-export":
+  vhost               => 'magento.ongr.dev',
+  location            => '/var/export/',
+  www_root             => '/var/www/magento/',
+  index_files          => [
+    'index.html',
+    'index.php'
+  ],
+  proxy               => undef,
+  ensure              => 'present',
+  location_cfg_append => {
+    'auth_basic' => '"Restricted"',
+    'auth_basic_user_file' => 'htpasswd',
+    'autoindex' => 'on',
+  },
+}
+nginx::resource::location { "magento.ongr.dev-hidden":
+  vhost               => 'magento.ongr.dev',
+  location            => '/.',
+  www_root             => '/var/www/magento/',
+  index_files          => [
+    'index.html',
+    'index.php'
+  ],
+  proxy               => undef,
+  ensure              => 'present',
+  location_cfg_append => {
+    'return' => '404',
+  },
+}
+nginx::resource::location { "magento.ongr.dev-handler":
+  vhost               => 'magento.ongr.dev',
+  location            => '@handler',
+  www_root             => '/var/www/magento/',
+  index_files          => [
+    'index.html',
+    'index.php'
+  ],
+  proxy               => undef,
+  ensure              => 'present',
+  location_cfg_append => {
+    'rewrite' => '/ /index.php',
+  },
+}
+nginx::resource::location { "magento.ongr.dev-forward":
+  vhost               => 'magento.ongr.dev',
+  location            => '~ .php/',
+  www_root             => '/var/www/magento/',
+  index_files          => [
+    'index.html',
+    'index.php'
+  ],
+  proxy               => undef,
+  ensure              => 'present',
+  location_cfg_append => {
+    'rewrite' => '^(.*.php)/ $1 last',
+  },
+}
+
+nginx::resource::location { "magento.ongr.dev-php":
+  vhost               => 'magento.ongr.dev',
+  location            => '~ \.php$',
+  www_root             => '/var/www/magento/',
+  index_files          => [
+    'index.html',
+    'index.php'
+  ],
+  proxy               => undef,
+  ensure              => 'present',
+  location_cfg_append => {
+    'expires' => 'off',
+    'fastcgi_pass' => 'unix:/var/run/php5-fpm.sock',
+    'fastcgi_param'           => 'SCRIPT_FILENAME $document_root$fastcgi_script_name',
+    'fastcgi_param '          => 'MAGE_RUN_CODE default',
+    'fastcgi_param  '         => 'MAGE_RUN_TYPE store',
+    'include'                 => 'fastcgi_params',
+  },
+  location_custom_cfg_append => {
+    'if (!-e $request_filename)' => '{ rewrite / /index.php last; }',
+  },
+  notify              => Class['nginx::service'];
+}
+
 class { '::mysql::server':
   root_password    => 'root',
   override_options => {

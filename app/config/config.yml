@@ -1,3 +1,5 @@
+parameters:
+
 imports:
     - { resource: project_defaults.yml }
     - { resource: parameters.yml }
@@ -79,6 +81,19 @@ doctrine:
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping: true
+        mappings:
+            ONGRMagentoConnectorBundle:
+                type: annotation
+                alias: MagentoConnectorBundle
+                dir: Entity
+                prefix: ONGR\MagentoConnectorBundle\Entity
+                is_bundle: true
+            ONGRDemoMagentoBundle:
+                type: annotation
+                alias: DemoMagentoBundle
+                dir: Entity
+                prefix: ONGR\DemoMagentoBundle\Entity
+                is_bundle: true
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -159,12 +174,60 @@ ongr_elasticsearch:
                             filter:
                                 - lowercase
                                 - incremental_filter
+        magento:
+            hosts:
+                - { host: 127.0.0.1:9200 }
+            index_name: ongr_magento
+            settings:
+                number_of_shards: 2
+                number_of_replicas: 0
+                index:
+                    refresh_interval: -1
+                analysis:
+                    tokenizer:
+                        pathTokenizer:
+                            type : path_hierarchy
+                            buffer_size: 2024
+                            skip: 0
+                            delimiter: /
+                    filter:
+                        incremental_filter:
+                            type: edge_ngram
+                            min_gram: 1
+                            max_gram: 20
+                    analyzer:
+                        indexAnalyzer:
+                            type: snowball
+                            language: German2
+                            stopwords: "der,die,das,mit,und,für"
+                        searchAnalyzer:
+                            type: snowball
+                            language: German2
+                            stopwords: "der,die,das,mit,und,für"
+                        pathAnalyzer:
+                            type: custom
+                            tokenizer: pathTokenizer
+                        urlAnalyzer:
+                            type: custom
+                            tokenizer: keyword
+                            filter: [lowercase]
+                        incrementalAnalyzer:
+                            type: custom
+                            tokenizer: standard
+                            filter:
+                                - lowercase
+                                - incremental_filter
     managers:
         default:
             connection: default
             debug: "%kernel.debug%"
             mappings:
                 - ONGRDemoBundle
+        magento:
+            connection: magento
+            debug: "%kernel.debug%"
+            mappings:
+                - ONGRMagentoConnectorBundle
 
 ongr_filter_manager:
     managers:
@@ -209,3 +272,15 @@ ongr_filter_manager:
                     - { label: Price descending, field: price, order: desc }
                     - { label: Title ascending, field: title }
                     - { label: Title descending, field: title, order: desc }
+
+ongr_connections:
+    shops:
+        - shop_id: 1
+    sync:
+        sync_storage:
+            mysql:
+                connection: default
+                table_name: ongr_sync_storage
+
+ongr_magento:
+    shop: 1

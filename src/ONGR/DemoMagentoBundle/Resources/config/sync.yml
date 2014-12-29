@@ -1,0 +1,154 @@
+parameters:
+    ongr_demo.magento.sync.execute.shop_id: 1
+    ongr_demo.magento.sync.execute.chunk_size: 1
+
+    ongr_demo.magento.sync.execute.finish.class: ONGR\DemoMagentoBundle\EventListener\ImportFinishEventListener
+
+    ongr_demo.magento.sync.execute.product.sync_storage_document_type: product
+    ongr_demo.magento.sync.execute.product.doctrine_entity_type: DemoMagentoBundle:CatalogProductEntity
+    ongr_demo.magento.sync.execute.product.elastic_document_type: ONGRMagentoConnectorBundle:ProductDocument
+
+    ongr_demo.magento.sync.execute.category.sync_storage_document_type: category
+    ongr_demo.magento.sync.execute.category.doctrine_entity_type: DemoMagentoBundle:CatalogCategoryEntity
+    ongr_demo.magento.sync.execute.category.elastic_document_type: ONGRMagentoConnectorBundle:CategoryDocument
+
+    ongr_demo.magento.sync.execute.content.sync_storage_document_type: content
+    ongr_demo.magento.sync.execute.content.doctrine_entity_type: DemoMagentoBundle:CmsPage
+    ongr_demo.magento.sync.execute.content.elastic_document_type: ONGRMagentoConnectorBundle:ContentDocument
+
+    ongr_demo.magento.sync.execute.product.modifier.class: ONGR\MagentoConnectorBundle\Modifier\ProductModifier
+    ongr_demo.magento.sync.execute.category.modifier.class: ONGR\MagentoConnectorBundle\Modifier\CategoryModifier
+    ongr_demo.magento.sync.execute.content.modifier.class: ONGR\MagentoConnectorBundle\Modifier\ContentModifier
+
+    ongr_demo.magento.sync.provide.source.class: ONGR\ConnectionsBundle\EventListener\DataSyncSourceEventListener
+    ongr_demo.magento.sync.provide.consume.class: ONGR\ConnectionsBundle\EventListener\DataSyncConsumeEventListener
+
+services:
+
+    # Product.
+    ongr_demo.magento.sync.execute.product.source:
+        class: %ongr_connections.sync.execute.source.class%
+        parent: ongr_connections.import.source
+        arguments:
+            - @doctrine.orm.default_entity_manager
+            - %ongr_demo.magento.sync.execute.product.doctrine_entity_type%
+            - @es.manager.magento
+            - %ongr_demo.magento.sync.execute.product.elastic_document_type%
+            - @ongr_connections.sync.sync_storage
+        calls:
+            - [ setChunkSize, [ %ongr_demo.magento.sync.execute.chunk_size% ] ]
+            - [ setShopId, [ %ongr_demo.magento.sync.execute.shop_id% ] ]
+            - [ setDocumentType, [ %ongr_demo.magento.sync.execute.product.sync_storage_document_type% ] ]
+        tags:
+            - { name: kernel.event_listener, event: ongr.pipeline.sync.execute.magento.product.source, method: onSource }
+
+    ongr_demo.magento.sync.execute.product.modifier:
+        class: %ongr_demo.magento.sync.execute.product.modifier.class%
+        arguments:
+            - %ongr_demo.magento.sync.execute.shop_id%
+        tags:
+            - { name: kernel.event_listener, event: ongr.pipeline.sync.execute.magento.product.modify, method: onModify }
+
+    ongr_demo.magento.sync.execute.product.consumer:
+            class: %ongr_connections.sync.execute.consumer.class%
+            parent: ongr_connections.sync.execute.consumer
+            arguments:
+                - @es.manager.magento
+                - %ongr_demo.magento.sync.execute.product.elastic_document_type%
+                - @ongr_connections.sync.sync_storage
+            tags:
+                - { name: kernel.event_listener, event: ongr.pipeline.sync.execute.magento.product.consume, method: onConsume }
+
+    # Category.
+    ongr_demo.magento.sync.execute.category.source:
+        class: %ongr_connections.sync.execute.source.class%
+        parent: ongr_connections.import.source
+        arguments:
+            - @doctrine.orm.default_entity_manager
+            - %ongr_demo.magento.sync.execute.category.doctrine_entity_type%
+            - @es.manager.magento
+            - %ongr_demo.magento.sync.execute.category.elastic_document_type%
+            - @ongr_connections.sync.sync_storage
+        calls:
+            - [ setChunkSize, [ %ongr_demo.magento.sync.execute.chunk_size% ] ]
+            - [ setShopId, [ %ongr_demo.magento.sync.execute.shop_id% ] ]
+            - [ setDocumentType, [ %ongr_demo.magento.sync.execute.category.sync_storage_document_type% ] ]
+        tags:
+            - { name: kernel.event_listener, event: ongr.pipeline.sync.execute.magento.category.source, method: onSource }
+
+    ongr_demo.magento.sync.execute.category.modifier:
+        class: %ongr_demo.magento.sync.execute.category.modifier.class%
+        arguments:
+            - %ongr_demo.magento.sync.execute.shop_id%
+        tags:
+            - { name: kernel.event_listener, event: ongr.pipeline.sync.execute.magento.category.modify, method: onModify }
+
+    ongr_demo.magento.sync.execute.category.consumer:
+        class: %ongr_connections.sync.execute.consumer.class%
+        parent: ongr_connections.sync.execute.consumer
+        arguments:
+            - @es.manager.magento
+            - %ongr_demo.magento.sync.execute.category.elastic_document_type%
+            - @ongr_connections.sync.sync_storage
+        tags:
+            - { name: kernel.event_listener, event: ongr.pipeline.sync.execute.magento.category.consume, method: onConsume }
+
+    # Content.
+    ongr_demo.magento.sync.execute.content.source:
+        class: %ongr_connections.sync.execute.source.class%
+        parent: ongr_connections.import.source
+        arguments:
+            - @doctrine.orm.default_entity_manager
+            - %ongr_demo.magento.sync.execute.content.doctrine_entity_type%
+            - @es.manager.magento
+            - %ongr_demo.magento.sync.execute.content.elastic_document_type%
+            - @ongr_connections.sync.sync_storage
+        calls:
+            - [ setChunkSize, [ %ongr_demo.magento.sync.execute.chunk_size% ] ]
+            - [ setShopId, [ %ongr_demo.magento.sync.execute.shop_id% ] ]
+            - [ setDocumentType, [ %ongr_demo.magento.sync.execute.content.sync_storage_document_type% ] ]
+        tags:
+            - { name: kernel.event_listener, event: ongr.pipeline.sync.execute.magento.content.source, method: onSource }
+
+    ongr_demo.magento.sync.execute.content.modifier:
+        class: %ongr_demo.magento.sync.execute.content.modifier.class%
+        arguments:
+            - %ongr_demo.magento.sync.execute.shop_id%
+        tags:
+            - { name: kernel.event_listener, event: ongr.pipeline.sync.execute.magento.content.modify, method: onModify }
+
+    ongr_demo.magento.sync.execute.content.consumer:
+        class: %ongr_connections.sync.execute.consumer.class%
+        parent: ongr_connections.sync.execute.consumer
+        arguments:
+            - @es.manager.magento
+            - %ongr_demo.magento.sync.execute.content.elastic_document_type%
+            - @ongr_connections.sync.sync_storage
+        tags:
+            - { name: kernel.event_listener, event: ongr.pipeline.sync.execute.magento.content.consume, method: onConsume }
+
+    # All.
+    ongr_demo.magento.sync.execute.finish:
+        class: %ongr_demo.magento.sync.execute.finish.class%
+        parent: ongr_connections.import.finish
+        arguments:
+            - @es.manager.magento
+        tags:
+            - { name: kernel.event_listener, event: ongr.pipeline.sync.execute.magento.product.finish, method: onFinish }
+            - { name: kernel.event_listener, event: ongr.pipeline.sync.execute.magento.category.finish, method: onFinish }
+            - { name: kernel.event_listener, event: ongr.pipeline.sync.execute.magento.content.finish, method: onFinish }
+
+    # Provide.
+    ongr_demo.magento.sync.provide.source:
+        class: %ongr_demo.magento.sync.provide.source.class%
+        arguments:
+            - @ongr_connections.sync.diff_provider.binlog_diff_provider
+        tags:
+            - { name: kernel.event_listener, event: ongr.pipeline.data_sync.magento.source, method: onSource }
+
+    ongr_demo.magento.sync.provide.consume:
+        class: %ongr_demo.magento.sync.provide.consume.class%
+        arguments:
+            - @ongr_connections.sync.extractor.doctrine_extractor
+        tags:
+            - { name: kernel.event_listener, event: ongr.pipeline.data_sync.magento.consume, method: onConsume }

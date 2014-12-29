@@ -19,7 +19,7 @@ use ONGR\RouterBundle\Document\SeoAwareTrait;
 /**
  * Product document.
  *
- * @ES\Document
+ * @ES\Document(type="product")
  */
 class Product implements DocumentInterface
 {

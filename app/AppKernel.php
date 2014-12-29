@@ -27,6 +27,10 @@ class AppKernel extends Kernel
             new ONGR\ContentBundle\ONGRContentBundle(),
             new ONGR\PagerBundle\ONGRPagerBundle(),
             new Crunch\Bundle\SSIBundle\CrunchSSIBundle(),
+
+            new ONGR\ConnectionsBundle\ONGRConnectionsBundle(),
+            new ONGR\DemoMagentoBundle\ONGRDemoMagentoBundle(),
+            new ONGR\MagentoConnectorBundle\ONGRMagentoConnectorBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
