@@ -1,5 +1,5 @@
 parameters:
-    ongr_demo.magento.sync.execute.shop_id: 1
+    ongr_demo.magento.sync.execute.shop_id: 0
     ongr_demo.magento.sync.execute.chunk_size: 1
 
     ongr_demo.magento.sync.execute.finish.class: ONGR\DemoMagentoBundle\EventListener\ImportFinishEventListener

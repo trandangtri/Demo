@@ -275,7 +275,7 @@ ongr_filter_manager:
 
 ongr_connections:
     shops:
-        - shop_id: 1
+        - shop_id: 0
     sync:
         sync_storage:
             mysql:
@@ -283,4 +283,4 @@ ongr_connections:
                 table_name: ongr_sync_storage
 
 ongr_magento:
-    shop: 1
+    shop: 0
