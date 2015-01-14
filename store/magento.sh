@@ -2,15 +2,15 @@
 
 cd $(dirname $0)
 
-#wget -O ./magento.tar.gz http://www.magentocommerce.com/downloads/assets/1.9.1.0/magento-1.9.1.0.tar.gz
+wget -O ./magento.tar.gz http://www.magentocommerce.com/downloads/assets/1.9.1.0/magento-1.9.1.0.tar.gz
 echo "Extracting data..."
-tar xzf magento.tar.gz
+tar xf magento.tar.gz
 cd magento
 chmod +x mage
 
 echo "Setting up vhost..."
-sudo cp magento.conf /etc/nginx/sites-available/magento.ongr.dev.conf
-sudo ln -s /etc/nginx/sites-enabled/magento.ongr.dev.conf /etc/nginx/sites-available/magento.ongr.dev.conf
+sudo cp ../magento.conf /etc/nginx/sites-available/magento.ongr.dev.conf
+sudo ln -s /etc/nginx/sites-available/magento.ongr.dev.conf /etc/nginx/sites-enabled/magento.ongr.dev.conf
 sudo nginx -s reload
 
 
@@ -38,7 +38,8 @@ php -f install.php -- \
     --admin_lastname "Owner" \
     --admin_email "email@address.com" \
     --admin_username "admin" \
-    --admin_password "admin"
+    --admin_password "admin123" \
+    --session_save "db"
 
 
 echo "Installing core extensions..."
