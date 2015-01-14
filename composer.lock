@@ -291,16 +291,16 @@
         },
         {
             "name": "doctrine/dbal",
-            "version": "v2.5.0",
+            "version": "v2.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "71140662c0a954602e81271667b6e03d9f53ea34"
+                "reference": "628c2256b646ae2417d44e063bce8aec5199d48d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/71140662c0a954602e81271667b6e03d9f53ea34",
-                "reference": "71140662c0a954602e81271667b6e03d9f53ea34",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/628c2256b646ae2417d44e063bce8aec5199d48d",
+                "reference": "628c2256b646ae2417d44e063bce8aec5199d48d",
                 "shasum": ""
             },
             "require": {
@@ -358,7 +358,7 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2014-12-04 21:57:15"
+            "time": "2015-01-12 21:52:47"
         },
         {
             "name": "doctrine/doctrine-bundle",
@@ -1222,16 +1222,16 @@
         },
         {
             "name": "ongr/connections-bundle",
-            "version": "v0.1.0",
+            "version": "v0.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ongr-io/ConnectionsBundle.git",
-                "reference": "a45a19270fbca394a039c085e6404d8981a7a1af"
+                "reference": "ea2319edcd0401609313c461b8fc415ace8ca996"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ongr-io/ConnectionsBundle/zipball/a45a19270fbca394a039c085e6404d8981a7a1af",
-                "reference": "a45a19270fbca394a039c085e6404d8981a7a1af",
+                "url": "https://api.github.com/repos/ongr-io/ConnectionsBundle/zipball/ea2319edcd0401609313c461b8fc415ace8ca996",
+                "reference": "ea2319edcd0401609313c461b8fc415ace8ca996",
                 "shasum": ""
             },
             "require": {
@@ -1240,7 +1240,7 @@
                 "ongr/elasticsearch-bundle": ">=0.1,<2",
                 "php": ">=5.4",
                 "symfony/monolog-bundle": "~2.0",
-                "symfony/symfony": "~2.3"
+                "symfony/symfony": "~2.6"
             },
             "require-dev": {
                 "ongr/ongr-strict-standard": "~1.0.0-beta",
@@ -1264,7 +1264,7 @@
                 }
             ],
             "description": "Connections bundle for ONGR platform",
-            "time": "2014-12-19 12:43:10"
+            "time": "2015-01-12 13:56:55"
         },
         {
             "name": "ongr/content-bundle",
@@ -1316,16 +1316,16 @@
         },
         {
             "name": "ongr/elasticsearch-bundle",
-            "version": "v0.3.0",
+            "version": "v0.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ongr-io/ElasticsearchBundle.git",
-                "reference": "b4c0b2379cbb97432c8a5f2dd3d2b9d4b3d4b11f"
+                "reference": "7ed7ffc6f97477f7ecb6e30b4d7aad37ac1dfa0b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ongr-io/ElasticsearchBundle/zipball/b4c0b2379cbb97432c8a5f2dd3d2b9d4b3d4b11f",
-                "reference": "b4c0b2379cbb97432c8a5f2dd3d2b9d4b3d4b11f",
+                "url": "https://api.github.com/repos/ongr-io/ElasticsearchBundle/zipball/7ed7ffc6f97477f7ecb6e30b4d7aad37ac1dfa0b",
+                "reference": "7ed7ffc6f97477f7ecb6e30b4d7aad37ac1dfa0b",
                 "shasum": ""
             },
             "require": {
@@ -1336,6 +1336,7 @@
             },
             "require-dev": {
                 "mikey179/vfsstream": "~1.4",
+                "ongr/ongr-strict-standard": "~1.0.0-beta",
                 "phpunit/phpunit": "~4.1",
                 "squizlabs/php_codesniffer": "~1.5"
             },
@@ -1357,7 +1358,7 @@
             ],
             "description": "elasticsearch php client bundle for Symfony 2.",
             "homepage": "http://ongr.io",
-            "time": "2014-12-15 07:42:49"
+            "time": "2015-01-12 07:53:14"
         },
         {
             "name": "ongr/filter-manager-bundle",
@@ -1413,12 +1414,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ongr-io/MagentoConnectorBundle.git",
-                "reference": "093b8bcb037b4d758058bc3cb537b908e0ee5190"
+                "reference": "3268727d8e967ccda2a6c76e906d722eb1c899f3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ongr-io/MagentoConnectorBundle/zipball/093b8bcb037b4d758058bc3cb537b908e0ee5190",
-                "reference": "093b8bcb037b4d758058bc3cb537b908e0ee5190",
+                "url": "https://api.github.com/repos/ongr-io/MagentoConnectorBundle/zipball/3268727d8e967ccda2a6c76e906d722eb1c899f3",
+                "reference": "3268727d8e967ccda2a6c76e906d722eb1c899f3",
                 "shasum": ""
             },
             "require": {
@@ -1450,7 +1451,7 @@
             ],
             "description": "Magento connector for ONGR framework",
             "homepage": "http://ongr.io",
-            "time": "2015-01-08 13:49:29"
+            "time": "2015-01-13 13:42:00"
         },
         {
             "name": "ongr/pager-bundle",
@@ -3088,17 +3089,17 @@
         },
         {
             "name": "sensio/generator-bundle",
-            "version": "v2.5.0",
+            "version": "v2.5.1",
             "target-dir": "Sensio/Bundle/GeneratorBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioGeneratorBundle.git",
-                "reference": "0225fcd08e94de2165ffa85de50c3c9d9592e96b"
+                "reference": "9e23fc3de265ae013690d84aab98e7a84f46edcd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioGeneratorBundle/zipball/0225fcd08e94de2165ffa85de50c3c9d9592e96b",
-                "reference": "0225fcd08e94de2165ffa85de50c3c9d9592e96b",
+                "url": "https://api.github.com/repos/sensiolabs/SensioGeneratorBundle/zipball/9e23fc3de265ae013690d84aab98e7a84f46edcd",
+                "reference": "9e23fc3de265ae013690d84aab98e7a84f46edcd",
                 "shasum": ""
             },
             "require": {
@@ -3132,7 +3133,7 @@
                 }
             ],
             "description": "This bundle generates code for you",
-            "time": "2014-12-07 18:30:52"
+            "time": "2015-01-13 07:33:46"
         },
         {
             "name": "squizlabs/php_codesniffer",
