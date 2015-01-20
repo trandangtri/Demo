@@ -1,4 +1,6 @@
 parameters:
+    shop_ids:
+        - 0
 
 imports:
     - { resource: project_defaults.yml }
@@ -224,6 +226,7 @@ ongr_elasticsearch:
             debug: "%kernel.debug%"
             mappings:
                 - ONGRDemoBundle
+                - ONGRConnectionsBundle
         magento:
             connection: magento
             debug: "%kernel.debug%"
