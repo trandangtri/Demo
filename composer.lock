@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "6665b0840f2eaf7061fbf95eefd7ca64",
+    "hash": "0f29d063f335af689a7ff4f683161bab",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1222,6 +1222,52 @@
             "time": "2014-12-29 21:29:35"
         },
         {
+            "name": "ongr/connections-bundle",
+            "version": "v0.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ongr-io/ConnectionsBundle.git",
+                "reference": "938dcb4b24ddc0a2accbc9a2ce0f2e29ba84cf25"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ongr-io/ConnectionsBundle/zipball/938dcb4b24ddc0a2accbc9a2ce0f2e29ba84cf25",
+                "reference": "938dcb4b24ddc0a2accbc9a2ce0f2e29ba84cf25",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/doctrine-bundle": "~1.2",
+                "doctrine/orm": "~2.4",
+                "ongr/elasticsearch-bundle": ">=0.1,<2",
+                "php": ">=5.4",
+                "symfony/monolog-bundle": "~2.0",
+                "symfony/symfony": "~2.6"
+            },
+            "require-dev": {
+                "ongr/ongr-strict-standard": "~1.0.0-beta",
+                "phpunit/phpunit": "~4.2",
+                "squizlabs/php_codesniffer": "~1.5"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "ONGR\\ConnectionsBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "ONGR",
+                    "homepage": "http://www.ongr.io"
+                }
+            ],
+            "description": "Connections bundle for ONGR platform",
+            "time": "2015-01-19 14:51:36"
+        },
+        {
             "name": "ongr/content-bundle",
             "version": "v0.3.1",
             "source": {
@@ -1360,6 +1406,51 @@
             "description": "Filter manager bundle for product lists",
             "homepage": "http://ongr.io",
             "time": "2015-01-06 09:00:25"
+        },
+        {
+            "name": "ongr/magento-connector-bundle",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ongr-io/MagentoConnectorBundle.git",
+                "reference": "3100dca62d2c812e673edba95f46d52f59a7f02c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ongr-io/MagentoConnectorBundle/zipball/3100dca62d2c812e673edba95f46d52f59a7f02c",
+                "reference": "3100dca62d2c812e673edba95f46d52f59a7f02c",
+                "shasum": ""
+            },
+            "require": {
+                "ongr/connections-bundle": "~0.1",
+                "ongr/content-bundle": "~0.2",
+                "php": ">=5.4",
+                "symfony/symfony": "~2.6"
+            },
+            "require-dev": {
+                "ongr/ongr-strict-standard": "~1.0.0-beta",
+                "phpunit/phpunit": "~4.2",
+                "squizlabs/php_codesniffer": "~1.5"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "ONGR\\MagentoConnectorBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "ONGR team",
+                    "homepage": "http://www.nfq.com"
+                }
+            ],
+            "description": "Magento connector for ONGR framework",
+            "homepage": "http://ongr.io",
+            "time": "2015-01-20 12:00:00"
         },
         {
             "name": "ongr/pager-bundle",
@@ -3120,12 +3211,12 @@
         }
     ],
     "aliases": [],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "stability-flags": {
         "ongr/pager-bundle": 20,
-        "ongr/ongr-strict-standard": 10
+        "ongr/magento-connector-bundle": 20
     },
-    "prefer-stable": false,
+    "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": ">=5.3.3"
