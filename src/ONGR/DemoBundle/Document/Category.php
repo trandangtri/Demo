@@ -14,24 +14,27 @@ namespace ONGR\DemoBundle\Document;
 use ONGR\ElasticsearchBundle\Annotation as ES;
 use ONGR\ElasticsearchBundle\Document\DocumentInterface;
 use ONGR\ElasticsearchBundle\Document\DocumentTrait;
-use ONGR\ContentBundle\Document\Traits\CategoryTrait;
 use ONGR\RouterBundle\Document\SeoAwareTrait;
+use ONGR\ContentBundle\Document\AbstractCategoryDocument;
 
 /**
  * Stores category data.
  *
  * @ES\Document(type="category")
  */
-class Category implements DocumentInterface
+class Category extends AbstractCategoryDocument implements DocumentInterface
 {
-    use DocumentTrait;
-    use SeoAwareTrait;
-    use CategoryTrait;
-
     /**
      * @var string
      *
      * @ES\Property(name="slug", type="string", index="not_analyzed")
      */
     public $slug;
+
+    /**
+     * @var string
+     *
+     * @ES\Property(name="title", type="string", search_analyzer="standard")
+     */
+    public $title;
 }
