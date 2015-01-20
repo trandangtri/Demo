@@ -11,8 +11,8 @@
 
 namespace ONGR\DemoBundle\Document;
 
-use ONGR\ContentBundle\Document\AbstractCategoryDocument;
 use ONGR\ElasticsearchBundle\Annotation as ES;
+use ONGR\ContentBundle\Document\AbstractCategoryDocument;
 
 /**
  * Stores category data.
@@ -27,4 +27,11 @@ class Category extends AbstractCategoryDocument
      * @ES\Property(name="slug", type="string", index="not_analyzed")
      */
     public $slug;
+
+    /**
+     * @var string
+     *
+     * @ES\Property(name="title", type="string", search_analyzer="standard")
+     */
+    public $title;
 }
