@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f85eff0e637b2ba1e5ef563f0bb9e216",
+    "hash": "6665b0840f2eaf7061fbf95eefd7ca64",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -76,16 +76,16 @@
         },
         {
             "name": "doctrine/cache",
-            "version": "v1.3.1",
+            "version": "v1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/cache.git",
-                "reference": "cf483685798a72c93bf4206e3dd6358ea07d64e7"
+                "reference": "2346085d2b027b233ae1d5de59b07440b9f288c8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/cache/zipball/cf483685798a72c93bf4206e3dd6358ea07d64e7",
-                "reference": "cf483685798a72c93bf4206e3dd6358ea07d64e7",
+                "url": "https://api.github.com/repos/doctrine/cache/zipball/2346085d2b027b233ae1d5de59b07440b9f288c8",
+                "reference": "2346085d2b027b233ae1d5de59b07440b9f288c8",
                 "shasum": ""
             },
             "require": {
@@ -96,6 +96,7 @@
             },
             "require-dev": {
                 "phpunit/phpunit": ">=3.7",
+                "predis/predis": "~0.8",
                 "satooshi/php-coveralls": "~0.6"
             },
             "type": "library",
@@ -141,7 +142,7 @@
                 "cache",
                 "caching"
             ],
-            "time": "2014-09-17 14:24:04"
+            "time": "2015-01-15 20:38:55"
         },
         {
             "name": "doctrine/collections",
@@ -1221,78 +1222,30 @@
             "time": "2014-12-29 21:29:35"
         },
         {
-            "name": "ongr/connections-bundle",
-            "version": "v0.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ongr-io/ConnectionsBundle.git",
-                "reference": "ea2319edcd0401609313c461b8fc415ace8ca996"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ongr-io/ConnectionsBundle/zipball/ea2319edcd0401609313c461b8fc415ace8ca996",
-                "reference": "ea2319edcd0401609313c461b8fc415ace8ca996",
-                "shasum": ""
-            },
-            "require": {
-                "doctrine/doctrine-bundle": "~1.2",
-                "doctrine/orm": "~2.4",
-                "ongr/elasticsearch-bundle": ">=0.1,<2",
-                "php": ">=5.4",
-                "symfony/monolog-bundle": "~2.0",
-                "symfony/symfony": "~2.6"
-            },
-            "require-dev": {
-                "ongr/ongr-strict-standard": "~1.0.0-beta",
-                "phpunit/phpunit": "~4.2",
-                "squizlabs/php_codesniffer": "~1.5"
-            },
-            "type": "symfony-bundle",
-            "autoload": {
-                "psr-4": {
-                    "ONGR\\ConnectionsBundle\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "ONGR",
-                    "homepage": "http://www.ongr.io"
-                }
-            ],
-            "description": "Connections bundle for ONGR platform",
-            "time": "2015-01-12 13:56:55"
-        },
-        {
             "name": "ongr/content-bundle",
-            "version": "v0.2.0",
+            "version": "v0.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ongr-io/ContentBundle.git",
-                "reference": "694516cd2674613e13f7ce9237fc0b5880d45db9"
+                "reference": "682331235b355b336cbdcf60e96fc4f7df1f0636"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ongr-io/ContentBundle/zipball/694516cd2674613e13f7ce9237fc0b5880d45db9",
-                "reference": "694516cd2674613e13f7ce9237fc0b5880d45db9",
+                "url": "https://api.github.com/repos/ongr-io/ContentBundle/zipball/682331235b355b336cbdcf60e96fc4f7df1f0636",
+                "reference": "682331235b355b336cbdcf60e96fc4f7df1f0636",
                 "shasum": ""
             },
             "require": {
                 "ongr/elasticsearch-bundle": "~0.1",
                 "ongr/router-bundle": "~0.1",
                 "php": ">=5.4",
-                "symfony/symfony": "~2.3"
+                "symfony/symfony": "~2.6"
             },
             "require-dev": {
                 "ongr/ongr-strict-standard": "~1.0.0-beta",
                 "phpunit/phpunit": "~4.1",
-                "squizlabs/php_codesniffer": "~1.5"
-            },
-            "suggest": {
-                "ongr/router-bundle": "Adds SEO friendly URLs"
+                "squizlabs/php_codesniffer": "~1.5",
+                "tedivm/stash-bundle": "0.3.*"
             },
             "type": "symfony-bundle",
             "autoload": {
@@ -1312,7 +1265,7 @@
             ],
             "description": "Main content bundle to handle category, product and content data.",
             "homepage": "http://ongr.io",
-            "time": "2014-12-02 12:56:40"
+            "time": "2015-01-18 22:52:14"
         },
         {
             "name": "ongr/elasticsearch-bundle",
@@ -1407,51 +1360,6 @@
             "description": "Filter manager bundle for product lists",
             "homepage": "http://ongr.io",
             "time": "2015-01-06 09:00:25"
-        },
-        {
-            "name": "ongr/magento-connector-bundle",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/ongr-io/MagentoConnectorBundle.git",
-                "reference": "3268727d8e967ccda2a6c76e906d722eb1c899f3"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/ongr-io/MagentoConnectorBundle/zipball/3268727d8e967ccda2a6c76e906d722eb1c899f3",
-                "reference": "3268727d8e967ccda2a6c76e906d722eb1c899f3",
-                "shasum": ""
-            },
-            "require": {
-                "ongr/connections-bundle": "~0.1",
-                "ongr/content-bundle": "~0.1",
-                "php": ">=5.4",
-                "symfony/symfony": "~2.6"
-            },
-            "require-dev": {
-                "ongr/ongr-strict-standard": "~1.0.0-beta",
-                "phpunit/phpunit": "~4.2",
-                "squizlabs/php_codesniffer": "~1.5"
-            },
-            "type": "symfony-bundle",
-            "autoload": {
-                "psr-4": {
-                    "ONGR\\MagentoConnectorBundle\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "ONGR team",
-                    "homepage": "http://www.nfq.com"
-                }
-            ],
-            "description": "Magento connector for ONGR framework",
-            "homepage": "http://ongr.io",
-            "time": "2015-01-13 13:42:00"
         },
         {
             "name": "ongr/pager-bundle",
@@ -1604,12 +1512,12 @@
             "version": "v2.1.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/fabpot/Pimple.git",
+                "url": "https://github.com/silexphp/Pimple.git",
                 "reference": "ea22fb2880faf7b7b0e17c9809c6fe25b071fd76"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Pimple/zipball/ea22fb2880faf7b7b0e17c9809c6fe25b071fd76",
+                "url": "https://api.github.com/repos/silexphp/Pimple/zipball/ea22fb2880faf7b7b0e17c9809c6fe25b071fd76",
                 "reference": "ea22fb2880faf7b7b0e17c9809c6fe25b071fd76",
                 "shasum": ""
             },
@@ -2238,16 +2146,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.16.3",
+            "version": "v1.17.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "6dc11a1e8ecfc30e2c68aaeb218148409d8e68af"
+                "reference": "2493970fa4d587eca73f77e6d8bd48a8bdd4c608"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/6dc11a1e8ecfc30e2c68aaeb218148409d8e68af",
-                "reference": "6dc11a1e8ecfc30e2c68aaeb218148409d8e68af",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/2493970fa4d587eca73f77e6d8bd48a8bdd4c608",
+                "reference": "2493970fa4d587eca73f77e6d8bd48a8bdd4c608",
                 "shasum": ""
             },
             "require": {
@@ -2256,7 +2164,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.16-dev"
+                    "dev-master": "1.17-dev"
                 }
             },
             "autoload": {
@@ -2291,7 +2199,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2014-12-25 19:58:19"
+            "time": "2015-01-14 10:15:49"
         }
     ],
     "packages-dev": [
@@ -2597,16 +2505,16 @@
         },
         {
             "name": "phpunit/php-token-stream",
-            "version": "1.3.0",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-token-stream.git",
-                "reference": "f8d5d08c56de5cfd592b3340424a81733259a876"
+                "reference": "db32c18eba00b121c145575fcbcd4d4d24e6db74"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/f8d5d08c56de5cfd592b3340424a81733259a876",
-                "reference": "f8d5d08c56de5cfd592b3340424a81733259a876",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/db32c18eba00b121c145575fcbcd4d4d24e6db74",
+                "reference": "db32c18eba00b121c145575fcbcd4d4d24e6db74",
                 "shasum": ""
             },
             "require": {
@@ -2619,7 +2527,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.3-dev"
+                    "dev-master": "1.4-dev"
                 }
             },
             "autoload": {
@@ -2642,20 +2550,20 @@
             "keywords": [
                 "tokenizer"
             ],
-            "time": "2014-08-31 06:12:13"
+            "time": "2015-01-17 09:51:32"
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.4.1",
+            "version": "4.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "6a5e49a86ce5e33b8d0657abe145057fc513543a"
+                "reference": "e90575c2bb86290d57a262862dab1da125431576"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/6a5e49a86ce5e33b8d0657abe145057fc513543a",
-                "reference": "6a5e49a86ce5e33b8d0657abe145057fc513543a",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/e90575c2bb86290d57a262862dab1da125431576",
+                "reference": "e90575c2bb86290d57a262862dab1da125431576",
                 "shasum": ""
             },
             "require": {
@@ -2713,7 +2621,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2014-12-28 07:57:05"
+            "time": "2015-01-17 11:24:41"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -3215,7 +3123,6 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "ongr/pager-bundle": 20,
-        "ongr/magento-connector-bundle": 20,
         "ongr/ongr-strict-standard": 10
     },
     "prefer-stable": false,
