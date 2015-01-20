@@ -11,18 +11,15 @@
 
 namespace ONGR\DemoBundle\Document;
 
+use ONGR\ContentBundle\Document\AbstractCategoryDocument;
 use ONGR\ElasticsearchBundle\Annotation as ES;
-use ONGR\ElasticsearchBundle\Document\DocumentInterface;
-use ONGR\ElasticsearchBundle\Document\DocumentTrait;
-use ONGR\ContentBundle\Document\CategoryTrait;
-use ONGR\RouterBundle\Document\SeoAwareTrait;
 
 /**
  * Stores category data.
  *
  * @ES\Document(type="category")
  */
-class Category extends AbstractCategoryDocument implements DocumentInterface
+class Category extends AbstractCategoryDocument
 {
     /**
      * @var string
