@@ -1,0 +1,216 @@
+{
+  "ongr" : {
+    "mappings" : {
+      "content" : {
+        "properties" : {
+          "content" : {
+            "type" : "string"
+          },
+          "expired_url" : {
+            "type" : "string"
+          },
+          "slug" : {
+            "type" : "string",
+            "index" : "not_analyzed"
+          },
+          "title" : {
+            "type" : "string",
+            "search_analyzer" : "standard"
+          },
+          "url" : {
+            "properties" : {
+              "key" : {
+                "type" : "string",
+                "index" : "no"
+              },
+              "url" : {
+                "type" : "string",
+                "analyzer" : "urlAnalyzer"
+              }
+            }
+          }
+        }
+      },
+      "category" : {
+        "properties" : {
+          "active" : {
+            "type" : "boolean"
+          },
+          "expired_url" : {
+            "type" : "string"
+          },
+          "hidden" : {
+            "type" : "boolean"
+          },
+          "left" : {
+            "type" : "integer"
+          },
+          "level" : {
+            "type" : "integer"
+          },
+          "parent_id" : {
+            "type" : "string"
+          },
+          "right" : {
+            "type" : "integer"
+          },
+          "root_id" : {
+            "type" : "string"
+          },
+          "slug" : {
+            "type" : "string",
+            "index" : "not_analyzed"
+          },
+          "sort" : {
+            "type" : "string"
+          },
+          "title" : {
+            "type" : "string",
+            "search_analyzer" : "standard"
+          },
+          "url" : {
+            "properties" : {
+              "key" : {
+                "type" : "string",
+                "index" : "no"
+              },
+              "url" : {
+                "type" : "string",
+                "analyzer" : "urlAnalyzer"
+              }
+            }
+          }
+        }
+      },
+      "product" : {
+        "properties" : {
+          "alcohol_level" : {
+            "type" : "float"
+          },
+          "attributes" : {
+            "type" : "string",
+            "index" : "no"
+          },
+          "category" : {
+            "type" : "string",
+            "index_analyzer" : "pathAnalyzer"
+          },
+          "category_id" : {
+            "type" : "string",
+            "index" : "not_analyzed"
+          },
+          "category_title" : {
+            "type" : "string",
+            "index_analyzer" : "pathAnalyzer"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "expired_url" : {
+            "type" : "string"
+          },
+          "grape" : {
+            "type" : "string",
+            "index" : "not_analyzed"
+          },
+          "icon" : {
+            "type" : "string",
+            "index" : "no"
+          },
+          "image" : {
+            "type" : "string"
+          },
+          "location" : {
+            "type" : "geo_point"
+          },
+          "long_description" : {
+            "type" : "string",
+            "index" : "no"
+          },
+          "main_category" : {
+            "type" : "string",
+            "index" : "not_analyzed"
+          },
+          "manufacturer" : {
+            "type" : "string",
+            "index" : "not_analyzed"
+          },
+          "origin" : {
+            "properties" : {
+              "country" : {
+                "type" : "string",
+                "index" : "not_analyzed"
+              },
+              "location" : {
+                "type" : "string",
+                "index" : "not_analyzed"
+              }
+            }
+          },
+          "price" : {
+            "type" : "float"
+          },
+          "reviews" : {
+            "properties" : {
+              "created_at" : {
+                "type" : "string"
+              },
+              "name" : {
+                "type" : "string"
+              },
+              "rating" : {
+                "type" : "integer"
+              },
+              "review" : {
+                "type" : "string"
+              }
+            }
+          },
+          "sku" : {
+            "type" : "string",
+            "index" : "not_analyzed"
+          },
+          "thumb" : {
+            "type" : "string",
+            "index" : "no"
+          },
+          "title" : {
+            "type" : "string",
+            "search_analyzer" : "standard"
+          },
+          "title_suggest" : {
+            "type" : "completion",
+            "analyzer" : "simple",
+            "payloads" : true,
+            "preserve_separators" : true,
+            "preserve_position_increments" : true,
+            "max_input_length" : 50
+          },
+          "total_rating" : {
+            "type" : "integer"
+          },
+          "url" : {
+            "properties" : {
+              "key" : {
+                "type" : "string",
+                "index" : "no"
+              },
+              "url" : {
+                "type" : "string",
+                "analyzer" : "urlAnalyzer"
+              }
+            }
+          },
+          "wine_colour" : {
+            "type" : "string",
+            "index" : "not_analyzed"
+          },
+          "wine_style" : {
+            "type" : "string",
+            "index" : "not_analyzed"
+          }
+        }
+      }
+    }
+  }
+}
