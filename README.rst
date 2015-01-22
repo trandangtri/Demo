@@ -38,13 +38,65 @@ Intro
 - `Contributing <https://github.com/ongr-io/ongr-handbook/blob/master/source/handbook/contributing/contributing.rst>`_
 
 
-ONGR Components
----------------
-
 ONGR uses and provides full support for `Elasticsearch Bundle <https://github.com/ongr-io/ElasticsearchBundle>`_.
 
-- `Router Bundle <https://github.com/ongr-io/ElasticsearchBundle>`_
-- `Content bundle <https://github.com/ongr-io/ContentBundle>`_
-- `Filter manager <https://github.com/ongr-io/FilterManagerBundle>`_
 
-   More are coming.. ;)
+
+Magento integration setup
+-------------------------
+
+Setup sandbox:
+
+
+First run magento install script:
+
+.. code-block:: bash
+
+    cd store
+    ./magento.sh
+
+..
+
+
+Magento shop frontend:  http://magento.ongr.dev/
+
+Magento admin UI -  http://magento.ongr.dev/admin
+U: admin
+P: admin123
+
+
+Create new index:
+
+.. code-block:: bash
+
+    app/console es:index:create --manager=magento
+
+..
+
+
+Execute:
+
+.. code-block:: bash
+
+    app/console ongr:import:full magento.product
+    app/console ongr:import:full magento.content
+    app/console ongr:import:full magento.category
+
+..
+
+Set up Sync:
+
+.. code-block:: bash
+
+    app/console ongr:sync:storage:create --shop-id=0 mysql
+    app/console ongr:sync:provide:parameter last_sync_date --set=1 2000-01-01
+
+..
+
+.. code-block:: bash
+
+    app/console ongr:sync:execute magento.product
+    app/console ongr:sync:execute magento.content
+    app/console ongr:sync:execute magento.category
+
+..

@@ -108,13 +108,21 @@ swiftmailer:
 ongr_content:
     es:
         repositories:
-            product: es.manager.default.product
-            content: es.manager.default.content
+            product:  es.manager.default.product
+            content:  es.manager.default.content
             category: es.manager.default.category
+    category_root_id: oxrootid
+
+    es:
+        repositories:
+            product:  es.manager.magento.product
+            content:  es.manager.magento.content
+            category: es.manager.magento.category
     category_root_id: oxrootid
 
 ongr_router:
     es_manager: default
+#    es_manager: magento
     seo_routes:
         product:
             _route: ongr_product
@@ -226,14 +234,15 @@ ongr_elasticsearch:
             debug: "%kernel.debug%"
             mappings:
                 - ONGRDemoBundle
-                - ONGRConnectionsBundle
+                - ONGRConnectionsBundle  #Pair storage, used 4 Sync
         magento:
             connection: magento
             debug: "%kernel.debug%"
             mappings:
-                - ONGRMagentoConnectorBundle
+                - ONGRDemoMagentoBundle
 
 ongr_filter_manager:
+    es_manager: magento   # !!! IMPORTANT
     managers:
         product_list:
             filters:

@@ -20,6 +20,8 @@ rm *.sample *.txt
 
 echo "Installing Magento..."
 
+echo "CREATE DATABASE ongr;" | mysql -u root -proot
+
 php -f install.php -- \
     --license_agreement_accepted "yes" \
     --locale "en_US" \
@@ -47,6 +49,10 @@ echo "Installing core extensions..."
 ./mage mage-setup .
 ./mage config-set preferred_state stable
 ./mage install http://connect20.magentocommerce.com/community Mage_All_Latest --force
+
+echo "Installing sample data..."
+mysql -u root -proot -Bse "DROP DATABASE ongr; CREATE DATABASE ongr;"
+mysql -u root -proot ongr <  ../../vendor/ongr/magento-connector-bundle/Tests/app/fixtures/magento_db.sql
 
 echo "Refreshing indexes..."
 php -f shell/indexer.php reindexall
