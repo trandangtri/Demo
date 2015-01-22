@@ -20,6 +20,8 @@ rm *.sample *.txt
 
 echo "Installing Magento..."
 
+echo "CREATE DATABASE ongr;" | mysql -u root -proot
+
 php -f install.php -- \
     --license_agreement_accepted "yes" \
     --locale "en_US" \
