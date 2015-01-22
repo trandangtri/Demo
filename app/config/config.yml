@@ -1,3 +1,7 @@
+parameters:
+    shop_ids:
+        - 0
+
 imports:
     - { resource: project_defaults.yml }
     - { resource: parameters.yml }
@@ -79,6 +83,19 @@ doctrine:
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
         auto_mapping: true
+        mappings:
+            ONGROXIDConnectorBundle:
+                type: annotation
+                alias: OXIDConnectorBundle
+                dir: Entity
+                prefix: ONGR\OXIDConnectorBundle\Entity
+                is_bundle: true
+            ONGRDemoOXIDBundle:
+                type: annotation
+                alias: DemoOXIDBundle
+                dir: Entity
+                prefix: ONGR\DemoOXIDBundle\Entity
+                is_bundle: true
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -160,12 +177,61 @@ ongr_elasticsearch:
                             filter:
                                 - lowercase
                                 - incremental_filter
+        oxid:
+            hosts:
+                - { host: 127.0.0.1:9200 }
+            index_name: ongr_oxid
+            settings:
+                number_of_shards: 2
+                number_of_replicas: 0
+                index:
+                    refresh_interval: -1
+                analysis:
+                    tokenizer:
+                        pathTokenizer:
+                            type : path_hierarchy
+                            buffer_size: 2024
+                            skip: 0
+                            delimiter: /
+                    filter:
+                        incremental_filter:
+                            type: edge_ngram
+                            min_gram: 1
+                            max_gram: 20
+                    analyzer:
+                        indexAnalyzer:
+                            type: snowball
+                            language: German2
+                            stopwords: "der,die,das,mit,und,für"
+                        searchAnalyzer:
+                            type: snowball
+                            language: German2
+                            stopwords: "der,die,das,mit,und,für"
+                        pathAnalyzer:
+                            type: custom
+                            tokenizer: pathTokenizer
+                        urlAnalyzer:
+                            type: custom
+                            tokenizer: keyword
+                            filter: [lowercase]
+                        incrementalAnalyzer:
+                            type: custom
+                            tokenizer: standard
+                            filter:
+                                - lowercase
+                                - incremental_filter
     managers:
         default:
             connection: default
             debug: "%kernel.debug%"
             mappings:
                 - ONGRDemoBundle
+                - ONGRConnectionsBundle
+        oxid:
+            connection: oxid
+            debug: "%kernel.debug%"
+            mappings:
+                - ONGROXIDConnectorBundle
 
 ongr_filter_manager:
     managers:
@@ -211,3 +277,23 @@ ongr_filter_manager:
                     - { label: Price descending, field: price, order: desc }
                     - { label: Title ascending, field: title }
                     - { label: Title descending, field: title, order: desc }
+
+ongr_connections:
+    active_shop: oxid
+    shops:
+        oxid: ~
+    sync:
+        sync_storage:
+            mysql:
+                connection: default
+                table_name: ongr_sync_storage
+
+ongr_oxid:
+    database_mapping:
+        oxid:
+            tags:
+                @shop_tag: '_1'
+                @lang_tag: '_1_en'
+            shop_id: 0
+            lang_id: 0
+    entity_namespace: ONGROXIDConnectorBundle

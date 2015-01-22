@@ -1,0 +1,110 @@
+parameters:
+    ongr_demo.oxid.import.shop_id: 0
+
+    ongr_demo.oxid.import.finish.class: ONGR\ConnectionsBundle\EventListener\ImportFinishEventListener
+
+    ongr_demo.oxid.import.product.modifier.class: ONGR\OXIDConnectorBundle\Modifier\ProductModifier
+    ongr_demo.oxid.import.category.modifier.class: ONGR\OXIDConnectorBundle\Modifier\CategoryModifier
+    ongr_demo.oxid.import.content.modifier.class: ONGR\OXIDConnectorBundle\Modifier\ContentModifier
+
+    ongr_demo.oxid.import.product.doctrine_entity_type: DemoOXIDBundle:Article
+    ongr_demo.oxid.import.product.elastic_document_type: ONGROXIDConnectorBundle:ProductDocument
+
+    ongr_demo.oxid.import.category.doctrine_entity_type: DemoOXIDBundle:Category
+    ongr_demo.oxid.import.category.elastic_document_type: ONGROXIDConnectorBundle:CategoryDocument
+
+    ongr_demo.oxid.import.content.doctrine_entity_type: DemoOXIDBundle:Content
+    ongr_demo.oxid.import.content.elastic_document_type: ONGROXIDConnectorBundle:ContentDocument
+
+services:
+    # Product.
+    ongr_demo.oxid.import.product.source:
+        class: %ongr_connections.import.source.class%
+        parent: ongr_connections.import.source
+        arguments:
+            - @doctrine.orm.default_entity_manager
+            - %ongr_demo.oxid.import.product.doctrine_entity_type%
+            - @es.manager.oxid
+            - %ongr_demo.oxid.import.product.elastic_document_type%
+        tags:
+            - { name: kernel.event_listener, event: ongr.pipeline.import.oxid.product.source, method: onSource }
+
+    ongr_demo.oxid.import.product.modifier:
+        class: %ongr_demo.oxid.import.product.modifier.class%
+        arguments:
+            - %ongr_demo.oxid.import.shop_id%
+        tags:
+            - { name: kernel.event_listener, event: ongr.pipeline.import.oxid.product.modify, method: onModify }
+
+    ongr_demo.oxid.import.product.consumer:
+        class: %ongr_connections.import.consumer.class%
+        parent: ongr_connections.import.consumer
+        arguments:
+            - @es.manager.oxid
+        tags:
+            - { name: kernel.event_listener, event: ongr.pipeline.import.oxid.product.consume, method: onConsume }
+
+    # Category.
+    ongr_demo.oxid.import.category.source:
+        class: %ongr_connections.import.source.class%
+        parent: ongr_connections.import.source
+        arguments:
+            - @doctrine.orm.default_entity_manager
+            - %ongr_demo.oxid.import.category.doctrine_entity_type%
+            - @es.manager.oxid
+            - %ongr_demo.oxid.import.category.elastic_document_type%
+        tags:
+            - { name: kernel.event_listener, event: ongr.pipeline.import.oxid.category.source, method: onSource }
+
+    ongr_demo.oxid.import.category.modifier:
+        class: %ongr_demo.oxid.import.category.modifier.class%
+        arguments:
+            - %ongr_demo.oxid.import.shop_id%
+        tags:
+            - { name: kernel.event_listener, event: ongr.pipeline.import.oxid.category.modify, method: onModify }
+
+    ongr_demo.oxid.import.category.consumer:
+        class: %ongr_connections.import.consumer.class%
+        parent: ongr_connections.import.consumer
+        arguments:
+            - @es.manager.oxid
+        tags:
+            - { name: kernel.event_listener, event: ongr.pipeline.import.oxid.category.consume, method: onConsume }
+
+    # Content.
+    ongr_demo.oxid.import.content.source:
+        class: %ongr_connections.import.source.class%
+        parent: ongr_connections.import.source
+        arguments:
+            - @doctrine.orm.default_entity_manager
+            - %ongr_demo.oxid.import.content.doctrine_entity_type%
+            - @es.manager.oxid
+            - %ongr_demo.oxid.import.content.elastic_document_type%
+        tags:
+            - { name: kernel.event_listener, event: ongr.pipeline.import.oxid.content.source, method: onSource }
+
+    ongr_demo.oxid.import.content.modifier:
+        class: %ongr_demo.oxid.import.content.modifier.class%
+        arguments:
+            - %ongr_demo.oxid.import.shop_id%
+        tags:
+            - { name: kernel.event_listener, event: ongr.pipeline.import.oxid.content.modify, method: onModify }
+
+    ongr_demo.oxid.import.content.consumer:
+        class: %ongr_connections.import.consumer.class%
+        parent: ongr_connections.import.consumer
+        arguments:
+            - @es.manager.oxid
+        tags:
+            - { name: kernel.event_listener, event: ongr.pipeline.import.oxid.content.consume, method: onConsume }
+
+    # All.
+    ongr_demo.oxid.import.finish:
+        class: %ongr_demo.oxid.import.finish.class%
+        parent: ongr_connections.import.finish
+        arguments:
+            - @es.manager.oxid
+        tags:
+            - { name: kernel.event_listener, event: ongr.pipeline.import.oxid.product.finish, method: onFinish }
+            - { name: kernel.event_listener, event: ongr.pipeline.import.oxid.category.finish, method: onFinish }
+            - { name: kernel.event_listener, event: ongr.pipeline.import.oxid.content.finish, method: onFinish }
