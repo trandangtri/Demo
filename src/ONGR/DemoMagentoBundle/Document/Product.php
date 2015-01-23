@@ -13,7 +13,6 @@ namespace ONGR\DemoMagentoBundle\Document;
 
 use ONGR\ElasticsearchBundle\Annotation as ES;
 use ONGR\ContentBundle\Document\AbstractProductDocument;
-use ONGR\ElasticsearchBundle\Document\DocumentTrait;
 
 /**
  * ElasticSearch Product document.
@@ -151,6 +150,14 @@ class Product extends AbstractProductDocument
     }
 
     /**
+     * @return \CategoryObject[]
+     */
+    public function getMainCategory()
+    {
+        return $this->getCategories()[0]->getTitle();
+    }
+
+    /**
      * @return \Iterator|CategoryObject[]
      */
     public function getCategories()
@@ -172,6 +179,38 @@ class Product extends AbstractProductDocument
     public function addCategory($categoryObject)
     {
         $this->categories[] = $categoryObject;
+    }
+
+    /**
+     * @return string
+     */
+    public function getManufacturer()
+    {
+        return '';
+    }
+
+    /**
+     * @return \ImageObject[]
+     */
+    public function getImage()
+    {
+        return $this->getImages()[0]->getUrl();
+    }
+
+    /**
+     * @return string
+     */
+    public function getColour()
+    {
+        return '';
+    }
+
+    /**
+     * @return string
+     */
+    public function getStyle()
+    {
+        return '';
     }
 
     /**
@@ -240,6 +279,17 @@ class Product extends AbstractProductDocument
         $imageObject = new ImageObject();
         $imageObject->setUrl($imageUrl);
         $this->smallImages[] = $imageObject;
+    }
+
+    /**
+     * @return float
+     */
+    public function getPrice()
+    {
+        if( $this->getPrices() !== null)
+            return $this->getPrices()[0]->getPrice();
+        else
+            return '';
     }
 
     /**

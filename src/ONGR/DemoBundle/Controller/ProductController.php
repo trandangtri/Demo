@@ -14,7 +14,6 @@ namespace ONGR\DemoBundle\Controller;
 use Elasticsearch\Common\Exceptions\Missing404Exception;
 use ONGR\DemoBundle\Document\Product;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -50,7 +49,7 @@ class ProductController extends Controller
     /**
      * Render product document.
      *
-     * @param Product $document
+     * @param string $document
      *
      * @return Response
      */
