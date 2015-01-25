@@ -69,7 +69,8 @@ Create new index:
 
 .. code-block:: bash
 
-    app/console es:index:create --manager=magento
+    app/console es:index:create
+    app/console es:index:import --raw src/ONGR/DemoMagentoBundle/Resources/data/data.json
 
 ..
 
@@ -79,8 +80,8 @@ Execute:
 .. code-block:: bash
 
     app/console ongr:import:full magento.product
-    app/console ongr:import:full magento.content
     app/console ongr:import:full magento.category
+    app/console ongr:import:full magento.content
 
 ..
 
