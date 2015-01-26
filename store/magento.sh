@@ -24,7 +24,7 @@ echo "CREATE DATABASE ongr;" | mysql -u root -proot
 
 php -f install.php -- \
     --license_agreement_accepted "yes" \
-    --locale "en_US" \
+    --locale "de_DE" \
     --timezone "America/Phoenix" \
     --default_currency "USD" \
     --db_host "localhost" \
