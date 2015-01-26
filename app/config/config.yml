@@ -108,9 +108,9 @@ swiftmailer:
 ongr_content:
     es:
         repositories:
-            product: es.manager.default.product
-            content: es.manager.default.content
-            category: es.manager.default.category
+            product: es.manager.oxid.productdocument
+            content: es.manager.oxid.contentdocument
+            category: es.manager.oxid.categorydocument
     category_root_id: oxrootid
 
 ongr_router:
@@ -119,12 +119,12 @@ ongr_router:
         product:
             _route: ongr_product
             _controller: ONGRDemoBundle:Product:document
-            _default_route: ongr_product
-            _id_param: document
+            _default_route: ongr_product_show
+            _id_param: id
         category:
             _route: ongr_category
-            _default_route: ongr_category
-            _id_param: document
+            _default_route: ongr_category_show
+            _id_param: id
             _controller: ONGRDemoBundle:Category:document
         content:
             _route: ongr_content
@@ -234,6 +234,7 @@ ongr_elasticsearch:
                 - ONGROXIDConnectorBundle
 
 ongr_filter_manager:
+    es_manager: oxid
     managers:
         product_list:
             filters:
@@ -244,7 +245,7 @@ ongr_filter_manager:
                 - search
                 - pager
                 - sorting
-            repository: 'product'
+            repository: 'productdocument'
     filters:
         choice:
             country:
