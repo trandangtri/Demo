@@ -52,7 +52,7 @@ echo "Installing core extensions..."
 
 echo "Installing sample data..."
 mysql -u root -proot -Bse "DROP DATABASE ongr; CREATE DATABASE ongr;"
-mysql -u root -proot ongr <  ../../vendor/ongr/magento-connector-bundle/Tests/app/fixtures/magento_db.sql
+mysql -u root -proot ongr <  ../../src/ONGR/DemoMagentoBundle/Resources/data/magento_sample_data_for_1.9.0.0.sql
 
 echo "Refreshing indexes..."
 php -f shell/indexer.php reindexall

@@ -44,7 +44,7 @@ crunch_ssi:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [ ]
+    bundles:        [ ONGRDemoBundle ]
     java: "%java_path%"
     filters:
         cssrewrite: ~
@@ -215,7 +215,7 @@ ongr_filter_manager:
         document_field:
             category:
                 request_field: 'document'
-                field: category_id
+                field: categories.categories
         pager:
             pager:
                 request_field: 'page'

@@ -70,12 +70,18 @@ Create new index:
 .. code-block:: bash
 
     app/console es:index:create
+
+..
+
+Import demo content:
+
+.. code-block:: bash
+
     app/console es:index:import --raw src/ONGR/DemoMagentoBundle/Resources/data/data.json
 
 ..
 
-
-Execute:
+Import data from magento:
 
 .. code-block:: bash
 
@@ -91,8 +97,11 @@ Set up Sync:
 
     app/console ongr:sync:storage:create --shop-id=0 mysql
     app/console ongr:sync:provide:parameter last_sync_date --set=1 2000-01-01
+    app/console ongr:sync:provide magento
 
 ..
+
+Execute sync:
 
 .. code-block:: bash
 

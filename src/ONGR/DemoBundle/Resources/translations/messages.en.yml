@@ -1,5 +1,3 @@
 filter:
     sorting: Sort:
-    country: Country
-    wine_style: Wine Style
-    wine_color: Wine Color
+    wear_title: Categories
