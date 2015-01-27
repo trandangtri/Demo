@@ -27,7 +27,7 @@ echo "Installing Magento..."
 php -f install.php -- \
     --license_agreement_accepted "yes" \
     --locale "de_DE" \
-    --timezone "America/Phoenix" \
+    --timezone "Europe/Berlin" \
     --default_currency "EUR" \
     --db_host "localhost" \
     --db_name "ongr" \

@@ -45,10 +45,11 @@ ONGR uses and provides full support for `Elasticsearch Bundle <https://github.co
 Magento integration setup
 -------------------------
 
-Setup sandbox:
+Firs You must setup sandbox.
+Use manual untill step ().
 
 
-First run magento install script:
+Then run magento install script:
 
 .. code-block:: bash
 
@@ -58,14 +59,16 @@ First run magento install script:
 ..
 
 
-Magento shop frontend:  http://magento.ongr.dev/
+    If you want or need, You can access Magento shop frontend using `http://magento.ongr.dev/ <http://magento.ongr.dev/>`_
 
-Magento admin UI -  http://magento.ongr.dev/admin
-U: admin
-P: admin123
+    or Magento administrators UI -  `http://magento.ongr.dev/admin <http://magento.ongr.dev/admin>`_
+
+    Username: admin
+
+    Password: admin123
 
 
-Create new index:
+Now You must create new index for ElasticSearch:
 
 .. code-block:: bash
 
@@ -73,7 +76,7 @@ Create new index:
 
 ..
 
-Import demo content:
+And import demo content for `ongr.dev <http://ongr.dev>`_ pages:
 
 .. code-block:: bash
 
@@ -81,7 +84,7 @@ Import demo content:
 
 ..
 
-Import data from magento:
+Now you need to import data from magento:
 
 .. code-block:: bash
 
@@ -91,7 +94,8 @@ Import data from magento:
 
 ..
 
-Set up Sync:
+Afterwards set up Sync. So changes made in `http://magento.ongr.dev/admin <http://magento.ongr.dev/admin>`_
+will be synchronized with `ongr.dev <http://ongr.dev>`_ :
 
 .. code-block:: bash
 
@@ -101,7 +105,7 @@ Set up Sync:
 
 ..
 
-Execute sync:
+And at last You can execute sync:
 
 .. code-block:: bash
 
