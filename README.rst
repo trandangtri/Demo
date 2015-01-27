@@ -45,9 +45,7 @@ ONGR uses and provides full support for `Elasticsearch Bundle <https://github.co
 Magento integration setup
 -------------------------
 
-Firs You must setup sandbox.
-Use manual untill step ().
-
+Firs You must setup sandbox in vagrant, but not import any data.
 
 Then run magento install script:
 
