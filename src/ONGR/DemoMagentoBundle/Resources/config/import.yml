@@ -19,7 +19,7 @@ parameters:
 
 services:
 
-    ongr_demo.magento.import.product.modifier:
+    ongr_demo.magento.import.product.stock.modifier:
         class: %ongr_demo.magento.import.product.stock.modifier.class%
         arguments:
             - %ongr_demo.magento.import.shop_id%

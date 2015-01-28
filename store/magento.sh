@@ -46,17 +46,21 @@ php -f install.php -- \
     --session_save "db"
 
 
+echo "Installing sample data..."
+
+mysql -u root -proot -Bse "DROP DATABASE ongr; CREATE DATABASE ongr;"
+mysql -u root -proot ongr <  ../../src/ONGR/DemoMagentoBundle/Resources/data/magento_sample_data_for_1.9.0.0.sql
+
+
+echo "Clearing Magento cache..."
+rm -rf ./var/cache/
+
 echo "Installing core extensions..."
 
 ./mage mage-setup .
 ./mage config-set preferred_state stable
 ./mage install http://connect20.magentocommerce.com/community Mage_All_Latest --force
 
-
-echo "Installing sample data..."
-
-mysql -u root -proot -Bse "DROP DATABASE ongr; CREATE DATABASE ongr;"
-mysql -u root -proot ongr <  ../../src/ONGR/DemoMagentoBundle/Resources/data/magento_sample_data_for_1.9.0.0.sql
 
 echo "Refreshing indexes..."
 
