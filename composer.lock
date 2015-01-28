@@ -1413,12 +1413,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ongr-io/MagentoConnectorBundle.git",
-                "reference": "3100dca62d2c812e673edba95f46d52f59a7f02c"
+                "reference": "7be5adf8b0ddd5bdca857e61fcc32ad98c229987"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ongr-io/MagentoConnectorBundle/zipball/3100dca62d2c812e673edba95f46d52f59a7f02c",
-                "reference": "3100dca62d2c812e673edba95f46d52f59a7f02c",
+                "url": "https://api.github.com/repos/ongr-io/MagentoConnectorBundle/zipball/7be5adf8b0ddd5bdca857e61fcc32ad98c229987",
+                "reference": "7be5adf8b0ddd5bdca857e61fcc32ad98c229987",
                 "shasum": ""
             },
             "require": {
@@ -1450,7 +1450,7 @@
             ],
             "description": "Magento connector for ONGR framework",
             "homepage": "http://ongr.io",
-            "time": "2015-01-20 12:00:00"
+            "time": "2015-01-27 12:00:39"
         },
         {
             "name": "ongr/pager-bundle",
