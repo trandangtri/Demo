@@ -7,6 +7,8 @@ parameters:
     ongr_demo.oxid.import.category.modifier.class: ONGR\OXIDConnectorBundle\Modifier\CategoryModifier
     ongr_demo.oxid.import.content.modifier.class: ONGR\OXIDConnectorBundle\Modifier\ContentModifier
 
+    ongr_demo.oxid.import.product.category.modifier.class: ONGR\DemoOXIDBundle\Modifier\UnassignedProduct
+
     ongr_demo.oxid.import.product.doctrine_entity_type: DemoOXIDBundle:Article
     ongr_demo.oxid.import.product.elastic_document_type: ONGROXIDConnectorBundle:ProductDocument
 
@@ -17,6 +19,13 @@ parameters:
     ongr_demo.oxid.import.content.elastic_document_type: ONGROXIDConnectorBundle:ContentDocument
 
 services:
+    # Product category skip.
+    ongr_demo.oxid.import.product.category.modifier:
+            class: %ongr_demo.oxid.import.product.category.modifier.class%
+            arguments:
+                - @ongr_oxid.attr_to_doc_service
+            tags:
+                - { name: kernel.event_listener, event: ongr.pipeline.import.oxid.product.modify, method: onModify }
     # Product.
     ongr_demo.oxid.import.product.source:
         class: %ongr_connections.import.source.class%

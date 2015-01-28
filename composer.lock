@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b3a2e21e09fcea469655555da03cf657",
+    "hash": "da730d4f8ca286e903038450add79b85",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1315,16 +1315,16 @@
         },
         {
             "name": "ongr/elasticsearch-bundle",
-            "version": "v0.4.1",
+            "version": "v0.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ongr-io/ElasticsearchBundle.git",
-                "reference": "7ed7ffc6f97477f7ecb6e30b4d7aad37ac1dfa0b"
+                "reference": "2e085f01d9fab6d7df8068e007acf40ad815e729"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ongr-io/ElasticsearchBundle/zipball/7ed7ffc6f97477f7ecb6e30b4d7aad37ac1dfa0b",
-                "reference": "7ed7ffc6f97477f7ecb6e30b4d7aad37ac1dfa0b",
+                "url": "https://api.github.com/repos/ongr-io/ElasticsearchBundle/zipball/2e085f01d9fab6d7df8068e007acf40ad815e729",
+                "reference": "2e085f01d9fab6d7df8068e007acf40ad815e729",
                 "shasum": ""
             },
             "require": {
@@ -1335,7 +1335,7 @@
             },
             "require-dev": {
                 "mikey179/vfsstream": "~1.4",
-                "ongr/ongr-strict-standard": "~1.0.0-beta",
+                "ongr/ongr-strict-standard": "~1.0",
                 "phpunit/phpunit": "~4.1",
                 "squizlabs/php_codesniffer": "~1.5"
             },
@@ -1357,7 +1357,7 @@
             ],
             "description": "elasticsearch php client bundle for Symfony 2.",
             "homepage": "http://ongr.io",
-            "time": "2015-01-12 07:53:14"
+            "time": "2015-01-27 13:55:02"
         },
         {
             "name": "ongr/filter-manager-bundle",
@@ -1409,16 +1409,16 @@
         },
         {
             "name": "ongr/oxid-connector-bundle",
-            "version": "dev-master",
+            "version": "dev-parent",
             "source": {
                 "type": "git",
-                "url": "https://github.com/ongr-io/OXIDConnectorBundle.git",
-                "reference": "09c19fbd8238805ad2a5f8f96e24286bfc9ede2e"
+                "url": "https://github.com/GrandLTU/OXIDConnectorBundle.git",
+                "reference": "72a74354ea15d85ec99c2b775ac0363b16a18f4d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ongr-io/OXIDConnectorBundle/zipball/09c19fbd8238805ad2a5f8f96e24286bfc9ede2e",
-                "reference": "09c19fbd8238805ad2a5f8f96e24286bfc9ede2e",
+                "url": "https://api.github.com/repos/GrandLTU/OXIDConnectorBundle/zipball/72a74354ea15d85ec99c2b775ac0363b16a18f4d",
+                "reference": "72a74354ea15d85ec99c2b775ac0363b16a18f4d",
                 "shasum": ""
             },
             "require": {
@@ -1439,7 +1439,6 @@
                     "ONGR\\OXIDConnectorBundle\\": ""
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1451,7 +1450,10 @@
             ],
             "description": "OXID connector for ONGR framework",
             "homepage": "http://ongr.io",
-            "time": "2015-01-21 11:49:18"
+            "support": {
+                "source": "https://github.com/GrandLTU/OXIDConnectorBundle/tree/parent"
+            },
+            "time": "2015-01-28 11:24:45"
         },
         {
             "name": "ongr/pager-bundle",
@@ -1604,12 +1606,12 @@
             "version": "v2.1.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/fabpot/Pimple.git",
+                "url": "https://github.com/silexphp/Pimple.git",
                 "reference": "ea22fb2880faf7b7b0e17c9809c6fe25b071fd76"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabpot/Pimple/zipball/ea22fb2880faf7b7b0e17c9809c6fe25b071fd76",
+                "url": "https://api.github.com/repos/silexphp/Pimple/zipball/ea22fb2880faf7b7b0e17c9809c6fe25b071fd76",
                 "reference": "ea22fb2880faf7b7b0e17c9809c6fe25b071fd76",
                 "shasum": ""
             },
@@ -1793,16 +1795,16 @@
         },
         {
             "name": "sensiolabs/security-checker",
-            "version": "v2.0.0",
+            "version": "v2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/security-checker.git",
-                "reference": "5b4eb4743ebe68276c911c84101ecdf4a9ae76ee"
+                "reference": "134cecf1c61256bd8e973e11376891a724543820"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/security-checker/zipball/5b4eb4743ebe68276c911c84101ecdf4a9ae76ee",
-                "reference": "5b4eb4743ebe68276c911c84101ecdf4a9ae76ee",
+                "url": "https://api.github.com/repos/sensiolabs/security-checker/zipball/134cecf1c61256bd8e973e11376891a724543820",
+                "reference": "134cecf1c61256bd8e973e11376891a724543820",
                 "shasum": ""
             },
             "require": {
@@ -1834,7 +1836,7 @@
                 }
             ],
             "description": "A security checker for your composer.lock",
-            "time": "2014-07-19 10:52:35"
+            "time": "2015-01-26 16:25:19"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -1890,32 +1892,33 @@
         },
         {
             "name": "symfony/assetic-bundle",
-            "version": "v2.5.0",
+            "version": "v2.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/AsseticBundle.git",
-                "reference": "90ea7fb66d6d5245fd4afc16e4c8070214254fec"
+                "reference": "422b0add2110f0cf9bc7a873a386ea053f4a89f0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/AsseticBundle/zipball/90ea7fb66d6d5245fd4afc16e4c8070214254fec",
-                "reference": "90ea7fb66d6d5245fd4afc16e4c8070214254fec",
+                "url": "https://api.github.com/repos/symfony/AsseticBundle/zipball/422b0add2110f0cf9bc7a873a386ea053f4a89f0",
+                "reference": "422b0add2110f0cf9bc7a873a386ea053f4a89f0",
                 "shasum": ""
             },
             "require": {
                 "kriswallsmith/assetic": "~1.2",
                 "php": ">=5.3.0",
-                "symfony/console": "~2.1",
-                "symfony/framework-bundle": "~2.1",
-                "symfony/yaml": "~2.1"
+                "symfony/console": "~2.3",
+                "symfony/dependency-injection": "~2.3",
+                "symfony/framework-bundle": "~2.3",
+                "symfony/yaml": "~2.3"
             },
             "require-dev": {
                 "kriswallsmith/spork": "~0.2",
                 "patchwork/jsqueeze": "~1.0",
-                "symfony/class-loader": "~2.1",
-                "symfony/css-selector": "~2.1",
-                "symfony/dom-crawler": "~2.1",
-                "symfony/twig-bundle": "~2.1"
+                "symfony/class-loader": "~2.3",
+                "symfony/css-selector": "~2.3",
+                "symfony/dom-crawler": "~2.3",
+                "symfony/twig-bundle": "~2.3"
             },
             "suggest": {
                 "kriswallsmith/spork": "to be able to dump assets in parallel",
@@ -1950,7 +1953,7 @@
                 "compression",
                 "minification"
             ],
-            "time": "2014-10-15 12:03:38"
+            "time": "2015-01-27 12:45:16"
         },
         {
             "name": "symfony/monolog-bundle",
@@ -2643,16 +2646,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.4.4",
+            "version": "4.4.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "2047ae17f6e8cfd10fbde0b4535c97eb22d99cbe"
+                "reference": "2e8580deebb7d1ac92ac878595e6bffe01069c2a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/2047ae17f6e8cfd10fbde0b4535c97eb22d99cbe",
-                "reference": "2047ae17f6e8cfd10fbde0b4535c97eb22d99cbe",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/2e8580deebb7d1ac92ac878595e6bffe01069c2a",
+                "reference": "2e8580deebb7d1ac92ac878595e6bffe01069c2a",
                 "shasum": ""
             },
             "require": {
@@ -2670,8 +2673,9 @@
                 "sebastian/comparator": "~1.0",
                 "sebastian/diff": "~1.1",
                 "sebastian/environment": "~1.1",
-                "sebastian/exporter": "~1.0",
+                "sebastian/exporter": "~1.1",
                 "sebastian/global-state": "~1.0",
+                "sebastian/recursion-context": "~1.0",
                 "sebastian/version": "~1.0",
                 "symfony/yaml": "~2.0"
             },
@@ -2710,7 +2714,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-01-24 14:23:56"
+            "time": "2015-01-27 16:06:15"
         },
         {
             "name": "phpunit/phpunit-mock-objects",

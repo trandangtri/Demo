@@ -11,8 +11,9 @@
 
 namespace ONGR\DemoBundle\Controller;
 
-use ONGR\ElasticsearchBundle\Document\DocumentInterface;
 use ONGR\ContentBundle\Service\ContentService;
+use ONGR\ElasticsearchBundle\Document\DocumentInterface;
+use ONGR\OXIDConnectorBundle\Document\ContentDocument;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -86,13 +87,14 @@ class ContentController extends Controller
      */
     public function snippetAction($slug, $template)
     {
+        /** @var ContentDocument $document */
         $document = $this->get('ongr_content.content_service')->getDocumentBySlug($slug);
 
         return $this->render(
             $template,
             [
-                'content' => $document->content,
-                'title' => $document->title,
+                'content' => $document->getContent(),
+                'title' => $document->getTitle(),
                 'document' => $document,
             ]
         );

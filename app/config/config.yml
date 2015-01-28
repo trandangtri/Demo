@@ -44,7 +44,8 @@ crunch_ssi:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [ ]
+    bundles:
+        - ONGRDemoBundle
     java: "%java_path%"
     filters:
         cssrewrite: ~
@@ -114,7 +115,7 @@ ongr_content:
     category_root_id: oxrootid
 
 ongr_router:
-    es_manager: default
+    es_manager: oxid
     seo_routes:
         product:
             _route: ongr_product
@@ -239,24 +240,16 @@ ongr_filter_manager:
         product_list:
             filters:
                 - category
-                - country
-                - wine_style
-                - wine_color
+                - wear_title
                 - search
                 - pager
                 - sorting
-            repository: 'productdocument'
+            repository: 'ProductDocument'
     filters:
         choice:
-            country:
-                request_field: 'country'
-                field: origin.country
-            wine_style:
-                request_field: 'wine_style'
-                field: wine_style
-            wine_color:
-                request_field: 'wine_color'
-                field: wine_colour
+            wear_title:
+                request_field: 'title'
+                field: title
         match:
             search:
                 request_field: 'q'
@@ -264,7 +257,7 @@ ongr_filter_manager:
         document_field:
             category:
                 request_field: 'document'
-                field: category_id
+                field: categories
         pager:
             pager:
                 request_field: 'page'

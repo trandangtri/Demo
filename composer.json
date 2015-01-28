@@ -8,6 +8,12 @@
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:GrandLTU/OXIDConnectorBundle.git"
+        }
+    ],
     "require": {
         "php": ">=5.3.3",
         "symfony/symfony": "~2.6",
@@ -28,7 +34,7 @@
         "ongr/router-bundle": "~0.2",
         "ongr/ssi-bundle": "v0.3.0",
 
-        "ongr/oxid-connector-bundle": "dev-master"
+        "ongr/oxid-connector-bundle": "dev-parent"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",
