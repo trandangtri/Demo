@@ -4,6 +4,7 @@ parameters:
     ongr_demo.magento.import.finish.class: ONGR\DemoMagentoBundle\EventListener\ImportFinishEventListener
 
     ongr_demo.magento.import.product.modifier.class: ONGR\MagentoConnectorBundle\Modifier\ProductModifier
+    ongr_demo.magento.import.product.stock.modifier.class: ONGR\DemoMagentoBundle\Modifiers\ProductStockModifier
     ongr_demo.magento.import.category.modifier.class: ONGR\MagentoConnectorBundle\Modifier\CategoryModifier
     ongr_demo.magento.import.content.modifier.class: ONGR\MagentoConnectorBundle\Modifier\ContentModifier
 
@@ -17,6 +18,14 @@ parameters:
     ongr_demo.magento.import.content.elastic_document_type: ONGRMagentoConnectorBundle:ContentDocument
 
 services:
+
+    ongr_demo.magento.import.product.modifier:
+        class: %ongr_demo.magento.import.product.stock.modifier.class%
+        arguments:
+            - %ongr_demo.magento.import.shop_id%
+        tags:
+            - { name: kernel.event_listener, event: ongr.pipeline.import.magento.product.modify, method: onModify }
+
     # Product.
     ongr_demo.magento.import.product.source:
         class: %ongr_connections.import.source.class%
