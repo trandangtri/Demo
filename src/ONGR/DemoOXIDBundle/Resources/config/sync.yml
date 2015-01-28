@@ -1,0 +1,162 @@
+parameters:
+    ongr_demo.oxid.sync.execute.shop_id: 0
+    ongr_demo.oxid.sync.execute.chunk_size: 1
+
+    ongr_demo.oxid.sync.execute.finish.class: ONGR\DemoOXIDBundle\EventListener\ImportFinishEventListener
+
+    ongr_demo.oxid.sync.execute.product.sync_storage_document_type: product
+    ongr_demo.oxid.sync.execute.product.doctrine_entity_type: DemoOXIDBundle:Article
+    ongr_demo.oxid.sync.execute.product.elastic_document_type: ONGROXIDConnectorBundle:ProductDocument
+
+    ongr_demo.oxid.sync.execute.category.sync_storage_document_type: category
+    ongr_demo.oxid.sync.execute.category.doctrine_entity_type: DemoOXIDBundle:Category
+    ongr_demo.oxid.sync.execute.category.elastic_document_type: ONGROXIDConnectorBundle:CategoryDocument
+
+    ongr_demo.oxid.sync.execute.content.sync_storage_document_type: content
+    ongr_demo.oxid.sync.execute.content.doctrine_entity_type: DemoOXIDBundle:Content
+    ongr_demo.oxid.sync.execute.content.elastic_document_type: ONGROXIDConnectorBundle:ContentDocument
+
+    ongr_demo.oxid.sync.execute.product.category.modifier.class: ONGR\DemoOXIDBundle\Modifier\UnassignedProduct
+
+    ongr_demo.oxid.sync.execute.product.modifier.class: ONGR\OXIDConnectorBundle\Modifier\ProductModifier
+    ongr_demo.oxid.sync.execute.category.modifier.class: ONGR\OXIDConnectorBundle\Modifier\CategoryModifier
+    ongr_demo.oxid.sync.execute.content.modifier.class: ONGR\OXIDConnectorBundle\Modifier\ContentModifier
+
+    ongr_demo.oxid.sync.provide.source.class: ONGR\ConnectionsBundle\EventListener\DataSyncSourceEventListener
+    ongr_demo.oxid.sync.provide.consume.class: ONGR\ConnectionsBundle\EventListener\DataSyncConsumeEventListener
+
+services:
+    # Product category skip.
+    ongr_demo.oxid.sync.execute.product.category.modifier:
+        class: %ongr_demo.oxid.sync.execute.product.category.modifier.class%
+        arguments:
+            - @ongr_oxid.attr_to_doc_service
+        tags:
+            - { name: kernel.event_listener, event: ongr.pipeline.sync.execute.oxid.product.modify, method: onModify }
+    # Product.
+    ongr_demo.oxid.sync.execute.product.source:
+        class: %ongr_connections.sync.execute.source.class%
+        parent: ongr_connections.import.source
+        arguments:
+            - @doctrine.orm.default_entity_manager
+            - %ongr_demo.oxid.sync.execute.product.doctrine_entity_type%
+            - @es.manager.oxid
+            - %ongr_demo.oxid.sync.execute.product.elastic_document_type%
+            - @ongr_connections.sync.sync_storage
+        calls:
+            - [ setChunkSize, [ %ongr_demo.oxid.sync.execute.chunk_size% ] ]
+            - [ setShopId, [ %ongr_demo.oxid.sync.execute.shop_id% ] ]
+            - [ setDocumentType, [ %ongr_demo.oxid.sync.execute.product.sync_storage_document_type% ] ]
+        tags:
+            - { name: kernel.event_listener, event: ongr.pipeline.sync.execute.oxid.product.source, method: onSource }
+
+    ongr_demo.oxid.sync.execute.product.modifier:
+        class: %ongr_demo.oxid.sync.execute.product.modifier.class%
+        arguments:
+            - @ongr_oxid.attr_to_doc_service
+        tags:
+            - { name: kernel.event_listener, event: ongr.pipeline.sync.execute.oxid.product.modify, method: onModify }
+
+    ongr_demo.oxid.sync.execute.product.consumer:
+            class: %ongr_connections.sync.execute.consumer.class%
+            parent: ongr_connections.sync.execute.consumer
+            arguments:
+                - @es.manager.oxid
+                - %ongr_demo.oxid.sync.execute.product.elastic_document_type%
+                - @ongr_connections.sync.sync_storage
+            tags:
+                - { name: kernel.event_listener, event: ongr.pipeline.sync.execute.oxid.product.consume, method: onConsume }
+
+    # Category.
+    ongr_demo.oxid.sync.execute.category.source:
+        class: %ongr_connections.sync.execute.source.class%
+        parent: ongr_connections.import.source
+        arguments:
+            - @doctrine.orm.default_entity_manager
+            - %ongr_demo.oxid.sync.execute.category.doctrine_entity_type%
+            - @es.manager.oxid
+            - %ongr_demo.oxid.sync.execute.category.elastic_document_type%
+            - @ongr_connections.sync.sync_storage
+        calls:
+            - [ setChunkSize, [ %ongr_demo.oxid.sync.execute.chunk_size% ] ]
+            - [ setShopId, [ %ongr_demo.oxid.sync.execute.shop_id% ] ]
+            - [ setDocumentType, [ %ongr_demo.oxid.sync.execute.category.sync_storage_document_type% ] ]
+        tags:
+            - { name: kernel.event_listener, event: ongr.pipeline.sync.execute.oxid.category.source, method: onSource }
+
+    ongr_demo.oxid.sync.execute.category.modifier:
+        class: %ongr_demo.oxid.sync.execute.category.modifier.class%
+        arguments:
+            - @ongr_oxid.attr_to_doc_service
+        tags:
+            - { name: kernel.event_listener, event: ongr.pipeline.sync.execute.oxid.category.modify, method: onModify }
+
+    ongr_demo.oxid.sync.execute.category.consumer:
+        class: %ongr_connections.sync.execute.consumer.class%
+        parent: ongr_connections.sync.execute.consumer
+        arguments:
+            - @es.manager.oxid
+            - %ongr_demo.oxid.sync.execute.category.elastic_document_type%
+            - @ongr_connections.sync.sync_storage
+        tags:
+            - { name: kernel.event_listener, event: ongr.pipeline.sync.execute.oxid.category.consume, method: onConsume }
+
+    # Content.
+    ongr_demo.oxid.sync.execute.content.source:
+        class: %ongr_connections.sync.execute.source.class%
+        parent: ongr_connections.import.source
+        arguments:
+            - @doctrine.orm.default_entity_manager
+            - %ongr_demo.oxid.sync.execute.content.doctrine_entity_type%
+            - @es.manager.oxid
+            - %ongr_demo.oxid.sync.execute.content.elastic_document_type%
+            - @ongr_connections.sync.sync_storage
+        calls:
+            - [ setChunkSize, [ %ongr_demo.oxid.sync.execute.chunk_size% ] ]
+            - [ setShopId, [ %ongr_demo.oxid.sync.execute.shop_id% ] ]
+            - [ setDocumentType, [ %ongr_demo.oxid.sync.execute.content.sync_storage_document_type% ] ]
+        tags:
+            - { name: kernel.event_listener, event: ongr.pipeline.sync.execute.oxid.content.source, method: onSource }
+
+    ongr_demo.oxid.sync.execute.content.modifier:
+        class: %ongr_demo.oxid.sync.execute.content.modifier.class%
+        arguments:
+            - @ongr_oxid.attr_to_doc_service
+        tags:
+            - { name: kernel.event_listener, event: ongr.pipeline.sync.execute.oxid.content.modify, method: onModify }
+
+    ongr_demo.oxid.sync.execute.content.consumer:
+        class: %ongr_connections.sync.execute.consumer.class%
+        parent: ongr_connections.sync.execute.consumer
+        arguments:
+            - @es.manager.oxid
+            - %ongr_demo.oxid.sync.execute.content.elastic_document_type%
+            - @ongr_connections.sync.sync_storage
+        tags:
+            - { name: kernel.event_listener, event: ongr.pipeline.sync.execute.oxid.content.consume, method: onConsume }
+
+    # All.
+    ongr_demo.oxid.sync.execute.finish:
+        class: %ongr_demo.oxid.sync.execute.finish.class%
+        parent: ongr_connections.import.finish
+        arguments:
+            - @es.manager.oxid
+        tags:
+            - { name: kernel.event_listener, event: ongr.pipeline.sync.execute.oxid.product.finish, method: onFinish }
+            - { name: kernel.event_listener, event: ongr.pipeline.sync.execute.oxid.category.finish, method: onFinish }
+            - { name: kernel.event_listener, event: ongr.pipeline.sync.execute.oxid.content.finish, method: onFinish }
+
+    # Provide.
+    ongr_demo.oxid.sync.provide.source:
+        class: %ongr_demo.oxid.sync.provide.source.class%
+        arguments:
+            - @ongr_connections.sync.diff_provider.binlog_diff_provider
+        tags:
+            - { name: kernel.event_listener, event: ongr.pipeline.data_sync.oxid.source, method: onSource }
+
+    ongr_demo.oxid.sync.provide.consume:
+        class: %ongr_demo.oxid.sync.provide.consume.class%
+        arguments:
+            - @ongr_connections.sync.extractor.doctrine_extractor
+        tags:
+            - { name: kernel.event_listener, event: ongr.pipeline.data_sync.oxid.consume, method: onConsume }
