@@ -88,7 +88,6 @@ Now you need to import data from magento:
 
     app/console ongr:import:full magento.product
     app/console ongr:import:full magento.category
-    app/console ongr:import:full magento.content
 
 ..
 
@@ -98,17 +97,6 @@ will be synchronized with `ongr.dev <http://ongr.dev>`_ :
 .. code-block:: bash
 
     app/console ongr:sync:storage:create --shop-id=0 mysql
-    app/console ongr:sync:provide:parameter last_sync_date --set=1 2000-01-01
-    app/console ongr:sync:provide magento
-
-..
-
-And at last You can execute sync:
-
-.. code-block:: bash
-
-    app/console ongr:sync:execute magento.product
-    app/console ongr:sync:execute magento.content
-    app/console ongr:sync:execute magento.category
+    app/console ongr:sync:provide:parameter last_sync_date --set='2015-01-01 11:55:55'
 
 ..
