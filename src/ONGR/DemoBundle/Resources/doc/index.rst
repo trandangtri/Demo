@@ -87,7 +87,7 @@ In case to get demo content you need to make a following steps:
    If composer prompts input questions just press enter.
 
 
-Then run magento install script:
+Then run magento install script (be patient it takes some time):
 
 .. code-block:: bash
 
@@ -101,6 +101,7 @@ Now You must create new index for ElasticSearch:
 
 .. code-block:: bash
 
+    cd ..
     app/console es:index:create
 
 ..
