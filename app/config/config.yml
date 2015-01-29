@@ -126,7 +126,7 @@ ongr_router:
             _route: ongr_category
             _default_route: ongr_category_show
             _id_param: id
-            _controller: ONGRDemoBundle:Category:document
+            _controller: ONGRDemoOBundle:Category:document
         content:
             _route: ongr_content
             _default_route: ongr_content
@@ -233,6 +233,7 @@ ongr_elasticsearch:
             debug: "%kernel.debug%"
             mappings:
                 - ONGROXIDConnectorBundle
+                - ONGRDemoOXIDBundle
 
 ongr_filter_manager:
     es_manager: oxid

@@ -6,17 +6,15 @@ parameters:
 
     ongr_demo.oxid.sync.execute.product.sync_storage_document_type: product
     ongr_demo.oxid.sync.execute.product.doctrine_entity_type: DemoOXIDBundle:Article
-    ongr_demo.oxid.sync.execute.product.elastic_document_type: ONGROXIDConnectorBundle:ProductDocument
+    ongr_demo.oxid.sync.execute.product.elastic_document_type: ONGRDemoOXIDBundle:ProductDocument
 
     ongr_demo.oxid.sync.execute.category.sync_storage_document_type: category
     ongr_demo.oxid.sync.execute.category.doctrine_entity_type: DemoOXIDBundle:Category
-    ongr_demo.oxid.sync.execute.category.elastic_document_type: ONGROXIDConnectorBundle:CategoryDocument
+    ongr_demo.oxid.sync.execute.category.elastic_document_type: ONGRDemoOXIDBundle:CategoryDocument
 
     ongr_demo.oxid.sync.execute.content.sync_storage_document_type: content
     ongr_demo.oxid.sync.execute.content.doctrine_entity_type: DemoOXIDBundle:Content
-    ongr_demo.oxid.sync.execute.content.elastic_document_type: ONGROXIDConnectorBundle:ContentDocument
-
-    ongr_demo.oxid.sync.execute.product.category.modifier.class: ONGR\DemoOXIDBundle\Modifier\UnassignedProduct
+    ongr_demo.oxid.sync.execute.content.elastic_document_type: ONGRDemoOXIDBundle:ContentDocument
 
     ongr_demo.oxid.sync.execute.product.modifier.class: ONGR\OXIDConnectorBundle\Modifier\ProductModifier
     ongr_demo.oxid.sync.execute.category.modifier.class: ONGR\OXIDConnectorBundle\Modifier\CategoryModifier
@@ -26,13 +24,6 @@ parameters:
     ongr_demo.oxid.sync.provide.consume.class: ONGR\ConnectionsBundle\EventListener\DataSyncConsumeEventListener
 
 services:
-    # Product category skip.
-    ongr_demo.oxid.sync.execute.product.category.modifier:
-        class: %ongr_demo.oxid.sync.execute.product.category.modifier.class%
-        arguments:
-            - @ongr_oxid.attr_to_doc_service
-        tags:
-            - { name: kernel.event_listener, event: ongr.pipeline.sync.execute.oxid.product.modify, method: onModify }
     # Product.
     ongr_demo.oxid.sync.execute.product.source:
         class: %ongr_connections.sync.execute.source.class%

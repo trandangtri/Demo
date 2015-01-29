@@ -1315,16 +1315,16 @@
         },
         {
             "name": "ongr/elasticsearch-bundle",
-            "version": "v0.5.0",
+            "version": "v0.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ongr-io/ElasticsearchBundle.git",
-                "reference": "2e085f01d9fab6d7df8068e007acf40ad815e729"
+                "reference": "674cf0fda1d7adf6adc12c9254e844da89c50017"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ongr-io/ElasticsearchBundle/zipball/2e085f01d9fab6d7df8068e007acf40ad815e729",
-                "reference": "2e085f01d9fab6d7df8068e007acf40ad815e729",
+                "url": "https://api.github.com/repos/ongr-io/ElasticsearchBundle/zipball/674cf0fda1d7adf6adc12c9254e844da89c50017",
+                "reference": "674cf0fda1d7adf6adc12c9254e844da89c50017",
                 "shasum": ""
             },
             "require": {
@@ -1357,7 +1357,7 @@
             ],
             "description": "elasticsearch php client bundle for Symfony 2.",
             "homepage": "http://ongr.io",
-            "time": "2015-01-27 13:55:02"
+            "time": "2015-01-29 08:31:46"
         },
         {
             "name": "ongr/filter-manager-bundle",
@@ -1413,12 +1413,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/GrandLTU/OXIDConnectorBundle.git",
-                "reference": "72a74354ea15d85ec99c2b775ac0363b16a18f4d"
+                "reference": "99b8f522776147cb775aa318f53531242fb84441"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GrandLTU/OXIDConnectorBundle/zipball/72a74354ea15d85ec99c2b775ac0363b16a18f4d",
-                "reference": "72a74354ea15d85ec99c2b775ac0363b16a18f4d",
+                "url": "https://api.github.com/repos/GrandLTU/OXIDConnectorBundle/zipball/99b8f522776147cb775aa318f53531242fb84441",
+                "reference": "99b8f522776147cb775aa318f53531242fb84441",
                 "shasum": ""
             },
             "require": {
@@ -1453,7 +1453,7 @@
             "support": {
                 "source": "https://github.com/GrandLTU/OXIDConnectorBundle/tree/parent"
             },
-            "time": "2015-01-28 11:24:45"
+            "time": "2015-01-29 14:37:03"
         },
         {
             "name": "ongr/pager-bundle",
