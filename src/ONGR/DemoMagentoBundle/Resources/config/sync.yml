@@ -45,7 +45,8 @@ services:
     ongr_demo.magento.sync.execute.product.modifier:
         class: %ongr_demo.magento.sync.execute.product.modifier.class%
         arguments:
-            - %ongr_demo.magento.sync.execute.shop_id%
+            - %ongr_demo.magento.import.store_id%
+            - %ongr_demo.magento.import.shop_id%
         tags:
             - { name: kernel.event_listener, event: ongr.pipeline.sync.execute.magento.product.modify, method: onModify }
 
