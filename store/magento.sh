@@ -53,7 +53,7 @@ mysql -u root -proot ongr <  ../../src/ONGR/DemoMagentoBundle/Resources/data/mag
 
 
 echo "Clearing Magento cache..."
-rm -rf ./var/cache/
+rm -r ./var/cache/
 
 echo "Installing core extensions..."
 
