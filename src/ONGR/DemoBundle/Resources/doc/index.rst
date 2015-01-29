@@ -9,7 +9,7 @@ Step 1: Requirements.
 
 Yes there are a few.
 
-Please check if your development environment does meet the following :doc:`/handbook/requirements`.
+Please check if your development environment in our handbook.
 
 Step 2: Download ONGR
 ---------------------
@@ -74,23 +74,67 @@ Now, let's feed the donkey with some data.
 Step 6: Install the demo data
 -----------------------------
 
-In case to get demo content you need to run the following commands from command line:
+In case to get demo content you need to make a following steps:
 
 .. code-block:: bash
 
     vagrant ssh
     cd /var/www
     composer install --no-interaction
-    app/console es:index:create
-    app/console es:index:import --raw src/ONGR/DemoBundle/Resources/data/contents.json
-    app/console es:index:import --raw src/ONGR/DemoBundle/Resources/data/categories.json
-    app/console es:index:import --raw src/ONGR/DemoBundle/Resources/data/products.json
 
 ..
 
    If composer prompts input questions just press enter.
 
+
+Then run magento install script (be patient it takes some time):
+
+.. code-block:: bash
+
+    cd store
+    ./magento.sh
+
+..
+
+
+Now You must create new index for ElasticSearch:
+
+.. code-block:: bash
+
+    cd ..
+    app/console es:index:create
+
+..
+
+And import demo content for `ongr.dev <http://ongr.dev>`_ pages:
+
+.. code-block:: bash
+
+    app/console es:index:import --raw src/ONGR/DemoBundle/Resources/data/contents.json
+
+..
+
+Now you need to import data from magento to Your newly baked ONGR shop:
+
+.. code-block:: bash
+
+    app/console ongr:import:full magento.product
+    app/console ongr:import:full magento.category
+
+..
+
 Step 7: Open your browser
 -------------------------
 
 Navigate your browser to `http://ongr.dev <http://ongr.dev/>`_
+
+Here You will find Your new shops front end.
+
+
+If You would visit `http://magento.ongr.dev/ <http://magento.ongr.dev/>`_  You would find original Magento e-shop with demo data.
+
+If You would like to check Magento administrators UI go to `http://magento.ongr.dev/admin <http://magento.ongr.dev/admin>`_
+
+    Username: admin
+
+    Password: admin123
