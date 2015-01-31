@@ -15,6 +15,7 @@ use ONGR\ConnectionsBundle\EventListener\AbstractImportModifyEventListener;
 use ONGR\ConnectionsBundle\Pipeline\Item\AbstractImportItem;
 use ONGR\ConnectionsBundle\Pipeline\ItemSkipException;
 use ONGR\MagentoConnectorBundle\Entity\CatalogProductEntity;
+use ONGR\ConnectionsBundle\Pipeline\ItemSkip;
 
 /**
  * Modifies entities to match ongr product mapping.
@@ -65,7 +66,7 @@ class ProductStockModifier extends AbstractImportModifyEventListener
         }
 
         if (count($priceArray) == 0) {
-            throw new ItemSkipException('Product ' . $entity->getId() . ' is out of stock, so it wont be imported.');
+            ItemSkipper::skip($this->event, 'Product ' . $entity->getId() . ' is out of stock, so it wont be imported.');
         }
     }
 }
