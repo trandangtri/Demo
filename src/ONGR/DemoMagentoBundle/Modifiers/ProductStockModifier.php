@@ -13,7 +13,8 @@ namespace ONGR\DemoMagentoBundle\Modifiers;
 
 use ONGR\ConnectionsBundle\EventListener\AbstractImportModifyEventListener;
 use ONGR\ConnectionsBundle\Pipeline\Item\AbstractImportItem;
-use ONGR\ConnectionsBundle\Pipeline\ItemSkipException;
+use ONGR\ConnectionsBundle\Pipeline\ItemSkipper;
+use ONGR\ConnectionsBundle\Pipeline\Event\ItemPipelineEvent;
 use ONGR\MagentoConnectorBundle\Entity\CatalogProductEntity;
 
 /**
@@ -38,11 +39,11 @@ class ProductStockModifier extends AbstractImportModifyEventListener
     /**
      * {@inheritdoc}
      */
-    protected function modify(AbstractImportItem $eventItem)
+    protected function modify(AbstractImportItem $eventItem, ItemPipelineEvent $event)
     {
         /** @var CatalogProductEntity $entity */
         $entity = $eventItem->getEntity();
-        $this->isItemInStock($entity);
+        $this->isItemInStock($entity, $event);
     }
 
 
@@ -53,7 +54,7 @@ class ProductStockModifier extends AbstractImportModifyEventListener
      *
      * @throws ItemSkipException
      */
-    public function isItemInStock(CatalogProductEntity $entity)
+    public function isItemInStock(CatalogProductEntity $entity, $event)
     {
         $priceArray = [];
         $prices = $entity->getPrices();
@@ -65,7 +66,7 @@ class ProductStockModifier extends AbstractImportModifyEventListener
         }
 
         if (count($priceArray) == 0) {
-            throw new ItemSkipException('Product ' . $entity->getId() . ' is out of stock, so it wont be imported.');
+            ItemSkipper::skip($event, 'Product ' . $entity->getId() . ' is out of stock, so it wont be imported.');
         }
     }
 }
