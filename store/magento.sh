@@ -27,7 +27,7 @@ echo "Installing Magento..."
 php -f install.php -- \
     --license_agreement_accepted "yes" \
     --locale "de_DE" \
-    --timezone "Europe/Berlin" \
+    --timezone "America/Phoenix" \
     --default_currency "EUR" \
     --db_host "localhost" \
     --db_name "ongr" \
@@ -51,10 +51,6 @@ echo "Installing sample data..."
 mysql -u root -proot -Bse "DROP DATABASE ongr; CREATE DATABASE ongr;"
 mysql -u root -proot ongr <  ../../src/ONGR/DemoMagentoBundle/Resources/data/magento_sample_data_for_1.9.0.0.sql
 
-
-echo "Clearing Magento cache..."
-rm -r ./var/cache/
-
 echo "Installing core extensions..."
 
 ./mage mage-setup .
@@ -63,5 +59,7 @@ echo "Installing core extensions..."
 
 
 echo "Refreshing indexes..."
-
 php -f shell/indexer.php reindexall
+
+echo "Clearing Magento cache..."
+rm -r ./var/cache/

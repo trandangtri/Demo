@@ -12,14 +12,14 @@
 namespace ONGR\DemoBundle\Document;
 
 use ONGR\ElasticsearchBundle\Annotation as ES;
-use ONGR\ContentBundle\Document\AbstractProductDocument;
+use ONGR\MagentoConnectorBundle\Document\ProductDocument;
 
 /**
  * ElasticSearch Product document.
  *
  * @ES\Document(type="product")
  */
-class Product extends AbstractProductDocument
+class Product extends ProductDocument
 {
     /**
      * Structure that represents possible URLs for the model.

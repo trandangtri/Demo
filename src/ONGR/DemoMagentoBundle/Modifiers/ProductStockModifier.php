@@ -13,9 +13,8 @@ namespace ONGR\DemoMagentoBundle\Modifiers;
 
 use ONGR\ConnectionsBundle\EventListener\AbstractImportModifyEventListener;
 use ONGR\ConnectionsBundle\Pipeline\Item\AbstractImportItem;
-use ONGR\ConnectionsBundle\Pipeline\ItemSkipper;
-use ONGR\ConnectionsBundle\Pipeline\Event\ItemPipelineEvent;
 use ONGR\MagentoConnectorBundle\Entity\CatalogProductEntity;
+use ONGR\ConnectionsBundle\Pipeline\ItemSkip;
 
 /**
  * Modifies entities to match ongr product mapping.
@@ -51,8 +50,6 @@ class ProductStockModifier extends AbstractImportModifyEventListener
      * Checks if item is in stock. If it is imports.
      *
      * @param CatalogProductEntity $entity
-     *
-     * @throws ItemSkipException
      */
     public function isItemInStock(CatalogProductEntity $entity, $event)
     {

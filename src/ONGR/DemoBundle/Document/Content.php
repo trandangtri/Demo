@@ -12,14 +12,14 @@
 namespace ONGR\DemoBundle\Document;
 
 use ONGR\ElasticsearchBundle\Annotation as ES;
-use ONGR\ContentBundle\Document\AbstractContentDocument;
+use ONGR\MagentoConnectorBundle\Document\ContentDocument;
 
 /**
  * Holds content page data.
  *
  * @ES\Document(type="content")
  */
-class Content extends AbstractContentDocument
+class Content extends ContentDocument
 {
     /**
      * @var string
