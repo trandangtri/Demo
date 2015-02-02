@@ -34,7 +34,7 @@ class ProductController extends Controller
     {
         try {
             $product = $this->get('es.manager.oxid')
-                ->getRepository('ONGROXIDConnectorBundle:ProductDocument')
+                ->getRepository('ONGRDemoOXIDBundle:ProductDocument')
                 ->find($id);
         } catch (Missing404Exception $e) {
             throw $this->createNotFoundException('Product was not found');

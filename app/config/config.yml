@@ -126,7 +126,7 @@ ongr_router:
             _route: ongr_category
             _default_route: ongr_category_show
             _id_param: id
-            _controller: ONGRDemoOBundle:Category:document
+            _controller: ONGRDemoBundle:Category:document
         content:
             _route: ongr_content
             _default_route: ongr_content

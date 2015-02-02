@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "da730d4f8ca286e903038450add79b85",
+    "hash": "b3a2e21e09fcea469655555da03cf657",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1223,16 +1223,16 @@
         },
         {
             "name": "ongr/connections-bundle",
-            "version": "v0.4.0",
+            "version": "0.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ongr-io/ConnectionsBundle.git",
-                "reference": "938dcb4b24ddc0a2accbc9a2ce0f2e29ba84cf25"
+                "reference": "d3bed82815664019e8a318ed1fc3c6d71c4978e7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ongr-io/ConnectionsBundle/zipball/938dcb4b24ddc0a2accbc9a2ce0f2e29ba84cf25",
-                "reference": "938dcb4b24ddc0a2accbc9a2ce0f2e29ba84cf25",
+                "url": "https://api.github.com/repos/ongr-io/ConnectionsBundle/zipball/d3bed82815664019e8a318ed1fc3c6d71c4978e7",
+                "reference": "d3bed82815664019e8a318ed1fc3c6d71c4978e7",
                 "shasum": ""
             },
             "require": {
@@ -1265,7 +1265,7 @@
                 }
             ],
             "description": "Connections bundle for ONGR platform",
-            "time": "2015-01-19 14:51:36"
+            "time": "2015-02-02 13:20:57"
         },
         {
             "name": "ongr/content-bundle",
@@ -1409,16 +1409,16 @@
         },
         {
             "name": "ongr/oxid-connector-bundle",
-            "version": "dev-parent",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/GrandLTU/OXIDConnectorBundle.git",
-                "reference": "99b8f522776147cb775aa318f53531242fb84441"
+                "url": "https://github.com/ongr-io/OXIDConnectorBundle.git",
+                "reference": "a11e56628757d3aa3793110b8851b45eaa110d99"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GrandLTU/OXIDConnectorBundle/zipball/99b8f522776147cb775aa318f53531242fb84441",
-                "reference": "99b8f522776147cb775aa318f53531242fb84441",
+                "url": "https://api.github.com/repos/ongr-io/OXIDConnectorBundle/zipball/a11e56628757d3aa3793110b8851b45eaa110d99",
+                "reference": "a11e56628757d3aa3793110b8851b45eaa110d99",
                 "shasum": ""
             },
             "require": {
@@ -1439,6 +1439,7 @@
                     "ONGR\\OXIDConnectorBundle\\": ""
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1450,10 +1451,7 @@
             ],
             "description": "OXID connector for ONGR framework",
             "homepage": "http://ongr.io",
-            "support": {
-                "source": "https://github.com/GrandLTU/OXIDConnectorBundle/tree/parent"
-            },
-            "time": "2015-01-29 14:37:03"
+            "time": "2015-02-02 14:41:58"
         },
         {
             "name": "ongr/pager-bundle",
@@ -1687,17 +1685,17 @@
         },
         {
             "name": "sensio/distribution-bundle",
-            "version": "v3.0.15",
+            "version": "v3.0.16",
             "target-dir": "Sensio/Bundle/DistributionBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioDistributionBundle.git",
-                "reference": "0692cd6a8fcf645abce8ea45f7cbbd1942e2b23c"
+                "reference": "aa30f8cd3ee68144e043ca30713aa7d7df35c5fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/0692cd6a8fcf645abce8ea45f7cbbd1942e2b23c",
-                "reference": "0692cd6a8fcf645abce8ea45f7cbbd1942e2b23c",
+                "url": "https://api.github.com/repos/sensiolabs/SensioDistributionBundle/zipball/aa30f8cd3ee68144e043ca30713aa7d7df35c5fa",
+                "reference": "aa30f8cd3ee68144e043ca30713aa7d7df35c5fa",
                 "shasum": ""
             },
             "require": {
@@ -1736,7 +1734,7 @@
                 "configuration",
                 "distribution"
             ],
-            "time": "2015-01-07 07:13:43"
+            "time": "2015-02-01 05:42:21"
         },
         {
             "name": "sensio/framework-extra-bundle",
@@ -2773,25 +2771,25 @@
         },
         {
             "name": "sebastian/comparator",
-            "version": "1.1.0",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/comparator.git",
-                "reference": "c484a80f97573ab934e37826dba0135a3301b26a"
+                "reference": "1dd8869519a225f7f2b9eb663e225298fade819e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/comparator/zipball/c484a80f97573ab934e37826dba0135a3301b26a",
-                "reference": "c484a80f97573ab934e37826dba0135a3301b26a",
+                "url": "https://api.github.com/repos/sebastianbergmann/comparator/zipball/1dd8869519a225f7f2b9eb663e225298fade819e",
+                "reference": "1dd8869519a225f7f2b9eb663e225298fade819e",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3",
-                "sebastian/diff": "~1.1",
-                "sebastian/exporter": "~1.0"
+                "sebastian/diff": "~1.2",
+                "sebastian/exporter": "~1.2"
             },
             "require-dev": {
-                "phpunit/phpunit": "~4.1"
+                "phpunit/phpunit": "~4.4"
             },
             "type": "library",
             "extra": {
@@ -2833,7 +2831,7 @@
                 "compare",
                 "equality"
             ],
-            "time": "2014-11-16 21:32:38"
+            "time": "2015-01-29 16:28:08"
         },
         {
             "name": "sebastian/diff",
@@ -2939,16 +2937,16 @@
         },
         {
             "name": "sebastian/exporter",
-            "version": "1.1.0",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/exporter.git",
-                "reference": "35ab8d385eef068186c83e23ae83c96b0288b3ee"
+                "reference": "84839970d05254c73cde183a721c7af13aede943"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/exporter/zipball/35ab8d385eef068186c83e23ae83c96b0288b3ee",
-                "reference": "35ab8d385eef068186c83e23ae83c96b0288b3ee",
+                "url": "https://api.github.com/repos/sebastianbergmann/exporter/zipball/84839970d05254c73cde183a721c7af13aede943",
+                "reference": "84839970d05254c73cde183a721c7af13aede943",
                 "shasum": ""
             },
             "require": {
@@ -2961,7 +2959,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.1.x-dev"
+                    "dev-master": "1.2.x-dev"
                 }
             },
             "autoload": {
@@ -3001,7 +2999,7 @@
                 "export",
                 "exporter"
             ],
-            "time": "2015-01-24 09:57:24"
+            "time": "2015-01-27 07:23:06"
         },
         {
             "name": "sebastian/global-state",

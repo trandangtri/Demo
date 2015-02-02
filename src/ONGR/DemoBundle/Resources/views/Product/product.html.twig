@@ -9,8 +9,10 @@
 {% endblock %}
 
 {% block breadcrumbs_inner %}
-    {{ render(url('_ongr_breadcrumbs', {selectedCategory : product.getCategories[0], theme: 'product_breadcrumbs'}), {strategy: 'ssi'}) }}
-    <li class="active">{{ product.title }}</li>
+    {% if product.getCategories[0] is defined %}
+        {{ render(url('_ongr_breadcrumbs', {selectedCategory : product.getCategories[0], theme: 'product_breadcrumbs'}), {strategy: 'ssi'}) }}
+        <li class="active">{{ product.title }}</li>
+    {% endif %}
 {% endblock %}
 
 {% block about %}
