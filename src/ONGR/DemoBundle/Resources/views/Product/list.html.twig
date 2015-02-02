@@ -48,7 +48,9 @@
                     {% set product_url = path('ongr_product', { 'document': product }) %}
                     <div class="product-image-container">
                         <a href="{{ product_url }}">
-                            <img src="{{ product.image }}" class="img-rounded" alt="Product image"/>
+                            {% image '@ONGRDemoBundle/Resources/public/images/logo.png' %}
+                                <img src="{{ asset_url }}" alt="picture"/>
+                            {% endimage %}
                         </a>
                     </div>
                     <h5 class="product-title">

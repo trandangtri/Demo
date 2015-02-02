@@ -8,13 +8,13 @@ parameters:
     ongr_demo.oxid.import.content.modifier.class: ONGR\OXIDConnectorBundle\Modifier\ContentModifier
 
     ongr_demo.oxid.import.product.doctrine_entity_type: DemoOXIDBundle:Article
-    ongr_demo.oxid.import.product.elastic_document_type: ONGROXIDConnectorBundle:ProductDocument
+    ongr_demo.oxid.import.product.elastic_document_type: ONGRDemoOXIDBundle:ProductDocument
 
     ongr_demo.oxid.import.category.doctrine_entity_type: DemoOXIDBundle:Category
-    ongr_demo.oxid.import.category.elastic_document_type: ONGROXIDConnectorBundle:CategoryDocument
+    ongr_demo.oxid.import.category.elastic_document_type: ONGRDemoOXIDBundle:CategoryDocument
 
     ongr_demo.oxid.import.content.doctrine_entity_type: DemoOXIDBundle:Content
-    ongr_demo.oxid.import.content.elastic_document_type: ONGROXIDConnectorBundle:ContentDocument
+    ongr_demo.oxid.import.content.elastic_document_type: ONGRDemoOXIDBundle:ContentDocument
 
 services:
     # Product.

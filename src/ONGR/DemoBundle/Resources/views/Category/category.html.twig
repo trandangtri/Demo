@@ -13,9 +13,7 @@
         {{ render(url('_ongr_category_tree', {theme: 'left', maxLevel: 5, selectedCategory : category.id}), {strategy: 'ssi'}) }}
     </ul>
 
-    {{ filter_macros.term(filters.country, block('page_route'), default_route_parameters) }}
-    {{ filter_macros.term(filters.wine_style, block('page_route'), default_route_parameters) }}
-    {{ filter_macros.term(filters.wine_color, block('page_route'), default_route_parameters) }}
+    {{ filter_macros.term(filters.wear_title, block('page_route'), default_route_parameters) }}
 
     {{ parent() }}
 {% endblock %}
