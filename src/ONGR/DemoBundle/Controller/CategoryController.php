@@ -46,6 +46,29 @@ class CategoryController extends Controller
     }
 
     /**
+     * Show category page by category id.
+     *
+     * @param Request $request
+     * @param string  $id
+     *
+     * @return Response
+     * @throws NotFoundHttpException
+     */
+    public function showAction(Request $request, $id)
+    {
+        /** @var CategoryService $categoryService */
+        $categoryService = $this->get('ongr_content.category_service');
+
+        $document = $categoryService->getCategory($id);
+
+        // Most actions require an instance of ONGR\ElasticsearchBundle\Document\DocumentInterface
+        // in Request object, so we must inject it.
+        $request->attributes->add(['document' => $document]);
+
+        return $this->documentAction($request, $document);
+    }
+
+    /**
      * Category tree action.
      *
      * @param string $theme

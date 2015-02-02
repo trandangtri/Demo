@@ -26,19 +26,19 @@ class Content extends ContentDocument
      *
      * @ES\Property(name="slug", type="string", index="not_analyzed")
      */
-    public $slug;
+    protected $slug;
 
     /**
      * @var string
      *
      * @ES\Property(name="title", type="string", search_analyzer="standard")
      */
-    public $title;
+    protected $title;
 
     /**
      * @var string
      *
      * @ES\Property(name="content", type="string")
      */
-    public $content;
+    protected $content;
 }
