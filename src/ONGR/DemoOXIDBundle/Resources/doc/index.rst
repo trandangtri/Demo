@@ -40,6 +40,17 @@ That's it your shop is now ready to browse.
 Step 4: Synchronizing changes.
 ------------------------------
 
+Enabling binlog:
+
+.. code-block:: bash
+
+    chmod 0644 /etc/mysql/my.cnf
+    sed "/skip-external-locking/a log-bin=mysql-bin\nbinlog_format = ROW\ndatadir = /var/lib/mysql" -i /etc/mysql/my.cnf
+    usermod -g travis mysql
+    chmod -R 0777 /var/lib/mysql
+    service mysql restart
+..
+
 Setting up synchronization:
 
 .. code-block:: bash
