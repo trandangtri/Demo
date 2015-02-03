@@ -276,7 +276,8 @@ ongr_filter_manager:
 ongr_connections:
     active_shop: oxid
     shops:
-        oxid: ~
+        oxid:
+            shop_id: 0
     sync:
         sync_storage:
             mysql:
