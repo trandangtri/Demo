@@ -54,6 +54,7 @@ Enabling binlog:
 Setting up synchronization:
 
 .. code-block:: bash
+
     app/console es:index:create
     app/console ongr:sync:storage:create --shop-id=0 mysql
     app/console ongr:sync:provide:parameter last_sync_date --set=2015-01-01
