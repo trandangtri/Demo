@@ -157,7 +157,7 @@ augeas { "custom":
   changes => [
   "set PHP/date.timezone Europe/Vilnius",
   "set XDEBUG/xdebug.default_enable 1",
-  "set XDEBUG/xdebug.max_nesting_level 2500",
+  "set XDEBUG/xdebug.max_nesting_level 250",
   "set XDEBUG/xdebug.remote_autostart 0",
   "set XDEBUG/xdebug.remote_connect_back 1",
   "set XDEBUG/xdebug.remote_enable 1",
