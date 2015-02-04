@@ -44,7 +44,7 @@ crunch_ssi:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [ ]
+    bundles:        [ ONGRDemoBundle ]
     java: "%java_path%"
     filters:
         cssrewrite: ~
@@ -108,24 +108,24 @@ swiftmailer:
 ongr_content:
     es:
         repositories:
-            product: es.manager.default.product
-            content: es.manager.default.content
+            product:  es.manager.default.product
+            content:  es.manager.default.content
             category: es.manager.default.category
-    category_root_id: oxrootid
+    category_root_id: magentorootid
 
 ongr_router:
     es_manager: default
     seo_routes:
         product:
-            _route: ongr_product
             _controller: ONGRDemoBundle:Product:document
-            _default_route: ongr_product
-            _id_param: document
+            _route: ongr_product
+            _default_route: ongr_product_show
+            _id_param: id
         category:
-            _route: ongr_category
-            _default_route: ongr_category
-            _id_param: document
             _controller: ONGRDemoBundle:Category:document
+            _route: ongr_category
+            _default_route: ongr_category_show
+            _id_param: id
         content:
             _route: ongr_content
             _default_route: ongr_content
@@ -177,49 +177,7 @@ ongr_elasticsearch:
                             filter:
                                 - lowercase
                                 - incremental_filter
-        magento:
-            hosts:
-                - { host: 127.0.0.1:9200 }
-            index_name: ongr_magento
-            settings:
-                number_of_shards: 2
-                number_of_replicas: 0
-                index:
-                    refresh_interval: -1
-                analysis:
-                    tokenizer:
-                        pathTokenizer:
-                            type : path_hierarchy
-                            buffer_size: 2024
-                            skip: 0
-                            delimiter: /
-                    filter:
-                        incremental_filter:
-                            type: edge_ngram
-                            min_gram: 1
-                            max_gram: 20
-                    analyzer:
-                        indexAnalyzer:
-                            type: snowball
-                            language: German2
-                            stopwords: "der,die,das,mit,und,für"
-                        searchAnalyzer:
-                            type: snowball
-                            language: German2
-                            stopwords: "der,die,das,mit,und,für"
-                        pathAnalyzer:
-                            type: custom
-                            tokenizer: pathTokenizer
-                        urlAnalyzer:
-                            type: custom
-                            tokenizer: keyword
-                            filter: [lowercase]
-                        incrementalAnalyzer:
-                            type: custom
-                            tokenizer: standard
-                            filter:
-                                - lowercase
-                                - incremental_filter
+
     managers:
         default:
             connection: default
@@ -227,10 +185,12 @@ ongr_elasticsearch:
             mappings:
                 - ONGRDemoBundle
                 - ONGRConnectionsBundle
+
         magento:
-            connection: magento
+            connection: default
             debug: "%kernel.debug%"
             mappings:
+                - ONGRDemoMagentoBundle
                 - ONGRMagentoConnectorBundle
 
 ongr_filter_manager:
@@ -238,24 +198,16 @@ ongr_filter_manager:
         product_list:
             filters:
                 - category
-                - country
-                - wine_style
-                - wine_color
+                - wear_title
                 - search
                 - pager
                 - sorting
             repository: 'product'
     filters:
         choice:
-            country:
-                request_field: 'country'
-                field: origin.country
-            wine_style:
-                request_field: 'wine_style'
-                field: wine_style
-            wine_color:
-                request_field: 'wine_color'
-                field: wine_colour
+            wear_title:
+                request_field: 'title'
+                field: title
         match:
             search:
                 request_field: 'q'
@@ -263,7 +215,7 @@ ongr_filter_manager:
         document_field:
             category:
                 request_field: 'document'
-                field: category_id
+                field: categories.categories
         pager:
             pager:
                 request_field: 'page'
@@ -280,7 +232,8 @@ ongr_filter_manager:
 
 ongr_connections:
     shops:
-        - shop_id: 0
+        test: { shop_id: 0 }
+    active_shop: test
     sync:
         sync_storage:
             mysql:

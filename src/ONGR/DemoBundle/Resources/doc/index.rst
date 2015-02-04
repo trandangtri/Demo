@@ -1,94 +1,42 @@
-===========
-Quick start
-===========
+=========
+ONGR Demo
+=========
+ONGR is a platform based on Symfony 2 framework which stands in front of your application and withstands high load of concurrent users.
 
-Let's get started. We'll guide you step by step through installing and running ONGR the first time. The first installation should not need more than 1 hour.
+It is a separate system from your original application where you re-implement or move view and frontend related code to ONGR for high-performance content delivery. Product and other data is still managed by original backend and then continuously synchronized with new platform for cache and display.
 
-Step 1: Requirements.
----------------------
+If you find some issues or great ideas how to improve the project, please create an issue in GitHub. Also everyone are more than welcome to contribute using pull requests. More information is in `contributing page <https://github.com/ongr-io/ongr-handbook/blob/master/source/handbook/contributing/contributing.rst>`_.
 
-Yes there are a few.
+.. image:: https://travis-ci.org/ongr-io/ongr-sandbox.svg?branch=master
+    :target: https://travis-ci.org/ongr-io/ongr-sandbox
 
-Please check if your development environment does meet the following :doc:`/handbook/requirements`.
+.. image:: https://scrutinizer-ci.com/g/ongr-io/ongr-sandbox/badges/quality-score.png?b=master
+    :target: https://scrutinizer-ci.com/g/ongr-io/ongr-sandbox/?branch=master
 
-Step 2: Download ONGR
----------------------
+.. image:: https://scrutinizer-ci.com/g/ongr-io/ongr-sandbox/badges/coverage.png?b=master
+    :target: https://scrutinizer-ci.com/g/ongr-io/ongr-sandbox/?branch=master
 
-Download the latest release here `archive <https://github.com/ongr-io/ongr-sandbox/releases>`_ and unpack it somewhere under your project directory. Make sure that we have the "Vagrantfile" in the your project root folder.
+.. image:: https://insight.sensiolabs.com/projects/c87c7d17-ae5e-41df-bded-e2de25ad4484/mini.png
+    :target: https://insight.sensiolabs.com/projects/c87c7d17-ae5e-41df-bded-e2de25ad4484
 
-Step 3: Install Virtual Box
----------------------------
+.. image:: https://poser.pugx.org/ongr/ongr-sandbox/downloads.svg
+    :target: https://packagist.org/packages/ongr/ongr-sandbox
 
-Either install or upgrade `virtualbox <https://www.virtualbox.org/wiki/Downloads>`_. We need VirtualBox > 4.3
+.. image:: https://poser.pugx.org/ongr/ongr-sandbox/v/stable.svg
+    :target: https://packagist.org/packages/ongr/ongr-sandbox
 
-Step 4: Install Vagrant
------------------------
+.. image:: https://poser.pugx.org/ongr/ongr-sandbox/v/unstable.svg
+    :target: https://packagist.org/packages/ongr/ongr-sandbox
 
-Either install or upgrade `vagrant <https://www.vagrantup.com/downloads.html>`_. We need Vagrant >= 1.6.5
+.. image:: https://poser.pugx.org/ongr/ongr-sandbox/license.svg
+    :target: https://packagist.org/packages/ongr/ongr-sandbox
 
-(optional) Now we need to install the hosts updater vagrant plugin.
+Intro
+-----
 
-.. code-block:: bash
+- `Quick start </src/ONGR/DemoBundle/Resources/doc/index.rst>`_
+- `Contributing <https://github.com/ongr-io/ongr-handbook/blob/master/source/handbook/contributing/contributing.rst>`_
 
-    vagrant plugin install vagrant-hostsupdater
+ONGR uses and provides full support for `Elasticsearch Bundle <https://github.com/ongr-io/ElasticsearchBundle>`_.
 
-..
-
-   It will help to automatically update /etc/hosts file via adding your new ongr.dev host with correct IP.
-
-And finally - ONLY_FOR_LINUX you need to install the nfs server:
-
-.. code-block:: bash
-
-    sudo apt-get install nfs-kernel-server
-
-..
-
-Step 5: Start virtual machine using Vagrant
--------------------------------------------
-
-Let's rock. Move into your project root folder and execute:
-
-.. code-block:: bash
-
-    vagrant up
-
-..
-
-(In case you have also something like VMWare installed on your local machine, it is a good idea to give the provider when upping your box:
-
-.. code-block:: bash
-
-    vagrant up --provider=virtualbox
-
-..
-
-)
-
-That's it. The ONGR is alive.
-
-If you experience any problems (e.g. vagrant tends to change the rules with each update and we might lag a bit) please do not hesitate to @@TODO contact us. We'll help.
-
-Now, let's feed the donkey with some data.
-
-Step 6: Install the demo data
------------------------------
-
-In case to get demo content you need to run the following commands from command line:
-
-.. code-block:: bash
-
-    vagrant ssh
-    cd /var/www
-    composer install --no-interaction
-    app/console es:index:create
-    app/console es:index:import --raw src/ONGR/DemoBundle/Resources/data/data.json
-
-..
-
-   If composer prompts input questions just press enter.
-
-Step 7: Open your browser
--------------------------
-
-Navigate your browser to `http://ongr.dev <http://ongr.dev/>`_
+   More are coming.. ;)

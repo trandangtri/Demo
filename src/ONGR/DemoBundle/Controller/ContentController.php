@@ -93,6 +93,8 @@ class ContentController extends Controller
             [
                 'content' => $document->content,
                 'title' => $document->title,
+                'content' => $document->getContent(),
+                'title' => $document->getTitle(),
                 'document' => $document,
             ]
         );

@@ -21,6 +21,10 @@ ongr_category_show:
     pattern:  /category/{id}
     defaults: { _controller: ONGRDemoBundle:Category:show }
 
+ongr_category:
+    pattern:  /category/{id}
+    defaults: { _controller: ONGRDemoBundle:Category:show }
+
 ### Proxy routes
 
 #Category

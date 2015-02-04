@@ -25,6 +25,27 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class CategoryController extends Controller
 {
     /**
+     * Show category page with passed document object from router.
+     *
+     * @param Request           $request
+     * @param DocumentInterface $document
+     *
+     * @return Response
+     */
+    public function documentAction(Request $request, $document)
+    {
+        $productList = $this->get('ongr_filter_manager.product_list')->execute($request);
+
+        return $this->render(
+            $this->getCategoryTemplate($request),
+            [
+                'filter_manager' => $productList,
+                'category' => $document,
+            ]
+        );
+    }
+
+    /**
      * Show category page by category id.
      *
      * @param Request $request
@@ -45,25 +66,6 @@ class CategoryController extends Controller
         $request->attributes->add(['document' => $document]);
 
         return $this->documentAction($request, $document);
-    }
-
-    /**
-     * Show category page with passed document object from router.
-     *
-     * @param Request           $request
-     * @param DocumentInterface $document
-     *
-     * @return Response
-     */
-    public function documentAction(Request $request, $document)
-    {
-        return $this->render(
-            $this->getCategoryTemplate($request),
-            [
-                'filter_manager' => $this->getProductsList($request),
-                'category' => $document,
-            ]
-        );
     }
 
     /**
@@ -124,17 +126,5 @@ class CategoryController extends Controller
             default:
                 return 'ONGRDemoBundle:Category:inc/categorytree.html.twig';
         }
-    }
-
-    /**
-     * Returns products list with their data.
-     *
-     * @param Request $request
-     *
-     * @return array
-     */
-    private function getProductsList($request)
-    {
-        return $this->get('ongr_filter_manager.product_list')->execute($request);
     }
 }

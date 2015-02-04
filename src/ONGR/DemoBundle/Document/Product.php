@@ -12,179 +12,326 @@
 namespace ONGR\DemoBundle\Document;
 
 use ONGR\ElasticsearchBundle\Annotation as ES;
-use ONGR\ContentBundle\Document\AbstractProductDocument;
+use ONGR\MagentoConnectorBundle\Document\ProductDocument;
 
 /**
- * Product document.
+ * ElasticSearch Product document.
  *
  * @ES\Document(type="product")
  */
-class Product extends AbstractProductDocument
+class Product extends ProductDocument
 {
     /**
-     * @var string
+     * Structure that represents possible URLs for the model.
      *
-     * @ES\Property(name="sku", type="string", index="not_analyzed")
+     * Eg.:
+     *
+     * <code>
+     * array(
+     *     array('url' => 'foo/'),
+     *     array('url' => 'bar/', 'key' => 'bar_url'),
+     * )
+     * </code>
+     *
+     * @var UrlObject[]|\Iterator
+     *
+     * @ES\Property(name="urls", type="object", objectName="ONGRMagentoConnectorBundle:UrlObject", multiple=true)
      */
-    public $sku;
+    protected $urls;
 
     /**
-     * @var string
+     * @var string[] Array of expired urls hashes.
      *
-     * @ES\Property(name="title", type="string", search_analyzer="standard")
+     * @ES\Property(name="expired_urls", type="string", multiple=true)
      */
-    public $title;
+    protected $expiredUrls;
 
     /**
-     * @var string
+     * @var ImageObject[]|\Iterator
+     *
+     * @ES\Property(name="images", type="object", objectName="ONGRMagentoConnectorBundle:ImageObject", multiple=true)
+     */
+    protected $images;
+
+    /**
+     * @var ImageObject[]|\Iterator
      *
      * @ES\Property(
-     *      name="title_suggest",
-     *      type="completion",
-     *      index_analyzer="simple",
-     *      search_analyzer="simple",
-     *      payloads=true
+     *      name="small_images",
+     *      type="object",
+     *      objectName="ONGRMagentoConnectorBundle:ImageObject",
+     *      multiple=true
      * )
      */
-    public $titleSuggest;
+    protected $smallImages;
+
+    /**
+     * @var CategoryObject[]|\Iterator
+     *
+     * @ES\Property(
+     *      name="categories",
+     *      type="object",
+     *      objectName="ONGRMagentoConnectorBundle:CategoryObject",
+     *      multiple=true
+     * )
+     */
+    protected $categories;
+
+    /**
+     * @var PriceObject[]|\Iterator
+     *
+     * @ES\Property(name="prices", type="object", objectName="ONGRMagentoConnectorBundle:PriceObject", multiple=true)
+     */
+    protected $prices;
 
     /**
      * @var string
      *
-     * @ES\Property(name="description", type="string")
+     * @ES\Property(name="short_description", type="string")
      */
-    public $description;
+    protected $shortDescription;
 
     /**
-     * @var float
-     *
-     * @ES\Property(name="price", type="float")
+     * @return string[]
      */
-    public $price;
+    public function getExpiredUrls()
+    {
+        return $this->expiredUrls;
+    }
 
     /**
-     * @var int
-     *
-     * @ES\Property(name="total_rating", type="integer")
+     * @param string[] $expiredUrls
      */
-    public $totalRating;
+    public function setExpiredUrls($expiredUrls)
+    {
+        $this->expiredUrls = $expiredUrls;
+    }
 
     /**
-     * @var string
-     *
-     * @ES\Property(name="location", type="geo_point")
+     * @param string $expiredUrl
      */
-    public $location;
+    public function addExpiredUrl($expiredUrl)
+    {
+        $this->expiredUrls[] = $expiredUrl;
+    }
 
     /**
-     * @var string Image URL.
-     *
-     * @ES\Property(name="image", type="string")
+     * @return \Iterator|UrlObject[]
      */
-    public $image;
+    public function getUrls()
+    {
+        return $this->urls;
+    }
 
     /**
-     * @var string
-     *
-     * @ES\Property(name="thumb", type="string", index="no")
+     * @param \Iterator|UrlObject[] $urls
      */
-    public $thumb;
+    public function setUrls($urls)
+    {
+        $this->urls = $urls;
+    }
 
     /**
-     * @var string
-     *
-     * @ES\Property(name="icon", type="string", index="no")
+     * @param UrlObject $urlObject
      */
-    public $icon;
+    public function addUrlObject($urlObject)
+    {
+        $this->urls[] = $urlObject;
+    }
 
     /**
-     * @var string
-     *
-     * @ES\Property(name="category", type="string", index_analyzer="pathAnalyzer")
+     * @param string $urlString
      */
-    public $category;
+    public function addUrl($urlString)
+    {
+        $urlObject = new UrlObject();
+        $urlObject->setUrl($urlString);
+        $this->urls[] = $urlObject;
+    }
 
     /**
-     * @var string
-     *
-     * @ES\Property(name="category_title", type="string", index_analyzer="pathAnalyzer")
+     * @return \CategoryObject[]
      */
-    public $categoryTitle;
+    public function getMainCategory()
+    {
+        if ($this->getCategories() !== null) {
+            return $this->getCategories()[0]->getTitle();
+        }
+    }
 
     /**
-     * @var string
-     *
-     * @ES\Property(name="category_id", type="string", index="not_analyzed")
+     * @return \Iterator|CategoryObject[]
      */
-    public $categoryId;
+    public function getCategories()
+    {
+        return $this->categories;
+    }
 
     /**
-     * @var string
-     *
-     * @ES\Property(name="main_category", type="string", index="not_analyzed")
+     * @param \Iterator|CategoryObject[] $categories
      */
-    public $mainCategory;
+    public function setCategories($categories)
+    {
+        $this->categories = $categories;
+    }
 
     /**
-     * @var string
-     *
-     * @ES\Property(name="attributes", type="string", index="no")
+     * @param CategoryObject $categoryObject
      */
-    public $attributes;
+    public function addCategory($categoryObject)
+    {
+        $this->categories[] = $categoryObject;
+    }
 
     /**
-     * @var string
-     *
-     * @ES\Property(name="manufacturer", type="string", index="not_analyzed")
+     * @return string
      */
-    public $manufacturer;
+    public function getManufacturer()
+    {
+        return '';
+    }
 
     /**
-     * @var string
-     *
-     * @ES\Property(name="long_description", type="string", index="no")
+     * @return \ImageObject[]
      */
-    public $longDescription;
+    public function getImage()
+    {
+        return $this->getImages()[0]->getUrl();
+    }
 
     /**
-     * @var ProductReview
-     *
-     * @ES\Property(name="reviews", type="object", objectName="ONGRDemoBundle:ProductReview")
+     * @return string
      */
-    public $reviews;
+    public function getColour()
+    {
+        return '';
+    }
 
     /**
-     * @var ProductOrigin
-     *
-     * @ES\Property(name="origin", type="object", objectName="ONGRDemoBundle:ProductOrigin")
+     * @return string
      */
-    public $origin;
+    public function getStyle()
+    {
+        return '';
+    }
 
     /**
-     * @var string
-     *
-     * @ES\Property(name="grape", type="string", index="not_analyzed")
+     * @return \Iterator|ImageObject[]
      */
-    public $grape;
+    public function getImages()
+    {
+        return $this->images;
+    }
 
     /**
-     * @var float
-     *
-     * @ES\Property(name="alcohol_level", type="float")
+     * @param \Iterator|ImageObject[] $images
      */
-    public $alcoholLevel;
+    public function setImages($images)
+    {
+        $this->images = $images;
+    }
 
     /**
-     * @var string
-     *
-     * @ES\Property(name="wine_style", type="string", index="not_analyzed")
+     * @param ImageObject $imageObject
      */
-    public $wineStyle;
+    public function addImage($imageObject)
+    {
+        $this->images[] = $imageObject;
+    }
 
     /**
-     * @var string
-     *
-     * @ES\Property(name="wine_colour", type="string", index="not_analyzed")
+     * @param string $imageUrl
      */
-    public $wineColour;
+    public function addImageUrl($imageUrl)
+    {
+        $imageObject = new ImageObject();
+        $imageObject->setUrl($imageUrl);
+        $this->images[] = $imageObject;
+    }
+
+    /**
+     * @return \Iterator|ImageObject[]
+     */
+    public function getSmallImages()
+    {
+        return $this->smallImages;
+    }
+
+    /**
+     * @param \Iterator|ImageObject[] $smallImages
+     */
+    public function setSmallImages($smallImages)
+    {
+        $this->smallImages = $smallImages;
+    }
+
+    /**
+     * @param ImageObject $smallImage
+     */
+    public function addSmallImage($smallImage)
+    {
+        $this->smallImages[] = $smallImage;
+    }
+
+    /**
+     * @param string $imageUrl
+     */
+    public function addSmallImageUrl($imageUrl)
+    {
+        $imageObject = new ImageObject();
+        $imageObject->setUrl($imageUrl);
+        $this->smallImages[] = $imageObject;
+    }
+
+    /**
+     * @return float
+     */
+    public function getPrice()
+    {
+        if ($this->getPrices() !== null) {
+            return $this->getPrices()[0]->getPrice();
+        } else {
+            return '';
+        }
+    }
+
+    /**
+     * @return \Iterator|PriceObject[]
+     */
+    public function getPrices()
+    {
+        return $this->prices;
+    }
+
+    /**
+     * @param \Iterator|PriceObject[] $prices
+     */
+    public function setPrices($prices)
+    {
+        $this->prices = $prices;
+    }
+
+    /**
+     * @param PriceObject $price
+     */
+    public function addPrice($price)
+    {
+        $this->prices[] = $price;
+    }
+
+    /**
+     * @return string
+     */
+    public function getShortDescription()
+    {
+        return $this->shortDescription;
+    }
+
+    /**
+     * @param string $shortDescription
+     */
+    public function setShortDescription($shortDescription)
+    {
+        $this->shortDescription = $shortDescription;
+    }
 }

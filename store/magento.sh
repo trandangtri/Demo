@@ -18,15 +18,19 @@ echo "Cleaning up files..."
 rm ../magento.tar.gz
 rm *.sample *.txt
 
+echo "Create database Magento..."
+echo "CREATE DATABASE ongr;" | mysql -u root -proot
+
+
 echo "Installing Magento..."
 
 echo "CREATE DATABASE ongr;" | mysql -u root -proot
 
 php -f install.php -- \
     --license_agreement_accepted "yes" \
-    --locale "en_US" \
+    --locale "de_DE" \
     --timezone "America/Phoenix" \
-    --default_currency "USD" \
+    --default_currency "EUR" \
     --db_host "localhost" \
     --db_name "ongr" \
     --db_user "root" \
@@ -44,11 +48,20 @@ php -f install.php -- \
     --session_save "db"
 
 
+echo "Installing sample data..."
+
+mysql -u root -proot -Bse "DROP DATABASE ongr; CREATE DATABASE ongr;"
+mysql -u root -proot ongr <  ../../src/ONGR/DemoMagentoBundle/Resources/data/magento_sample_data_for_1.9.0.0.sql
+
 echo "Installing core extensions..."
 
 ./mage mage-setup .
 ./mage config-set preferred_state stable
 ./mage install http://connect20.magentocommerce.com/community Mage_All_Latest --force
 
+
 echo "Refreshing indexes..."
 php -f shell/indexer.php reindexall
+
+echo "Clearing Magento cache..."
+rm -r ./var/cache/
