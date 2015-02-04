@@ -154,7 +154,7 @@ class Product extends ProductDocument
      */
     public function getMainCategory()
     {
-        if( $this->getCategories() !== null) {
+        if ($this->getCategories() !== null) {
             return $this->getCategories()[0]->getTitle();
         }
     }
@@ -288,10 +288,11 @@ class Product extends ProductDocument
      */
     public function getPrice()
     {
-        if( $this->getPrices() !== null)
+        if ($this->getPrices() !== null) {
             return $this->getPrices()[0]->getPrice();
-        else
+        } else {
             return '';
+        }
     }
 
     /**

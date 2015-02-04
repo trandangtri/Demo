@@ -20,7 +20,6 @@ use ONGR\MagentoConnectorBundle\Entity\CatalogProductEntity;
 /**
  * Modifies entities to match ongr product mapping.
  */
-
 class ProductStockModifier extends AbstractImportModifyEventListener
 {
     /**
@@ -46,19 +45,19 @@ class ProductStockModifier extends AbstractImportModifyEventListener
         $this->isItemInStock($entity, $event);
     }
 
-
     /**
      * Checks if item is in stock. If it is imports.
      *
      * @param CatalogProductEntity $entity
+     * @param ItemPipelineEvent    $event
      */
-    public function isItemInStock(CatalogProductEntity $entity, $event)
+    public function isItemInStock(CatalogProductEntity $entity, ItemPipelineEvent $event)
     {
         $priceArray = [];
         $prices = $entity->getPrices();
         foreach ($prices as $price) {
-            if( $price->getPrice() !== null) {
-                $priceArray[] =  $price->getPrice();
+            if ($price->getPrice() !== null) {
+                $priceArray[] = $price->getPrice();
                 break;
             }
         }
