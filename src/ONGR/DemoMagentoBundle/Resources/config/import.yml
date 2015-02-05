@@ -1,4 +1,5 @@
 parameters:
+    ongr_demo.magento.import.store_id: 0
     ongr_demo.magento.import.shop_id: 0
 
     ongr_demo.magento.import.finish.class: ONGR\DemoMagentoBundle\EventListener\ImportFinishEventListener
@@ -22,6 +23,7 @@ services:
     ongr_demo.magento.import.product.stock.modifier:
         class: %ongr_demo.magento.import.product.stock.modifier.class%
         arguments:
+            - %ongr_demo.magento.import.store_id%
             - %ongr_demo.magento.import.shop_id%
         tags:
             - { name: kernel.event_listener, event: ongr.pipeline.import.magento.product.modify, method: onModify }
@@ -41,6 +43,7 @@ services:
     ongr_demo.magento.import.product.modifier:
         class: %ongr_demo.magento.import.product.modifier.class%
         arguments:
+            - %ongr_demo.magento.import.store_id%
             - %ongr_demo.magento.import.shop_id%
         tags:
             - { name: kernel.event_listener, event: ongr.pipeline.import.magento.product.modify, method: onModify }

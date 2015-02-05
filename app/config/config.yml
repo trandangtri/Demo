@@ -241,4 +241,5 @@ ongr_connections:
                 table_name: ongr_sync_storage
 
 ongr_magento:
-    shop: 0
+    store_id: 0
+    shop_id: 0
