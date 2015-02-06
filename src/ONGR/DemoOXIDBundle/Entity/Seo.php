@@ -12,14 +12,20 @@
 namespace ONGR\DemoOXIDBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use ONGR\OXIDConnectorBundle\Entity\Seo as ParentSeo;
+use ONGR\OXIDConnectorBundle\Entity\Seo as Base;
 
 /**
  * A class to test ONGR\OXIDConnectorBundle\Entity\Seo abstract class.
- *
- * @ORM\Entity
+ * @ORM\InheritanceType("SINGLE_TABLE")
+ * @ORM\DiscriminatorColumn(name="OXTYPE", type="string")
+ * @ORM\DiscriminatorMap({
+ *           "oxarticle" = "ONGR\DemoOXIDBundle\Entity\SeoArticle",
+ *           "oxcategory" = "ONGR\DemoOXIDBundle\Entity\SeoCategory",
+ *           "oxcontent" = "ONGR\DemoOXIDBundle\Entity\SeoContent"
+ * })
+ * @ORM\Entity(readOnly=true)
  * @ORM\Table(name="oxseo")
  */
-class Seo extends ParentSeo
+abstract class Seo extends Base
 {
 }

@@ -12,7 +12,7 @@
 namespace ONGR\DemoOXIDBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use ONGR\OXIDConnectorBundle\Entity\ObjectToSeoData as ParentObjectToSeoData;
+use ONGR\OXIDConnectorBundle\Entity\ObjectToSeoData as Base;
 
 /**
  * A class to test ONGR\OXIDConnectorBundle\Entity\ObjectToSeoData abstract class.
@@ -20,6 +20,6 @@ use ONGR\OXIDConnectorBundle\Entity\ObjectToSeoData as ParentObjectToSeoData;
  * @ORM\Entity
  * @ORM\Table(name="oxobject2seodata")
  */
-class ObjectToSeoData extends ParentObjectToSeoData
+class ObjectToSeoData extends Base
 {
 }

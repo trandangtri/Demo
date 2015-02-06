@@ -12,13 +12,13 @@
 namespace ONGR\DemoOXIDBundle\Document;
 
 use ONGR\ElasticsearchBundle\Annotation as ES;
-use ONGR\OXIDConnectorBundle\Document\ContentDocument as ParentDocument;
+use ONGR\OXIDConnectorBundle\Document\ContentDocument as Base;
 
 /**
  * Content document.
  *
  * @ES\Document(type="content")
  */
-class ContentDocument extends ParentDocument
+class ContentDocument extends Base
 {
 }

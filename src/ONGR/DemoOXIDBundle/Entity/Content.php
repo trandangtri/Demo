@@ -12,7 +12,7 @@
 namespace ONGR\DemoOXIDBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use ONGR\OXIDConnectorBundle\Entity\Content as ParentContent;
+use ONGR\OXIDConnectorBundle\Entity\Content as Base;
 
 /**
  * A class to test ONGR\OXIDConnectorBundle\Entity\Content abstract class.
@@ -20,6 +20,15 @@ use ONGR\OXIDConnectorBundle\Entity\Content as ParentContent;
  * @ORM\Entity
  * @ORM\Table(name="oxcontents")
  */
-class Content extends ParentContent
+class Content extends Base
 {
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\OneToMany(targetEntity="\ONGR\DemoOXIDBundle\Entity\SeoContent", mappedBy="content")
+     * })
+     */
+    protected $seoUrls;
+
+
 }

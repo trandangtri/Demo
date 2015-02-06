@@ -12,13 +12,13 @@
 namespace ONGR\DemoOXIDBundle\Document;
 
 use ONGR\ElasticsearchBundle\Annotation as ES;
-use ONGR\OXIDConnectorBundle\Document\AttributeObject as ParentObject;
+use ONGR\OXIDConnectorBundle\Document\AttributeObject as Base;
 
 /**
  * Attribute document.
  *
  * @ES\Object
  */
-class AttributeObject extends ParentObject
+class AttributeObject extends Base
 {
 }

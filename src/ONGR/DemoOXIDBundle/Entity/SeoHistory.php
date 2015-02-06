@@ -12,7 +12,7 @@
 namespace ONGR\DemoOXIDBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use ONGR\OXIDConnectorBundle\Entity\SeoHistory as ParentSeoHistory;
+use ONGR\OXIDConnectorBundle\Entity\SeoHistory as Base;
 
 /**
  * A class to test ONGR\OXIDConnectorBundle\Entity\SeoHistory abstract class.
@@ -20,6 +20,6 @@ use ONGR\OXIDConnectorBundle\Entity\SeoHistory as ParentSeoHistory;
  * @ORM\Entity
  * @ORM\Table(name="oxseohistory")
  */
-class SeoHistory extends ParentSeoHistory
+class SeoHistory extends Base
 {
 }

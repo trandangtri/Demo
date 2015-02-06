@@ -12,7 +12,7 @@
 namespace ONGR\DemoOXIDBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use ONGR\OXIDConnectorBundle\Entity\ArticleExtension as ParentArticleExtension;
+use ONGR\OXIDConnectorBundle\Entity\ArticleExtension as Base;
 
 /**
  * A class to test ONGR\OXIDConnectorBundle\Entity\ArticleExtension abstract class.
@@ -20,6 +20,6 @@ use ONGR\OXIDConnectorBundle\Entity\ArticleExtension as ParentArticleExtension;
  * @ORM\Entity
  * @ORM\Table(name="oxartextends")
  */
-class ArticleExtension extends ParentArticleExtension
+class ArticleExtension extends Base
 {
 }

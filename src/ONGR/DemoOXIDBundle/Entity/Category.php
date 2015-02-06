@@ -12,7 +12,7 @@
 namespace ONGR\DemoOXIDBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use ONGR\OXIDConnectorBundle\Entity\Category as ParentCategory;
+use ONGR\OXIDConnectorBundle\Entity\Category as Base;
 
 /**
  * A class to test ONGR\OXIDConnectorBundle\Entity\Category abstract class.
@@ -20,6 +20,13 @@ use ONGR\OXIDConnectorBundle\Entity\Category as ParentCategory;
  * @ORM\Entity
  * @ORM\Table(name="oxcategories")
  */
-class Category extends ParentCategory
+class Category extends Base
 {
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\OneToMany(targetEntity="\ONGR\DemoOXIDBundle\Entity\SeoCategory", mappedBy="category")
+     * })
+     */
+    protected $seoUrls;
 }

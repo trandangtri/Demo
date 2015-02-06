@@ -12,7 +12,7 @@
 namespace ONGR\DemoOXIDBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use ONGR\OXIDConnectorBundle\Entity\CategoryToAttribute as ParentCategoryToAttribute;
+use ONGR\OXIDConnectorBundle\Entity\CategoryToAttribute as Base;
 
 /**
  * A class to test ONGR\OXIDConnectorBundle\Entity\CategoryToAttribute abstract class.
@@ -20,6 +20,6 @@ use ONGR\OXIDConnectorBundle\Entity\CategoryToAttribute as ParentCategoryToAttri
  * @ORM\Entity
  * @ORM\Table(name="oxcategory2attribute")
  */
-class CategoryToAttribute extends ParentCategoryToAttribute
+class CategoryToAttribute extends Base
 {
 }
