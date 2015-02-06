@@ -15,7 +15,8 @@ use Doctrine\ORM\Mapping as ORM;
 use ONGR\DemoOXIDBundle\Entity\Seo as Base;
 
 /**
- * Class SeoArticle
+ * Class SeoArticle for mapping articles seo records.
+ *
  * @ORM\Entity(readOnly=true)
  */
 class SeoArticle extends Base
@@ -31,8 +32,6 @@ class SeoArticle extends Base
     protected $article;
 
     /**
-     * Set article
-     *
      * @param \ONGR\DemoOXIDBundle\Entity\Article $article
      *
      * @return Oxseo
@@ -43,9 +42,8 @@ class SeoArticle extends Base
 
         return $this;
     }
+
     /**
-     * Get article
-     *
      * @return \ONGR\DemoOXIDBundle\Entity\Article
      */
     public function getArticle()

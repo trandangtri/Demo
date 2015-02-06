@@ -16,6 +16,7 @@ use ONGR\OXIDConnectorBundle\Entity\Seo as Base;
 
 /**
  * A class to test ONGR\OXIDConnectorBundle\Entity\Seo abstract class.
+ *
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="OXTYPE", type="string")
  * @ORM\DiscriminatorMap({

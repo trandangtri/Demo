@@ -15,7 +15,8 @@ use Doctrine\ORM\Mapping as ORM;
 use ONGR\DemoOXIDBundle\Entity\Seo as Base;
 
 /**
- * Class SeoCategory
+ * Class SeoCategory for mapping categories seo records.
+ *
  * @ORM\Entity(readOnly=true)
  */
 class SeoCategory extends Base
@@ -31,9 +32,7 @@ class SeoCategory extends Base
     protected $category;
 
     /**
-     * Set category
-     *
-     * @param \ONGR\DemoOXIDBundle\Entity\Category category
+     * @param \ONGR\DemoOXIDBundle\Entity\Category $category
      *
      * @return Seo
      */
@@ -43,9 +42,8 @@ class SeoCategory extends Base
 
         return $this;
     }
+
     /**
-     * Get category
-     *
      * @return \ONGR\DemoOXIDBundle\Entity\Category
      */
     public function getCategory()

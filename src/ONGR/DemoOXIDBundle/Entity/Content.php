@@ -29,6 +29,4 @@ class Content extends Base
      * })
      */
     protected $seoUrls;
-
-
 }
