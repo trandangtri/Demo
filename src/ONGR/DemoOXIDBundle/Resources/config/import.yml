@@ -31,8 +31,9 @@ services:
 
     ongr_demo.oxid.import.product.modifier:
         class: %ongr_demo.oxid.import.product.modifier.class%
-        arguments:
-            - @ongr_oxid.attr_to_doc_service
+        arguments: [ "@ongr_oxid.attr_to_doc_service" ]
+        calls:
+           - [ setLanguageId, [%ongr_oxid.language_id%] ]
         tags:
             - { name: kernel.event_listener, event: ongr.pipeline.import.oxid.product.modify, method: onModify }
 
@@ -58,8 +59,9 @@ services:
 
     ongr_demo.oxid.import.category.modifier:
         class: %ongr_demo.oxid.import.category.modifier.class%
-        arguments:
-            - @ongr_oxid.attr_to_doc_service
+        arguments: [ "@ongr_oxid.attr_to_doc_service" ]
+        calls:
+           - [ setLanguageId, [%ongr_oxid.language_id%] ]
         tags:
             - { name: kernel.event_listener, event: ongr.pipeline.import.oxid.category.modify, method: onModify }
 
@@ -85,8 +87,9 @@ services:
 
     ongr_demo.oxid.import.content.modifier:
         class: %ongr_demo.oxid.import.content.modifier.class%
-        arguments:
-            - @ongr_oxid.attr_to_doc_service
+        arguments: [ "@ongr_oxid.attr_to_doc_service" ]
+        calls:
+           - [ setLanguageId, [%ongr_oxid.language_id%] ]
         tags:
             - { name: kernel.event_listener, event: ongr.pipeline.import.oxid.content.modify, method: onModify }
 
