@@ -16,3 +16,4 @@ parameters:
     asset_reset: 1
     top_cms_links:
       - about
+      - oxcredits
