@@ -12,7 +12,7 @@
 namespace ONGR\DemoOXIDBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use ONGR\OXIDConnectorBundle\Entity\Attribute as ParentAttribute;
+use ONGR\OXIDConnectorBundle\Entity\Attribute as Base;
 
 /**
  * A class to test ONGR\OXIDConnectorBundle\Entity\Attribute abstract class.
@@ -20,6 +20,6 @@ use ONGR\OXIDConnectorBundle\Entity\Attribute as ParentAttribute;
  * @ORM\Entity
  * @ORM\Table(name="oxattribute")
  */
-class Attribute extends ParentAttribute
+class Attribute extends Base
 {
 }

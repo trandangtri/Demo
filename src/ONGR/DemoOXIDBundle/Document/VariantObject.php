@@ -12,13 +12,13 @@
 namespace ONGR\DemoOXIDBundle\Document;
 
 use ONGR\ElasticsearchBundle\Annotation as ES;
-use ONGR\OXIDConnectorBundle\Document\VariantObject as ParentObject;
+use ONGR\OXIDConnectorBundle\Document\VariantObject as Base;
 
 /**
  * Variant object.
  *
  * @ES\Object
  */
-class VariantObject extends ParentObject
+class VariantObject extends Base
 {
 }

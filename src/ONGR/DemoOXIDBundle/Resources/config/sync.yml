@@ -43,8 +43,9 @@ services:
 
     ongr_demo.oxid.sync.execute.product.modifier:
         class: %ongr_demo.oxid.sync.execute.product.modifier.class%
-        arguments:
-            - @ongr_oxid.attr_to_doc_service
+        arguments: [ "@ongr_oxid.attr_to_doc_service" ]
+        calls:
+           - [ setLanguageId, [%ongr_oxid.language_id%] ]
         tags:
             - { name: kernel.event_listener, event: ongr.pipeline.sync.execute.oxid.product.modify, method: onModify }
 
@@ -77,8 +78,9 @@ services:
 
     ongr_demo.oxid.sync.execute.category.modifier:
         class: %ongr_demo.oxid.sync.execute.category.modifier.class%
-        arguments:
-            - @ongr_oxid.attr_to_doc_service
+        arguments: [ "@ongr_oxid.attr_to_doc_service" ]
+        calls:
+           - [ setLanguageId, [%ongr_oxid.language_id%] ]
         tags:
             - { name: kernel.event_listener, event: ongr.pipeline.sync.execute.oxid.category.modify, method: onModify }
 
@@ -111,8 +113,9 @@ services:
 
     ongr_demo.oxid.sync.execute.content.modifier:
         class: %ongr_demo.oxid.sync.execute.content.modifier.class%
-        arguments:
-            - @ongr_oxid.attr_to_doc_service
+        arguments: [ "@ongr_oxid.attr_to_doc_service" ]
+        calls:
+           - [ setLanguageId, [%ongr_oxid.language_id%] ]
         tags:
             - { name: kernel.event_listener, event: ongr.pipeline.sync.execute.oxid.content.modify, method: onModify }
 

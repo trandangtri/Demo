@@ -11,7 +11,8 @@
 
 namespace ONGR\DemoOXIDBundle\Entity;
 
-use ONGR\OXIDConnectorBundle\Entity\ObjectToCategory as ParentObjectToCategory;
+use Doctrine\ORM\Mapping as ORM;
+use ONGR\OXIDConnectorBundle\Entity\ObjectToCategory as Base;
 
 /**
  * A class to test ONGR\OXIDConnectorBundle\Entity\ObjectToCategory abstract class.
@@ -19,6 +20,6 @@ use ONGR\OXIDConnectorBundle\Entity\ObjectToCategory as ParentObjectToCategory;
  * @ORM\Entity
  * @ORM\Table(name="oxobject2category")
  */
-class ObjectToCategory extends ParentObjectToCategory
+class ObjectToCategory extends Base
 {
 }

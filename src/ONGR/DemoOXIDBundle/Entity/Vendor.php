@@ -12,7 +12,7 @@
 namespace ONGR\DemoOXIDBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use ONGR\OXIDConnectorBundle\Entity\Vendor as ParentVendor;
+use ONGR\OXIDConnectorBundle\Entity\Vendor as Base;
 
 /**
  * A class to test ONGR\OXIDConnectorBundle\Entity\Vendor abstract class.
@@ -20,6 +20,6 @@ use ONGR\OXIDConnectorBundle\Entity\Vendor as ParentVendor;
  * @ORM\Entity
  * @ORM\Table(name="oxvendor")
  */
-class Vendor extends ParentVendor
+class Vendor extends Base
 {
 }

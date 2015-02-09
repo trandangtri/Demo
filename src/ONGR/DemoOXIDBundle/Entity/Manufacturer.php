@@ -12,7 +12,7 @@
 namespace ONGR\DemoOXIDBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use ONGR\OXIDConnectorBundle\Entity\Manufacturer as ParentManufacturer;
+use ONGR\OXIDConnectorBundle\Entity\Manufacturer as Base;
 
 /**
  * A class to test ONGR\OXIDConnectorBundle\Entity\Manufacturer abstract class.
@@ -20,6 +20,6 @@ use ONGR\OXIDConnectorBundle\Entity\Manufacturer as ParentManufacturer;
  * @ORM\Entity
  * @ORM\Table(name="oxmanufacturers")
  */
-class Manufacturer extends ParentManufacturer
+class Manufacturer extends Base
 {
 }
