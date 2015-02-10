@@ -142,7 +142,7 @@ ongr_elasticsearch:
                 number_of_shards: 2
                 number_of_replicas: 0
                 index:
-                    refresh_interval: -1
+                    refresh_interval: "%es_refresh_interval%"
                 analysis:
                     tokenizer:
                         pathTokenizer:
