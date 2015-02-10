@@ -242,4 +242,4 @@ ongr_connections:
 
 ongr_magento:
     store_id: 0
-    shop_id: 0
+    shop_id: 1
