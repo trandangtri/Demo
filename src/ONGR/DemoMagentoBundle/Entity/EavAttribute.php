@@ -14,7 +14,6 @@ namespace ONGR\DemoMagentoBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use ONGR\MagentoConnectorBundle\Entity\EavAttribute as ParentEavAttribute;
 
-
 /**
  * Product integer attributes entity.
  *
