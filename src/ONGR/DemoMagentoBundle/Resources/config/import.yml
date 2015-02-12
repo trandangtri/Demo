@@ -6,7 +6,7 @@ parameters:
 
     ongr_demo.magento.import.product.modifier.class: ONGR\MagentoConnectorBundle\Modifier\ProductModifier
     ongr_demo.magento.import.product.stock.modifier.class: ONGR\DemoMagentoBundle\Modifiers\ProductStockModifier
-    ongr_demo.magento.import.category.modifier.class: ONGR\MagentoConnectorBundle\Modifier\CategoryModifier
+    ongr_demo.magento.import.category.modifier.class: ONGR\DemoMagentoBundle\Modifiers\CategoryModifier
     ongr_demo.magento.import.content.modifier.class: ONGR\MagentoConnectorBundle\Modifier\ContentModifier
 
     ongr_demo.magento.import.product.doctrine_entity_type: DemoMagentoBundle:CatalogProductEntity
