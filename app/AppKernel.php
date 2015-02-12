@@ -27,6 +27,10 @@ class AppKernel extends Kernel
             new ONGR\ContentBundle\ONGRContentBundle(),
             new ONGR\PagerBundle\ONGRPagerBundle(),
             new Crunch\Bundle\SSIBundle\CrunchSSIBundle(),
+
+            new ONGR\ConnectionsBundle\ONGRConnectionsBundle(),
+            new ONGR\ProcessWireConnectorBundle\ONGRProcessWireConnectorBundle(),
+            new ONGR\DemoProcessWireBundle\ONGRDemoProcessWireBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

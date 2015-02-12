@@ -166,6 +166,7 @@ ongr_elasticsearch:
             debug: "%kernel.debug%"
             mappings:
                 - ONGRDemoBundle
+                - ONGRProcessWireConnectorBundle
 
 ongr_filter_manager:
     managers:
