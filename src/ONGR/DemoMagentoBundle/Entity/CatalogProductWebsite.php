@@ -15,7 +15,7 @@ use Doctrine\ORM\Mapping as ORM;
 use ONGR\MagentoConnectorBundle\Entity\CatalogProductWebsite as ParentCatalogProductWebsite;
 
 /**
- * Product entity.
+ * Product integer attributes entity.
  *
  * @ORM\Entity
  * @ORM\Table(name="catalog_product_website")

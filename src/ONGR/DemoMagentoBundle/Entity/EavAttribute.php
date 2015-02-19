@@ -12,14 +12,14 @@
 namespace ONGR\DemoMagentoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use ONGR\MagentoConnectorBundle\Entity\EavAttribute as AbstractEavAttribute;
+use ONGR\MagentoConnectorBundle\Entity\EavAttribute as ParentEavAttribute;
 
 /**
- * Cms page entity.
+ * Product integer attributes entity.
  *
  * @ORM\Entity
  * @ORM\Table(name="eav_attribute")
  */
-class EavAttribute extends AbstractEavAttribute
+class EavAttribute extends ParentEavAttribute
 {
 }

@@ -29,10 +29,12 @@ class ProductStockModifier extends AbstractImportModifyEventListener
 
     /**
      * @param int $storeId
+     * @param int $shopId
      */
-    public function __construct($storeId)
+    public function __construct($storeId, $shopId)
     {
         $this->storeId = $storeId;
+        $this->shopId = $shopId;
     }
 
     /**
