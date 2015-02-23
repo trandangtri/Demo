@@ -13,13 +13,23 @@
 #
 # ./processwire.sh dev
 #
-#
 # To change the default installation path you can use the second parameter:
 # ./processwire.sh master /var/www/full/path/to/the/installation/folder
 #
-# * Note that the directory must not exist before launching the script!
+# After the installation by default you'll be able to access
+# your installation via this link:
+# http://processwire.ongr.dev
 #
-###########################################################################
+# The administration dashboard will be located at:
+# http://processwire.ongr.dev/manager
+#
+# And the default login data will be:
+# Login:    admin
+# Password: password1
+#
+# You can always change it in your profile settings.
+#
+############################################################################
 
 ######################################
 # CONFIGURE THE DEFAULT VALUES HERE. #
@@ -69,13 +79,12 @@ function out ()
     elif [[ $1 == "yellow" ]]
     then
         echo -e "\e[33m"
+    elif [[ $1 == "blue" ]]
+    then
+        echo -e "\e[34m"
     elif [[ $1 == "end" ]]
     then
         echo -e "\e[0m"
-    elif [[ $1 == "separator" ]]
-    then
-        echo "____________________________"
-        echo ""
     else
         echo "["`date +"%Y-%m-%d %T"`"] $1"
     fi
@@ -120,14 +129,8 @@ function sql_query()
 # Installation process.
 function install ()
 {
-    echo ""
-    out "ProcessWire installation script."
-    echo ""
-    out "Retrieving repository..."
     git clone -b $1 $2 $3
     check_outcome "Cloning the ProcessWire repository."
-    out "Done!"
-    echo ""
 
     sudo rm ${INSTALLATION_LOCATION}/install.php
     check_outcome "Removing install.php file"
@@ -138,12 +141,23 @@ function install ()
     sudo cp ${SCRIPT_LOCATION}/processwireConfig.php ${INSTALLATION_LOCATION}/site/config.php
     check_outcome "Moving ProcessWire configuration file."
 
-    out "Setting up the virtual host..."
+    sudo mkdir ${INSTALLATION_LOCATION}/site/assets/sessions
+    check_outcome "Create sessions folder."
+
+    sudo chmod 777 ${INSTALLATION_LOCATION}/site/assets ${INSTALLATION_LOCATION}/site/assets/* ${INSTALLATION_LOCATION}/site/modules
+    check_outcome "Defining CHMOD rights to the ProcessWire folders."
+
+    sudo sed -i -e "s/if(ini_get('session.save_handler') == 'files')/\/\//g" ${INSTALLATION_LOCATION}/index.php
+    check_outcome "Remove session save handler directive from ProcessWire's index.php file."
+
     sudo cp ${SCRIPT_LOCATION}/processwire.conf /etc/nginx/sites-available/processwire.ongr.dev.conf
     check_outcome "Copying NGINX configuration file."
 
-    sudo ln -s /etc/nginx/sites-available/processwire.ongr.dev.conf /etc/nginx/sites-enabled/processwire.ongr.dev.conf
-    check_outcome "Creating a symbolic link of NGINX configuration."
+    if [[ ! -f /etc/nginx/sites-enabled/processwire.ongr.dev.conf ]]
+    then
+        sudo ln -s /etc/nginx/sites-available/processwire.ongr.dev.conf /etc/nginx/sites-enabled/processwire.ongr.dev.conf
+        check_outcome "Creating a symbolic link of NGINX configuration."
+    fi
 
     sudo nginx -s reload
     check_outcome "Reloading NGINX server."
@@ -157,8 +171,10 @@ function install ()
         check_outcome "Creating database..."
         import_db
     else
-        echo -e "\n*** USER INPUT REQUIRED"
+        out yellow
+        out "*** USER INPUT REQUIRED:"
         uinput=""
+
         while [[ ${uinput} == "" ]]
         do
             read -r -n 1 -p "Database ${MYSQL_DATABASE} exists. Do you want to [D]rop and recreate it, [I]mport data, [S]kip import of the data (default: [S])?" input
@@ -184,16 +200,20 @@ function install ()
                 ;;
             esac
         done
-    fi
 
-    echo ""
-    out "Install complete..."
-    echo ""
+        out end
+    fi
 }
 
 ####################################
 # The actual installation process. #
 ####################################
+
+out blue
+out "==============================="
+out "ProcessWire installation script"
+out "==============================="
+out end
 
 # Script arguments.
 args=("$@")
@@ -203,7 +223,6 @@ CUSTOM_INSTALLATION_LOCATION=${args[1]}
 # Check if the ProcessWire GitHub branch was specified.
 if [[ -z ${BRANCH} ]] || [[ ${BRANCH} != "master" && ${BRANCH} != "dev" ]]
 then
-    out separator
     out red
     out "Error:"
     out "No correct ProcessWire branch specified."
@@ -235,27 +254,22 @@ fi
 # Check if the installation directory already exists.
 if [[ -d ${INSTALLATION_LOCATION} ]]
 then
-    out separator
     out red
     out "Error:"
     out "The installation directory '${INSTALLATION_LOCATION}' already exists or is incorrectly defined."
     out "Please delete it before continuing."
-    out end
+    out yellow
 
     echo -e "\n*** USER INPUT REQUIRED"
         uinput=""
         while [[ ${uinput} == "" ]]
         do
-
-            read -r -n 1 -p "Installation directory ${INSTALLATION_LOCATION} exists. Do you want to [D]elete and recreate it, try to [M]ove into it anyway, [S]top the installation (default: [S])?" input
+            read -r -n 1 -p "Installation directory ${INSTALLATION_LOCATION} exists. Do you want to [D]elete and recreate it, or [S]top the installation (default: [S])?" input
             echo ""
             case ${input} in
             D)
                 sudo rm -rf ${INSTALLATION_LOCATION}
                 check_outcome "Removing the directory for ProcessWire installation."
-                uinput="out"
-            ;;
-            M)
                 uinput="out"
             ;;
             S)
@@ -268,9 +282,15 @@ then
         esac
     done
 
-    out separator
+    out end
 fi
 
 # Start the setup.
 install ${BRANCH} ${PW_REPO_URL} ${INSTALLATION_LOCATION}
 check_outcome "ProcessWire installation."
+
+out blue
+out "======================"
+out "Installation complete!"
+out "======================"
+out end

@@ -113,7 +113,7 @@ ongr_router:
             _route: ongr_content
             _default_route: ongr_content
             _id_param: document
-            _controller: ONGRDemoBundle:Content:document
+            _controller: ONGRDemoProcessWireBundle:Content:document
 
 ongr_elasticsearch:
     connections:
@@ -166,7 +166,7 @@ ongr_elasticsearch:
             debug: "%kernel.debug%"
             mappings:
                 - ONGRDemoBundle
-                - ONGRProcessWireConnectorBundle
+                - ONGRDemoProcessWireBundle
 
 ongr_filter_manager:
     managers:

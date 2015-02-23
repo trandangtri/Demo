@@ -38,7 +38,7 @@ $config->debug = false;
  * Installer: Database Configuration.
  */
 $config->dbHost = 'localhost';
-$config->dbName = 'ongr_processwire_test';
+$config->dbName = 'processwire';
 $config->dbUser = 'root';
 $config->dbPass = 'root';
 $config->dbPort = '3306';
