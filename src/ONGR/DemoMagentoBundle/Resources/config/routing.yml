@@ -1,0 +1,4 @@
+ongr_cart:
+    path:     /cart
+    defaults:
+        _controller: ongr_demo.magento.cart.controller:cartAction

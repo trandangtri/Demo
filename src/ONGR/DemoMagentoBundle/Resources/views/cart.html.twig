@@ -1,0 +1,30 @@
+{% extends "ONGRDemoBundle::layout.html.twig" %}
+
+{% block breadcrumbs %}{% endblock %}
+
+{% block content_wrapper %}
+    <h2>{{ 'Cart'|trans }}</h2>
+    {% for product in cart %}
+        <div class="col-md-4 col-sm-6 col-xs-12">
+            <div class="thumbnail product-thumbnail">
+                {% set product_url = path('ongr_product', { 'document': product.document }) %}
+                <div class="product-image-container">
+                    <a href="{{ product_url }}">
+                        {#<img src="{{ product.image }}" class="img-rounded" alt="Product image"/>#}
+                        {% image '@ONGRDemoBundle/Resources/public/images/small_no_image.jpg' %}
+                        <img src="{{ asset_url }}" alt="picture"/>
+                        {% endimage %}
+                    </a>
+                </div>
+                <h5 class="product-title">
+                    <a href="{{ product_url }}">{{ product.document.title }}</a>
+                </h5>
+
+
+                <strong class="text-warning thumbnail-quantity">{{ 'Amount'|trans }}: {{ product.quantity }}</strong>
+
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

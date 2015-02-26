@@ -1,0 +1,6 @@
+services:
+    ongr_demo.magento.cart.controller:
+        class: ONGR\DemoMagentoBundle\Controller\CartController
+        calls:
+            - [ setTemplating, [ @templating ] ]
+            - [ setManager, [ @es.manager.magento ] ]

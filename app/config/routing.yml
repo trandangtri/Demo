@@ -1,3 +1,7 @@
 ongr_demo:
     resource: "@ONGRDemoBundle/Resources/config/routing.yml"
     prefix:   /
+
+ongr_magento:
+    resource: "@ONGRDemoMagentoBundle/Resources/config/routing.yml"
+    prefix:   /
