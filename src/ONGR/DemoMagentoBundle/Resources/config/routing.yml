@@ -1,4 +1,10 @@
 ongr_cart:
-    path:     /cart
+    path: /cart
     defaults:
         _controller: ongr_demo.magento.cart.controller:cartAction
+
+ongr_cart_add:
+    path: /cart/add/{id}/{quantity}
+    defaults:
+        _controller: ongr_demo.magento.cart.controller:addAction
+        quantity: 1

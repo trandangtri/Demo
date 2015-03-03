@@ -38,6 +38,11 @@
                 <span class="price">€ {{ product.price }}</span>
                 <div class="clearfix"></div>
             </div>
+            <div class="text-center">
+                <a class="btn btn-primary" href="{{ path('ongr_cart_add', {'id': product.id}) }}">
+                    {{ "Add to cart"|trans }}
+                </a>
+            </div>
         </div>
         <div class="col-sm-7">
             <div class="panel panel-default product-panel">

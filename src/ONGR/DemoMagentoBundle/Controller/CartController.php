@@ -2,65 +2,54 @@
 
 namespace ONGR\DemoMagentoBundle\Controller;
 
-use ONGR\ElasticsearchBundle\ORM\Manager;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
+use ONGR\DemoMagentoBundle\Cart\Cart;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Templating\EngineInterface;
 
 /**
  * Cart Controller.
  */
-class CartController extends Controller
+class CartController
 {
+    /**
+     * @var Cart
+     */
+    private $cart;
+
     /**
      * @var EngineInterface
      */
     private $templating;
 
     /**
-     * @var Manager
-     */
-    private $manager;
-
-    /**
      * Index action.
-     *
-     * @param Request $request
      *
      * @return Response
      */
-    public function cartAction(Request $request)
+    public function cartAction()
     {
-        $cartContents = json_decode($request->cookies->get('ongr_cart', '[]'), true);
-
-        $documents = $this->getDocumentsFromCart($cartContents);
-
         return new Response(
             $this->getTemplating()->render(
                 'ONGRDemoMagentoBundle::cart.html.twig',
                 [
-                    'cart' => $documents,
+                    'cart' => $this->getCart()->getCartDocuments(),
                 ]
             )
         );
     }
 
     /**
-     * @param array $cartContents
+     * Action for adding product to cart.
      *
-     * @return array
+     * @param int|string $id
+     * @param int        $quantity
+     *
+     * @return RedirectResponse
      */
-    private function getDocumentsFromCart($cartContents)
+    public function addAction($id, $quantity)
     {
-        $repository = $this->getManager()->getRepository('ONGRMagentoConnectorBundle:ProductDocument');
-        $documents = [];
-
-        foreach ($cartContents as $id => $quantity) {
-            $documents[] = ['document' => $repository->find($id), 'quantity' => $quantity];
-        }
-
-        return $documents;
+        return $this->getCart()->addProduct($id, $quantity)->getUpdateResponse();
     }
 
     /**
@@ -84,21 +73,21 @@ class CartController extends Controller
     }
 
     /**
-     * @return Manager
+     * @return Cart
      */
-    public function getManager()
+    public function getCart()
     {
-        return $this->manager;
+        return $this->cart;
     }
 
     /**
-     * @param Manager $manager
+     * @param Cart $cart
      *
      * @return $this
      */
-    public function setManager(Manager $manager)
+    public function setCart($cart)
     {
-        $this->manager = $manager;
+        $this->cart = $cart;
 
         return $this;
     }

@@ -1,4 +1,5 @@
 parameters:
+    ongr_demo.magento.url: http://magento.ongr.dev
     shop_ids:
         - 0
 
