@@ -144,6 +144,8 @@ function install ()
     sudo mkdir ${INSTALLATION_LOCATION}/site/assets/sessions
     check_outcome "Create sessions folder."
 
+    (cd ${INSTALLATION_LOCATION}/site/modules; git clone https://github.com/ryancramerdesign/ServicePages.git; cp ServicePages/service-pages.php ../templates/service-pages.php)
+
     sudo chmod 777 ${INSTALLATION_LOCATION}/site/assets ${INSTALLATION_LOCATION}/site/assets/* ${INSTALLATION_LOCATION}/site/modules
     check_outcome "Defining CHMOD rights to the ProcessWire folders."
 
@@ -292,5 +294,8 @@ check_outcome "ProcessWire installation."
 out blue
 out "======================"
 out "Installation complete!"
+out "Admin link: http://processwire.ongr.dev/manager"
+out "Username: admin"
+out "Username: password1"
 out "======================"
 out end

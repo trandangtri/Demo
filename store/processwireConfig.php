@@ -60,3 +60,15 @@ $config->chmodFile = '0644';
  * Installer: Time zone setting.
  */
 $config->timezone = 'Europe/Vilnius';
+
+/**
+ * Prepend template file
+ *
+ * PHP file in /site/templates/ that will be loaded before each page's template file.
+ * Example: _init.php
+ *
+ * @var string
+ *
+ */
+$config->prependTemplateFile = '_init.php';
+

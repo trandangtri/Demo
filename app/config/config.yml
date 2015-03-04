@@ -179,7 +179,7 @@ ongr_filter_manager:
                 - search
                 - pager
                 - sorting
-            repository: 'product'
+            repository: 'es.manager.default.product'
     filters:
         choice:
             country:
