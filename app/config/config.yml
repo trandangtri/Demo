@@ -31,11 +31,6 @@ twig:
     strict_variables: "%kernel.debug%"
     globals:          { asset_reset: %asset_reset%, top_cms_links: %top_cms_links% }
 
-# SSI config
-crunch_ssi:
-    inline:     false
-    use_header: true
-
 # Assetic Configuration
 assetic:
     debug:          "%kernel.debug%"
@@ -113,7 +108,7 @@ ongr_router:
             _route: ongr_content
             _default_route: ongr_content
             _id_param: document
-            _controller: ONGRDemoProcessWireBundle:Content:document
+            _controller: ONGRDemoBundle:Content:document
 
 ongr_elasticsearch:
     connections:

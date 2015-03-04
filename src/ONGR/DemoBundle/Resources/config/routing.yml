@@ -42,7 +42,7 @@ _ongr_plain_cms_snippet:
         template: ONGRDemoBundle:Content:snippet.html.twig
 
 _ongr_content:
-    pattern:  /{slug}
+    pattern: /{slug}
     defaults:
-        _controller: ONGRDemoBundle:Content:page
-        template: ONGRDemoBundle:Content:page.html.twig
+            _controller: ONGRContentBundle:Content:snippet
+            template: ONGRDemoBundle:Content:page.html.twig
