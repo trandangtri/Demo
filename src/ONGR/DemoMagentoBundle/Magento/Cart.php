@@ -9,9 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace ONGR\DemoMagentoBundle\Cart;
+namespace ONGR\DemoMagentoBundle\Magento;
 
 use ONGR\ElasticsearchBundle\ORM\Manager;
+use ONGR\MagentoConnectorBundle\Document\ProductDocument;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -35,6 +36,11 @@ class Cart
      * Parameter name for syncing with magento.
      */
     const CART_BACK_URL_PARAM_NAME = 'OngrUrl';
+
+    /**
+     * Parameter name for error list.
+     */
+    const CART_ERROR_LIST_PARAM_NAME = 'e';
 
     /**
      * @var UrlGeneratorInterface
@@ -103,6 +109,35 @@ class Cart
 
         foreach ($cartContents as $id => $quantity) {
             $documents[] = ['document' => $repository->find($id), 'quantity' => $quantity];
+        }
+
+        return $documents;
+    }
+
+    /**
+     * Gets documents for products that where not added to cart.
+     *
+     * @return ProductDocument[]
+     */
+    public function getErrorDocuments()
+    {
+        $request = $this->getRequestStack()->getCurrentRequest();
+
+        $list = $request->query->get(self::CART_ERROR_LIST_PARAM_NAME);
+        if (!is_array($list)) {
+            return [];
+        }
+
+        $repository = $this->getManager()->getRepository('ONGRMagentoConnectorBundle:ProductDocument');
+        $documents = [];
+
+        foreach ($list as $id) {
+            if (!is_array($id)) {
+                $document = $repository->find($id);
+                if ($document) {
+                    $documents[] = $document;
+                }
+            }
         }
 
         return $documents;

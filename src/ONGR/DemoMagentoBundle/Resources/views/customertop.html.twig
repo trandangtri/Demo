@@ -1,0 +1,14 @@
+{% block customer_top %}
+    <div class="row">
+        <div class="col-sm-offset-10 col-sm-2">
+            <div class="well text-center">
+                {{
+                    "Hello %firstname% %lastname%"|trans({
+                        '%firstname%': userData.get('firstname', 'Guest'),
+                        '%lastname%': userData.get('lastname', '')
+                    })|trim
+                }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

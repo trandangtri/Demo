@@ -4,6 +4,12 @@
 
 {% block content_wrapper %}
     <h2>{{ 'Cart'|trans }}</h2>
+    {% for product in error %}
+        <div class="well text-center">
+            <span class="message red">{{ "Product \"%product%\" could not be added to cart"|trans({'%product%': product.title}) }}</span>
+            <div class="clearfix"></div>
+        </div>
+    {% endfor %}
     {% for product in cart %}
         <div class="col-md-4 col-sm-6 col-xs-12">
             <div class="thumbnail product-thumbnail">

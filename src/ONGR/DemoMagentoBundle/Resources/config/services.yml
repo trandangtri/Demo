@@ -1,5 +1,6 @@
 parameters:
-    ongr_demo.magento.cart.class: ONGR\DemoMagentoBundle\Cart\Cart
+    ongr_demo.magento.cart.class: ONGR\DemoMagentoBundle\Magento\Cart
+    ongr_demo.magento.customer.class: ONGR\DemoMagentoBundle\Magento\Customer
 
 services:
     ongr_demo.magento.cart:
@@ -9,3 +10,8 @@ services:
             - [ setManager, [ @es.manager.magento ] ]
             - [ setMagentoUrl, [ %ongr_demo.magento.url% ] ]
             - [ setRouter, [ @router ] ]
+
+    ongr_demo.magento.customer:
+        class: %ongr_demo.magento.customer.class%
+        calls:
+            - [ setRequestStack, [ @request_stack ] ]

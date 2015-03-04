@@ -2,7 +2,7 @@
 
 namespace ONGR\DemoMagentoBundle\Controller;
 
-use ONGR\DemoMagentoBundle\Cart\Cart;
+use ONGR\DemoMagentoBundle\Magento\Cart;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Templating\EngineInterface;
@@ -34,6 +34,7 @@ class CartController
                 'ONGRDemoMagentoBundle::cart.html.twig',
                 [
                     'cart' => $this->getCart()->getCartDocuments(),
+                    'error' => $this->getCart()->getErrorDocuments(),
                 ]
             )
         );

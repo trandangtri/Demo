@@ -4,3 +4,9 @@ services:
         calls:
             - [ setTemplating, [ @templating ] ]
             - [ setCart, [ @ongr_demo.magento.cart ] ]
+
+    ongr_demo.magento.customer.controller:
+        class: ONGR\DemoMagentoBundle\Controller\CustomerController
+        calls:
+            - [ setTemplating, [ @templating ] ]
+            - [ setCustomer, [ @ongr_demo.magento.customer ] ]
