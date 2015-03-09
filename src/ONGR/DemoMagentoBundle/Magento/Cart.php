@@ -11,13 +11,16 @@
 
 namespace ONGR\DemoMagentoBundle\Magento;
 
+use ONGR\ElasticsearchBundle\DSL\Filter\IdsFilter;
+use ONGR\ElasticsearchBundle\DSL\Search;
 use ONGR\ElasticsearchBundle\ORM\Manager;
+use ONGR\ElasticsearchBundle\Result\DocumentIterator;
 use ONGR\MagentoConnectorBundle\Document\ProductDocument;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
- * Handles with cart.
+ * Handles the cart.
  */
 class Cart extends AbstractMagentoSync implements \Countable
 {
@@ -83,13 +86,28 @@ class Cart extends AbstractMagentoSync implements \Countable
     }
 
     /**
-     * Url magento should redirect after adding products.
+     * Url magento should redirect to after adding products.
      *
      * @return string
      */
     private function getBackUrl()
     {
         return $this->getRouter()->generate('ongr_cart', [], UrlGeneratorInterface::ABSOLUTE_URL);
+    }
+
+    /**
+     * @param array $ids
+     *
+     * @return DocumentIterator
+     */
+    private function getDocumentsByIds($ids)
+    {
+        $search = new Search();
+        $search->addFilter(new IdsFilter($ids));
+        /** @var DocumentIterator $results */
+        $results = $this->getManager()->getRepository('ONGRMagentoConnectorBundle:ProductDocument')->execute($search);
+
+        return $results;
     }
 
     /**
@@ -100,12 +118,12 @@ class Cart extends AbstractMagentoSync implements \Countable
     public function getCartDocuments()
     {
         $cartContents = $this->getCartContent();
-        $repository = $this->getManager()->getRepository('ONGRMagentoConnectorBundle:ProductDocument');
+        $contentDocuments = $this->getDocumentsByIds(array_keys($cartContents));
 
         $documents = [];
-
-        foreach ($cartContents as $id => $quantity) {
-            $documents[] = ['document' => $repository->find($id), 'quantity' => $quantity];
+        /** @var ProductDocument $document */
+        foreach ($contentDocuments as $key => $document) {
+            $documents[] = ['document' => $document, 'quantity' => $cartContents[$document->getId()]];
         }
 
         return $documents;
@@ -114,30 +132,17 @@ class Cart extends AbstractMagentoSync implements \Countable
     /**
      * Gets documents for products that where not added to cart.
      *
-     * @return ProductDocument[]
+     * @return ProductDocument[]|DocumentIterator
      */
     public function getErrorDocuments()
     {
         $request = $this->getRequestStack()->getCurrentRequest();
-
         $list = $request->query->get(self::CART_ERROR_LIST_PARAM_NAME);
-        if (!is_array($list)) {
+        if ($list) {
+            return $this->getDocumentsByIds($list);
+        } else {
             return [];
         }
-
-        $repository = $this->getManager()->getRepository('ONGRMagentoConnectorBundle:ProductDocument');
-        $documents = [];
-
-        foreach ($list as $id) {
-            if (!is_array($id)) {
-                $document = $repository->find($id);
-                if ($document) {
-                    $documents[] = $document;
-                }
-            }
-        }
-
-        return $documents;
     }
 
     /**
