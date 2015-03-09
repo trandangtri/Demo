@@ -1,4 +1,5 @@
 parameters:
+    ongr_demo.magento.url: http://magento.ongr.dev
     shop_ids:
         - 0
 
@@ -44,7 +45,7 @@ crunch_ssi:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [ ONGRDemoBundle ]
+    bundles:        [ ONGRDemoBundle, ONGRDemoMagentoBundle ]
     java: "%java_path%"
     filters:
         cssrewrite: ~

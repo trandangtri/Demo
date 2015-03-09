@@ -1,0 +1,15 @@
+ongr_cart:
+    path: /cart
+    defaults:
+        _controller: ongr_demo.magento.cart.controller:cartAction
+
+ongr_cart_add:
+    path: /cart/add/{id}/{quantity}
+    defaults:
+        _controller: ongr_demo.magento.cart.controller:addAction
+        quantity: 1
+
+_ongr_customer_top:
+    path: /_ongr_customer_top
+    defaults:
+        _controller: ongr_demo.magento.customer.controller:customerTopAction

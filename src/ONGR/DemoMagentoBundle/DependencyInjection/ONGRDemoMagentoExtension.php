@@ -35,5 +35,7 @@ class ONGRDemoMagentoExtension extends Extension
         $loader->load('parameters.yml');
         $loader->load('import.yml');
         $loader->load('sync.yml');
+        $loader->load('controllers.yml');
+        $loader->load('services.yml');
     }
 }

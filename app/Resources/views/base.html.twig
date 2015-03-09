@@ -53,6 +53,9 @@
             </div>
         {% endblock %}
         <hr/>
+        {% block customer_top %}
+            {{ render(url("_ongr_customer_top")) }}
+        {% endblock %}
         {% block top_navigation %}
             <nav class="navbar navbar-default" role="navigation">
                 {% block search_form %}
