@@ -1,17 +1,23 @@
 parameters:
+    ongr_demo.magento.abstract.sync.class: ONGR\DemoMagentoBundle\Magento\AbstractMagentoSync
     ongr_demo.magento.cart.class: ONGR\DemoMagentoBundle\Magento\Cart
     ongr_demo.magento.customer.class: ONGR\DemoMagentoBundle\Magento\Customer
 
 services:
-    ongr_demo.magento.cart:
-        class: %ongr_demo.magento.cart.class%
+    ongr_demo.magento.abstract.sync:
+        abstract:  true
+        class: %ongr_demo.magento.abstract.sync.class%
         calls:
             - [ setRequestStack, [ @request_stack ] ]
-            - [ setManager, [ @es.manager.magento ] ]
             - [ setMagentoUrl, [ %ongr_demo.magento.url% ] ]
+
+    ongr_demo.magento.cart:
+        class: %ongr_demo.magento.cart.class%
+        parent: ongr_demo.magento.abstract.sync
+        calls:
+            - [ setManager, [ @es.manager.magento ] ]
             - [ setRouter, [ @router ] ]
 
     ongr_demo.magento.customer:
         class: %ongr_demo.magento.customer.class%
-        calls:
-            - [ setRequestStack, [ @request_stack ] ]
+        parent: ongr_demo.magento.abstract.sync

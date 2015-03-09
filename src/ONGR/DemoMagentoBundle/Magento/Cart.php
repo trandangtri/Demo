@@ -14,13 +14,12 @@ namespace ONGR\DemoMagentoBundle\Magento;
 use ONGR\ElasticsearchBundle\ORM\Manager;
 use ONGR\MagentoConnectorBundle\Document\ProductDocument;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
  * Handles with cart.
  */
-class Cart
+class Cart extends AbstractMagentoSync implements \Countable
 {
     /**
      * Name of the cookie where cart data is saved.
@@ -33,29 +32,19 @@ class Cart
     const CART_DATA_SYNC_PARAM_NAME = 'OngrProducts';
 
     /**
-     * Parameter name for syncing with magento.
-     */
-    const CART_BACK_URL_PARAM_NAME = 'OngrUrl';
-
-    /**
      * Parameter name for error list.
      */
     const CART_ERROR_LIST_PARAM_NAME = 'e';
 
     /**
+     * Path to cart checkout in magento.
+     */
+    const CHECKOUT_PATH = '/checkout';
+
+    /**
      * @var UrlGeneratorInterface
      */
     private $router;
-
-    /**
-     * @var RequestStack
-     */
-    private $requestStack;
-
-    /**
-     * @var string
-     */
-    private $magentoUrl;
 
     /**
      * @var Manager
@@ -68,6 +57,14 @@ class Cart
     private $cartContent;
 
     /**
+     * @return string
+     */
+    public function getCheckoutUrl()
+    {
+        return $this->getMagentoUrl() . self::CHECKOUT_PATH;
+    }
+
+    /**
      * Constructs request to update cart in magento.
      *
      * @return RedirectResponse
@@ -78,7 +75,7 @@ class Cart
             . http_build_query(
                 [
                     self::CART_DATA_SYNC_PARAM_NAME => $this->getCartContent(),
-                    self::CART_BACK_URL_PARAM_NAME => $this->getBackUrl(),
+                    self::MAGENTO_BACK_URL_PARAM_NAME => $this->getBackUrl(),
                 ]
             );
 
@@ -234,26 +231,6 @@ class Cart
     }
 
     /**
-     * @return RequestStack
-     */
-    public function getRequestStack()
-    {
-        return $this->requestStack;
-    }
-
-    /**
-     * @param RequestStack $requestStack
-     *
-     * @return $this
-     */
-    public function setRequestStack(RequestStack $requestStack)
-    {
-        $this->requestStack = $requestStack;
-
-        return $this;
-    }
-
-    /**
      * @return Manager
      */
     public function getManager()
@@ -269,26 +246,6 @@ class Cart
     public function setManager(Manager $manager)
     {
         $this->manager = $manager;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getMagentoUrl()
-    {
-        return $this->magentoUrl;
-    }
-
-    /**
-     * @param string $magentoUrl
-     *
-     * @return $this
-     */
-    public function setMagentoUrl($magentoUrl)
-    {
-        $this->magentoUrl = $magentoUrl;
 
         return $this;
     }
@@ -311,5 +268,13 @@ class Cart
         $this->router = $router;
 
         return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function count()
+    {
+        return count($this->getCartContent());
     }
 }

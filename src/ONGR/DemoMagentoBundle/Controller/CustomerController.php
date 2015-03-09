@@ -11,6 +11,7 @@
 
 namespace ONGR\DemoMagentoBundle\Controller;
 
+use ONGR\DemoMagentoBundle\Magento\Cart;
 use ONGR\DemoMagentoBundle\Magento\Customer;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Templating\EngineInterface;
@@ -24,6 +25,11 @@ class CustomerController
      * @var Customer
      */
     private $customer;
+
+    /**
+     * @var Cart
+     */
+    private $cart;
 
     /**
      * @var EngineInterface
@@ -42,6 +48,9 @@ class CustomerController
                 'ONGRDemoMagentoBundle::customertop.html.twig',
                 [
                     'userData' => $this->getCustomer()->getUserData(),
+                    'cartCount' => count($this->getCart()),
+                    'logoutUrl' => $this->getCustomer()->getLogoutUrl(),
+                    'loginUrl' => $this->getCustomer()->getLoginUrl(),
                 ]
             )
         );
@@ -83,6 +92,26 @@ class CustomerController
     public function setTemplating($templating)
     {
         $this->templating = $templating;
+
+        return $this;
+    }
+
+    /**
+     * @return Cart
+     */
+    public function getCart()
+    {
+        return $this->cart;
+    }
+
+    /**
+     * @param Cart $cart
+     *
+     * @return $this
+     */
+    public function setCart(Cart $cart)
+    {
+        $this->cart = $cart;
 
         return $this;
     }

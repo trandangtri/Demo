@@ -35,6 +35,7 @@ class CartController
                 [
                     'cart' => $this->getCart()->getCartDocuments(),
                     'error' => $this->getCart()->getErrorDocuments(),
+                    'checkoutUrl' => $this->getCart()->getCheckoutUrl(),
                 ]
             )
         );

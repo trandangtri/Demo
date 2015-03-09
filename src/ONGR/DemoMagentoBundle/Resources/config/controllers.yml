@@ -10,3 +10,4 @@ services:
         calls:
             - [ setTemplating, [ @templating ] ]
             - [ setCustomer, [ @ongr_demo.magento.customer ] ]
+            - [ setCart, [ @ongr_demo.magento.cart ] ]

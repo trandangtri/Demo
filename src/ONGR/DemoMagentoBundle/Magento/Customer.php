@@ -12,12 +12,11 @@
 namespace ONGR\DemoMagentoBundle\Magento;
 
 use Symfony\Component\HttpFoundation\ParameterBag;
-use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Responsible for getting customer data from magento.
  */
-class Customer
+class Customer extends AbstractMagentoSync
 {
     /**
      * Name of the cookie where user data is saved.
@@ -25,14 +24,49 @@ class Customer
     const USER_DATA_COOKIE_NAME = 'ongr_user';
 
     /**
-     * @var RequestStack
+     * Path to login in magento.
      */
-    private $requestStack;
+    const LOGIN_PATH = '/customer/account/login';
+
+    /**
+     * Path to logout in magento.
+     */
+    const LOGOUT_PATH = '/customer/account/logout';
 
     /**
      * @var ParameterBag
      */
     private $userData;
+
+    /**
+     * Appends current uri to a url.
+     *
+     * @param string $url
+     *
+     * @return string
+     */
+    private function appendBackUrl($url)
+    {
+        $backUrl = $this->getRequestStack()->getMasterRequest()->getUri();
+
+        return $url . '?' . http_build_query([self::MAGENTO_BACK_URL_PARAM_NAME => $backUrl]);
+    }
+
+    /**
+     * @return string
+     */
+    public function getLogoutUrl()
+    {
+        return $this->appendBackUrl($this->getMagentoUrl() . self::LOGOUT_PATH);
+    }
+
+    /**
+     * @return string
+     */
+    public function getLoginUrl()
+    {
+        return $this->appendBackUrl($this->getMagentoUrl() . self::LOGIN_PATH);
+    }
 
     /**
      * Ensures user data is valid.
@@ -65,7 +99,7 @@ class Customer
     {
         if ($this->userData === null) {
             $request = $this->getRequestStack()->getCurrentRequest();
-            $data = json_decode($request->cookies->get(self::USER_DATA_COOKIE_NAME, []), true);
+            $data = json_decode($request->cookies->get(self::USER_DATA_COOKIE_NAME, '[]'), true);
             $this->userData = $this->formatUserData($data);
         }
 
@@ -80,26 +114,6 @@ class Customer
     public function setUserData(ParameterBag $userData)
     {
         $this->userData = $userData;
-
-        return $this;
-    }
-
-    /**
-     * @return RequestStack
-     */
-    public function getRequestStack()
-    {
-        return $this->requestStack;
-    }
-
-    /**
-     * @param RequestStack $requestStack
-     *
-     * @return $this
-     */
-    public function setRequestStack($requestStack)
-    {
-        $this->requestStack = $requestStack;
 
         return $this;
     }
