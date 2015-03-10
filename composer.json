@@ -28,6 +28,7 @@
         "ongr/filter-manager-bundle": "~0.4",
         "ongr/content-bundle": "~0.4",
         "ongr/router-bundle": "~0.3",
+        "ongr/connections-bundle": "~0.6",
         "ongr/processwire-connector-bundle": "dev-master"
     },
     "require-dev": {

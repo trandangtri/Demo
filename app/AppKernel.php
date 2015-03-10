@@ -24,9 +24,12 @@ class AppKernel extends Kernel
             new ONGR\ContentBundle\ONGRContentBundle(),
             new ONGR\ConnectionsBundle\ONGRConnectionsBundle(),
             new ONGR\RouterBundle\ONGRRouterBundle(),
-            new ONGR\ProcessWireConnectorBundle\ONGRProcessWireConnectorBundle(),
             new ONGR\DemoProcessWireBundle\ONGRDemoProcessWireBundle(),
         );
+
+        if (class_exists('ONGR\ProcessWireConnectorBundle\ONGRProcessWireConnectorBundle')) {
+            $bundles[] = new ONGR\ProcessWireConnectorBundle\ONGRProcessWireConnectorBundle();
+        }
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
