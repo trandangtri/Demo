@@ -9,17 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace ONGR\DemoBundle\Document;
+namespace ONGR\DemoProcessWireBundle\Document;
 
 use ONGR\ElasticsearchBundle\Annotation as ES;
-use ONGR\ContentBundle\Document\AbstractContentDocument as Base;
+use ONGR\ProcessWireConnectorBundle\Document\ContentDocument as ParentDocument;
 
 /**
- * Holds content page data.
+ * ElasticSearch content document.
  *
  * @ES\Document(type="content")
  */
-class Content extends Base
+class ContentDocument extends ParentDocument
 {
-    // Put type modifications here if needed.
 }

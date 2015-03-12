@@ -20,10 +20,16 @@ class AppKernel extends Kernel
             //Third party
             new ONGR\DemoBundle\ONGRDemoBundle(),
             new ONGR\ElasticsearchBundle\ONGRElasticsearchBundle(),
-            new ONGR\RouterBundle\ONGRRouterBundle(),
             new ONGR\FilterManagerBundle\ONGRFilterManagerBundle(),
             new ONGR\ContentBundle\ONGRContentBundle(),
+            new ONGR\ConnectionsBundle\ONGRConnectionsBundle(),
+            new ONGR\RouterBundle\ONGRRouterBundle(),
+            new ONGR\DemoProcessWireBundle\ONGRDemoProcessWireBundle(),
         );
+
+        if (class_exists('ONGR\ProcessWireConnectorBundle\ONGRProcessWireConnectorBundle')) {
+            $bundles[] = new ONGR\ProcessWireConnectorBundle\ONGRProcessWireConnectorBundle();
+        }
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
