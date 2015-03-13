@@ -152,15 +152,6 @@ function install ()
     sudo sed -i -e "s/if(ini_get('session.save_handler') == 'files')/\/\//g" ${INSTALLATION_LOCATION}/index.php
     check_outcome "Remove session save handler directive from ProcessWire's index.php file."
 
-    sudo cp ${SCRIPT_LOCATION}/processwire.conf /etc/nginx/sites-available/processwire.ongr.dev.conf
-    check_outcome "Copying NGINX configuration file."
-
-    if [[ ! -f /etc/nginx/sites-enabled/processwire.ongr.dev.conf ]]
-    then
-        sudo ln -s /etc/nginx/sites-available/processwire.ongr.dev.conf /etc/nginx/sites-enabled/processwire.ongr.dev.conf
-        check_outcome "Creating a symbolic link of NGINX configuration."
-    fi
-
     sudo nginx -s reload
     check_outcome "Reloading NGINX server."
 

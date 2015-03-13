@@ -95,6 +95,56 @@ nginx::resource::location { "ongr.dev-php":
     notify              => Class['nginx::service'];
 }
 
+nginx::resource::vhost { 'processwire.ongr.dev':
+  ensure               => present,
+  server_name          => [
+    'processwire.ongr.dev',
+    'www.processwire.ongr.dev'
+  ],
+  index_files          => [
+    'index.php'
+  ],
+  listen_port          => 80,
+  www_root             => '/var/www/store/processwire',
+  use_default_location => false,
+  vhost_cfg_append     => {
+    'try_files'      => '$uri $uri/ /index.php?$args',
+  }
+}
+
+nginx::resource::location { "processwire.ongr.dev":
+    vhost               => 'processwire.ongr.dev',
+    location            => '~ .+\.php((/|\?).*)?$',
+    proxy               => undef,
+    www_root            => '/var/www/store/processwire',
+    ensure              => 'present',
+    index_files          => [
+      'index.php'
+    ],
+    location_cfg_append => {
+      'fastcgi_split_path_info' => '^(.+\.php)(/.+)$',
+      'fastcgi_param'           => 'PATH_INFO $fastcgi_path_info',
+      'fastcgi_param '          => 'HTTP_MOD_REWRITE On',
+      'fastcgi_param  '         => 'SCRIPT_FILENAME $document_root$fastcgi_script_name',
+      'fastcgi_pass'            => 'unix:/var/run/php5-fpm.sock',
+      'fastcgi_index'           => 'index.php',
+      'include'                 => 'fastcgi_params',
+      'expires'                 => 'off',
+    },
+notify              => Class['nginx::service'];
+}
+
+nginx::resource::location { "processwire.ongr.dev2":
+    vhost               => 'processwire.ongr.dev',
+    location            => '/',
+    proxy               => undef,
+    www_root            => '/var/www/store/processwire',
+    location_cfg_append => {
+      try_files           => ['$uri $uri/ /index.php?it=$uri&$args'],
+    },
+notify              => Class['nginx::service'];
+}
+
 class { '::mysql::server':
   root_password    => 'root',
   override_options => {
