@@ -79,7 +79,8 @@ In case to get demo content you need to run the following commands from command 
     cd /var/www
     composer install --no-interaction
     app/console es:index:create
-    app/console es:index:import --raw src/ONGR/DemoBundle/Resources/data/contents.json
+    app/console es:type:update --force
+    app/console ongr:import:full
     app/console es:index:import --raw src/ONGR/DemoBundle/Resources/data/categories.json
     app/console es:index:import --raw src/ONGR/DemoBundle/Resources/data/products.json
 
@@ -91,3 +92,5 @@ Step 7: Open your browser
 -------------------------
 
 Navigate your browser to `http://ongr.dev <http://ongr.dev/>`_
+
+Admin link: `http://processwire.ongr.dev/manager <http://processwire.ongr.dev/manager/>`_

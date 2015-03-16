@@ -38,11 +38,5 @@ _ongr_breadcrumbs:
 _ongr_plain_cms_snippet:
     pattern:  /_proxy/cmsSnippet/{slug}/{template}
     defaults:
-        _controller: ONGRDemoBundle:Content:snippet
+        _controller: ONGRContentBundle:Content:snippet
         template: ONGRDemoBundle:Content:snippet.html.twig
-
-_ongr_content:
-    pattern: /{slug}
-    defaults:
-            _controller: ONGRContentBundle:Content:snippet
-            template: ONGRDemoBundle:Content:page.html.twig
