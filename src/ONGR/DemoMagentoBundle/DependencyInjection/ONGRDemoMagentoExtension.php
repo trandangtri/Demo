@@ -11,10 +11,10 @@
 
 namespace ONGR\DemoMagentoBundle\DependencyInjection;
 
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
-use Symfony\Component\HttpKernel\DependencyInjection\Extension;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader;
+use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 /**
  * This is the class that loads and manages your bundle configuration.
@@ -36,6 +36,5 @@ class ONGRDemoMagentoExtension extends Extension
         $loader->load('import.yml');
         $loader->load('sync.yml');
         $loader->load('controllers.yml');
-        $loader->load('services.yml');
     }
 }

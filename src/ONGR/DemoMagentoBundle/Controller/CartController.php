@@ -2,7 +2,7 @@
 
 namespace ONGR\DemoMagentoBundle\Controller;
 
-use ONGR\DemoMagentoBundle\Magento\Cart;
+use ONGR\MagentoConnectorBundle\Magento\Cart;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Templating\EngineInterface;
