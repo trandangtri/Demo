@@ -3,11 +3,11 @@ services:
         class: ONGR\DemoMagentoBundle\Controller\CartController
         calls:
             - [ setTemplating, [ @templating ] ]
-            - [ setCart, [ @ongr_demo.magento.cart ] ]
+            - [ setCart, [ @ongr_magento.sync.cart ] ]
 
     ongr_demo.magento.customer.controller:
         class: ONGR\DemoMagentoBundle\Controller\CustomerController
         calls:
             - [ setTemplating, [ @templating ] ]
-            - [ setCustomer, [ @ongr_demo.magento.customer ] ]
-            - [ setCart, [ @ongr_demo.magento.cart ] ]
+            - [ setCustomer, [ @ongr_magento.sync.customer ] ]
+            - [ setCart, [ @ongr_magento.sync.cart ] ]

@@ -244,3 +244,6 @@ ongr_connections:
 ongr_magento:
     store_id: 0
     shop_id: 1
+    url: http://magento.ongr.dev
+    es_manager: magento
+    product_repository: ONGRMagentoConnectorBundle:ProductDocument

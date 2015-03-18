@@ -11,8 +11,8 @@
 
 namespace ONGR\DemoMagentoBundle\Controller;
 
-use ONGR\DemoMagentoBundle\Magento\Cart;
-use ONGR\DemoMagentoBundle\Magento\Customer;
+use ONGR\MagentoConnectorBundle\Magento\Cart;
+use ONGR\MagentoConnectorBundle\Magento\Customer;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Templating\EngineInterface;
 
