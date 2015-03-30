@@ -5,3 +5,37 @@ parameters:
     ongr_processwire_connector.page_service_address: http://processwire.ongr.dev/en/service-pages/?template=basic-page
     ongr_processwire_connector.tree_parent: /
     ongr_processwire_connector.document_repository: ONGRDemoProcessWireBundle:ContentDocument
+
+services:
+    # Content
+    ongr_demo.processwire.import.content.source:
+        class: %ongr_processwire_connector.import.source.class%
+        parent: ongr_connections.import.source
+        arguments:
+            - %ongr_processwire_connector.page_service_address%
+            - @es.manager
+            - %ongr_processwire_connector.document_repository%
+        tags:
+            - { name: kernel.event_listener, event: ongr.pipeline.import.default.source, method: onSource }
+
+    ongr_demo.processwire.import.content.modifier:
+        class: %ongr_connections.import.modifier.class%
+        tags:
+            - { name: kernel.event_listener, event: ongr.pipeline.import.default.modify, method: onModify }
+
+    ongr_demo.processwire.import.content.consumer:
+        class: %ongr_processwire_connector.import.consumer.class%
+        parent: ongr_connections.import.consumer
+        arguments:
+            - @es.manager
+            - ONGR\ConnectionsBundle\Pipeline\Item\ImportItem
+        tags:
+            - { name: kernel.event_listener, event: ongr.pipeline.import.default.consume, method: onConsume }
+
+    ongr_demo.processwire.import.content.finish:
+        class: %ongr_connections.import.finish.class%
+        parent: ongr_connections.import.finish
+        arguments:
+            - @es.manager
+        tags:
+            - { name: kernel.event_listener, event: ongr.pipeline.import.default.finish, method: onFinish }
