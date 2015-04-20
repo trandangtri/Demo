@@ -59,6 +59,10 @@ echo "Installing core extensions..."
 ./mage config-set preferred_state stable
 ./mage install http://connect20.magentocommerce.com/community Mage_All_Latest --force
 
+echo "Installing ONGR Magento Sync Module..."
+git clone https://github.com/ongr-io/MagentoSyncModule.git magento_sync_module_temp
+cp -r magento_sync_module_temp/app .
+rm -rf magento_sync_module_temp
 
 echo "Refreshing indexes..."
 php -f shell/indexer.php reindexall
