@@ -112,7 +112,7 @@ ongr_content:
             product:  es.manager.default.product
             content:  es.manager.default.content
             category: es.manager.default.category
-    category_root_id: 2
+    category_root_id: magentorootid
 
 ongr_router:
     es_manager: default
