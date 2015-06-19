@@ -35,11 +35,6 @@ twig:
     strict_variables: "%kernel.debug%"
     globals:          { asset_reset: %asset_reset%, top_cms_links: %top_cms_links% }
 
-# SSI config
-crunch_ssi:
-    inline:     false
-    use_header: true
-
 # Assetic Configuration
 assetic:
     debug:          "%kernel.debug%"
@@ -137,13 +132,13 @@ ongr_elasticsearch:
     connections:
         default:
             hosts:
-                - { host: 127.0.0.1:9200 }
-            index_name: ongr
+                - { host: "%es_host%" }
+            index_name: "%es_index_name%"
             settings:
-                number_of_shards: 2
-                number_of_replicas: 0
+                number_of_shards: "%es_number_of_shards%"
+                number_of_replicas: "%es_number_of_replicas%"
                 index:
-                    refresh_interval: -1
+                    refresh_interval: "%es_refresh_interval%"
                 analysis:
                     tokenizer:
                         pathTokenizer:
@@ -234,9 +229,13 @@ ongr_elasticsearch:
             mappings:
                 - ONGROXIDConnectorBundle
                 - ONGRDemoOXIDBundle
+        translation:
+            connection: default
+            debug: true
+            mappings:
+                - ONGRTranslationsBundle
 
 ongr_filter_manager:
-    es_manager: oxid
     managers:
         product_list:
             filters:
@@ -245,7 +244,7 @@ ongr_filter_manager:
                 - search
                 - pager
                 - sorting
-            repository: 'ProductDocument'
+            repository: 'es.manager.oxid.product'
     filters:
         choice:
             wear_title:
@@ -273,6 +272,10 @@ ongr_filter_manager:
                     - { label: Title ascending, field: title }
                     - { label: Title descending, field: title, order: desc }
 
+ongr_translations:
+    managed_locales: ["lt", "de", "en"]
+    repository: 'es.manager.translation.translation'
+    
 ongr_connections:
     active_shop: oxid
     shops:

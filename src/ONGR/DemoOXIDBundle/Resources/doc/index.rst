@@ -27,8 +27,8 @@ Run following command to import data to ES database.
 
 .. code-block:: bash
 
-    app/console es:index:create --manager=oxid
-    app/console es:index:import --manager=oxid --raw src/ONGR/DemoBundle/Resources/data/contents.json
+    app/console ongr:es:index:create --manager=oxid
+    app/console ongr:es:index:import --manager=oxid --raw src/ONGR/DemoBundle/Resources/data/contents.json
     app/console ongr:import:full oxid.content
     app/console ongr:import:full oxid.category
     app/console ongr:import:full oxid.product

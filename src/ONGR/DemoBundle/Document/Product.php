@@ -12,14 +12,14 @@
 namespace ONGR\DemoBundle\Document;
 
 use ONGR\ElasticsearchBundle\Annotation as ES;
-use ONGR\ContentBundle\Document\AbstractProductDocument;
+use ONGR\ContentBundle\Document\AbstractProductDocument as Base;
 
 /**
  * Product document.
  *
  * @ES\Document
  */
-class Product extends AbstractProductDocument
+class Product extends Base
 {
     /**
      * @var string
@@ -31,7 +31,7 @@ class Product extends AbstractProductDocument
     /**
      * @var string
      *
-     * @ES\Property(name="title", type="string", search_analyzer="standard")
+     * @ES\Property(name="title", type="string", searchAnalyzer="standard")
      */
     public $title;
 
@@ -41,8 +41,8 @@ class Product extends AbstractProductDocument
      * @ES\Property(
      *      name="title_suggest",
      *      type="completion",
-     *      index_analyzer="simple",
-     *      search_analyzer="simple",
+     *      indexAnalyzer="simple",
+     *      searchAnalyzer="simple",
      *      payloads=true
      * )
      */
@@ -54,13 +54,6 @@ class Product extends AbstractProductDocument
      * @ES\Property(name="description", type="string")
      */
     public $description;
-
-    /**
-     * @var float
-     *
-     * @ES\Property(name="price", type="float")
-     */
-    public $price;
 
     /**
      * @var int
@@ -100,14 +93,14 @@ class Product extends AbstractProductDocument
     /**
      * @var string
      *
-     * @ES\Property(name="category", type="string", index_analyzer="pathAnalyzer")
+     * @ES\Property(name="category", type="string", indexAnalyzer="pathAnalyzer")
      */
     public $category;
 
     /**
      * @var string
      *
-     * @ES\Property(name="category_title", type="string", index_analyzer="pathAnalyzer")
+     * @ES\Property(name="category_title", type="string", indexAnalyzer="pathAnalyzer")
      */
     public $categoryTitle;
 

@@ -11,9 +11,8 @@
 
 namespace ONGR\DemoBundle\Controller;
 
-use ONGR\ContentBundle\Service\ContentService;
 use ONGR\ElasticsearchBundle\Document\DocumentInterface;
-use ONGR\OXIDConnectorBundle\Document\ContentDocument;
+use ONGR\ContentBundle\Service\ContentService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -49,53 +48,6 @@ class ContentController extends Controller
             'ONGRDemoBundle:Content:page.html.twig',
             [
                 'content' => $document,
-            ]
-        );
-    }
-
-    /**
-     * App page controller.
-     *
-     * Show page by slug identifier
-     *
-     * @param string $slug Page content identifier.
-     *
-     * @return Response
-     * @throws NotFoundHttpException
-     */
-    public function pageAction($slug)
-    {
-        /** @var ContentService $service */
-        $service = $this->get('ongr_content.content_service');
-
-        $document = $service->getDocumentBySlug($slug);
-
-        if (null === $document) {
-            throw $this->createNotFoundException('The content page does not exists');
-        }
-
-        return $this->documentAction($document);
-    }
-
-    /**
-     * Render cms body in template.
-     *
-     * @param string $slug
-     * @param string $template
-     *
-     * @return Response
-     */
-    public function snippetAction($slug, $template)
-    {
-        /** @var ContentDocument $document */
-        $document = $this->get('ongr_content.content_service')->getDocumentBySlug($slug);
-
-        return $this->render(
-            $template,
-            [
-                'content' => $document->getContent(),
-                'title' => $document->getTitle(),
-                'document' => $document,
             ]
         );
     }

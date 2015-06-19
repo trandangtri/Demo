@@ -3,29 +3,20 @@ onager_demo_homepage:
     path:     /
     defaults: { _controller: ONGRDemoBundle:Content:homePage }
 
-ongr_content_page:
-    pattern:  /page/{slug}/
-    defaults: { _controller: ONGRDemoBundle:Content:page }
-
 #Search controller
 ongr_search_page:
-    pattern: /search
+    path: /search
     methods:  [GET]
     defaults:
         _controller: ONGRFilterManagerBundle:Manager:manager
         managerName: "product_list"
         template: "ONGRDemoBundle:Product:search.html.twig"
 
-#Category controller
-ongr_category_show:
-    pattern:  /category/{id}
-    defaults: { _controller: ONGRDemoBundle:Category:show }
-
 ### Proxy routes
 
 #Category
 _ongr_category_tree:
-    pattern:  /_proxy/tree/{theme}/{maxLevel}/{partialTree}/{selectedCategory}
+    path:  /_proxy/tree/{theme}/{maxLevel}/{partialTree}/{selectedCategory}
     defaults:
         _controller: ONGRDemoBundle:Category:categoryTree
         theme: "top"
@@ -33,12 +24,8 @@ _ongr_category_tree:
         partialTree: "pt"
         selectedCategory: null
 
-_ongr_category_show:
-    pattern:  /category/{id}
-    defaults: { _controller: ONGRDemoBundle:Category:show }
-
 _ongr_breadcrumbs:
-    pattern:  /_proxy/breadcrumbs/{theme}/{maxLevel}/{partialTree}/{selectedCategory}
+    path:  /_proxy/breadcrumbs/{theme}/{maxLevel}/{partialTree}/{selectedCategory}
     methods:  [GET]
     defaults:
         _controller: ONGRDemoBundle:Category:categoryTree
@@ -46,19 +33,3 @@ _ongr_breadcrumbs:
         maxLevel: 20
         partialTree: "pt"
         selectedCategory: null
-
-# Content
-_ongr_plain_cms_snippet:
-    pattern:  /_proxy/cmsSnippet/{slug}/{template}
-    defaults:
-        _controller: ONGRDemoBundle:Content:snippet
-        template: ONGRDemoBundle:Content:snippet.html.twig
-
-# Product controller
-ongr_product:
-    pattern:  /productDocument/{document}/
-    defaults: { _controller: ONGRDemoBundle:Product:document }
-
-ongr_product_show:
-    pattern:  /product/{id}
-    defaults: { _controller: ONGRDemoBundle:Product:show }
