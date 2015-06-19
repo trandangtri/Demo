@@ -27,6 +27,6 @@ use ONGR\OXIDConnectorBundle\Entity\Seo as Base;
  * @ORM\Entity(readOnly=true)
  * @ORM\Table(name="oxseo")
  */
-abstract class Seo extends Base
+abstract class AbstractSeo extends Base
 {
 }

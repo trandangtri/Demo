@@ -12,7 +12,7 @@
 namespace ONGR\DemoOXIDBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use ONGR\DemoOXIDBundle\Entity\Seo as Base;
+use ONGR\DemoOXIDBundle\Entity\AbstractSeo as Base;
 
 /**
  * Class SeoArticle for mapping articles seo records.
@@ -26,7 +26,7 @@ class SeoArticle extends Base
      *
      * @ORM\ManyToOne(targetEntity="ONGR\DemoOXIDBundle\Entity\Article", inversedBy="seoUrls")
      * @ORM\JoinColumns({
-     *     @ORM\JoinColumn(name="OXOBJECTID", referencedColumnName="OXID")
+     * @ORM\JoinColumn(name="OXOBJECTID", referencedColumnName="OXID")
      * })
      */
     protected $article;
@@ -34,7 +34,7 @@ class SeoArticle extends Base
     /**
      * @param \ONGR\DemoOXIDBundle\Entity\Article $article
      *
-     * @return Oxseo
+     * @return $this
      */
     public function setArticle(\ONGR\DemoOXIDBundle\Entity\Article $article = null)
     {

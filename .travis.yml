@@ -2,4 +2,4 @@ language: php
 install:
   - composer install --no-interaction
 script:
-  - bin/phpcs -p --standard=$TRAVIS_BUILD_DIR/vendor/ongr/ongr-strict-standard/ONGR --extensions=php ./src
+  - bin/phpcs -p --standard=$TRAVIS_BUILD_DIR/vendor/ongr/ongr-strict-standard/Ongr --extensions=php ./src

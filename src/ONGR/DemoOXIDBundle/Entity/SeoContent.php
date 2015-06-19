@@ -12,7 +12,7 @@
 namespace ONGR\DemoOXIDBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use ONGR\DemoOXIDBundle\Entity\Seo as Base;
+use ONGR\DemoOXIDBundle\Entity\AbstractSeo as Base;
 
 /**
  * Class SeoCategory for mapping category seo records.
@@ -22,21 +22,21 @@ use ONGR\DemoOXIDBundle\Entity\Seo as Base;
 class SeoContent extends Base
 {
     /**
-     * @var \ONGR\DemoOXIDBundle\Entity\Content
+     * @var Content
      *
      * @ORM\ManyToOne(targetEntity="ONGR\DemoOXIDBundle\Entity\Content", inversedBy="seoUrls")
      * @ORM\JoinColumns({
-     *     @ORM\JoinColumn(name="OXOBJECTID", referencedColumnName="OXID")
+     * @ORM\JoinColumn(name="OXOBJECTID", referencedColumnName="OXID")
      * })
      */
     protected $content;
 
     /**
-     * @param \ONGR\DemoOXIDBundle\Entity\Content $content
+     * @param Content $content
      *
-     * @return Seo
+     * @return $this
      */
-    public function setCategory(\ONGR\DemoOXIDBundle\Entity\Content $content = null)
+    public function setCategory(Content $content = null)
     {
         $this->content = $content;
 
@@ -44,7 +44,7 @@ class SeoContent extends Base
     }
 
     /**
-     * @return \ONGR\DemoOXIDBundle\Entity\Content
+     * @return Content
      */
     public function getContent()
     {
