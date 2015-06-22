@@ -1153,16 +1153,16 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "1.13.1",
+            "version": "1.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "c31a2c4e8db5da8b46c74cf275d7f109c0f249ac"
+                "reference": "b287fbbe1ca27847064beff2bad7fb6920bf08cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/c31a2c4e8db5da8b46c74cf275d7f109c0f249ac",
-                "reference": "c31a2c4e8db5da8b46c74cf275d7f109c0f249ac",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/b287fbbe1ca27847064beff2bad7fb6920bf08cc",
+                "reference": "b287fbbe1ca27847064beff2bad7fb6920bf08cc",
                 "shasum": ""
             },
             "require": {
@@ -1173,12 +1173,14 @@
                 "psr/log-implementation": "1.0.0"
             },
             "require-dev": {
-                "aws/aws-sdk-php": "~2.4, >2.4.8",
+                "aws/aws-sdk-php": "^2.4.9",
                 "doctrine/couchdb": "~1.0@dev",
                 "graylog2/gelf-php": "~1.0",
-                "phpunit/phpunit": "~4.0",
-                "raven/raven": "~0.5",
-                "ruflin/elastica": "0.90.*",
+                "php-console/php-console": "^3.1.3",
+                "phpunit/phpunit": "~4.5",
+                "phpunit/phpunit-mock-objects": "2.3.0",
+                "raven/raven": "~0.8",
+                "ruflin/elastica": ">=0.90 <3.0",
                 "swiftmailer/swiftmailer": "~5.3",
                 "videlalvaro/php-amqplib": "~2.4"
             },
@@ -1188,6 +1190,7 @@
                 "ext-amqp": "Allow sending log messages to an AMQP server (1.0+ required)",
                 "ext-mongo": "Allow sending log messages to a MongoDB server",
                 "graylog2/gelf-php": "Allow sending log messages to a GrayLog2 server",
+                "php-console/php-console": "Allow sending log messages to Google Chrome",
                 "raven/raven": "Allow sending log messages to a Sentry server",
                 "rollbar/rollbar": "Allow sending log messages to Rollbar",
                 "ruflin/elastica": "Allow sending log messages to an Elastic Search server",
@@ -1196,7 +1199,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.13.x-dev"
+                    "dev-master": "1.14.x-dev"
                 }
             },
             "autoload": {
@@ -1222,7 +1225,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2015-03-09 09:58:04"
+            "time": "2015-06-19 13:29:54"
         },
         {
             "name": "ongr/connections-bundle",
@@ -1322,16 +1325,16 @@
         },
         {
             "name": "ongr/elasticsearch-bundle",
-            "version": "v0.10.0",
+            "version": "v0.10.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ongr-io/ElasticsearchBundle.git",
-                "reference": "e96f1765e18b437c9ed99cc5fa07e43bb40e5d24"
+                "reference": "5c3889eb4ad529b748730365375654814eb1331c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ongr-io/ElasticsearchBundle/zipball/e96f1765e18b437c9ed99cc5fa07e43bb40e5d24",
-                "reference": "e96f1765e18b437c9ed99cc5fa07e43bb40e5d24",
+                "url": "https://api.github.com/repos/ongr-io/ElasticsearchBundle/zipball/5c3889eb4ad529b748730365375654814eb1331c",
+                "reference": "5c3889eb4ad529b748730365375654814eb1331c",
                 "shasum": ""
             },
             "require": {
@@ -1375,20 +1378,20 @@
             ],
             "description": "elasticsearch php client bundle for Symfony 2.",
             "homepage": "http://ongr.io",
-            "time": "2015-06-10 11:39:22"
+            "time": "2015-06-22 06:14:15"
         },
         {
             "name": "ongr/filter-manager-bundle",
-            "version": "v0.5.5",
+            "version": "v0.5.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ongr-io/FilterManagerBundle.git",
-                "reference": "6278e68113707d2ecad35e590932c872aeff70c7"
+                "reference": "e76e17f3baa8ec82d9d9a0f80be3e274759912a4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ongr-io/FilterManagerBundle/zipball/6278e68113707d2ecad35e590932c872aeff70c7",
-                "reference": "6278e68113707d2ecad35e590932c872aeff70c7",
+                "url": "https://api.github.com/repos/ongr-io/FilterManagerBundle/zipball/e76e17f3baa8ec82d9d9a0f80be3e274759912a4",
+                "reference": "e76e17f3baa8ec82d9d9a0f80be3e274759912a4",
                 "shasum": ""
             },
             "require": {
@@ -1419,7 +1422,7 @@
             ],
             "description": "Filter manager bundle for product lists",
             "homepage": "http://ongr.io",
-            "time": "2015-06-15 08:43:59"
+            "time": "2015-06-22 05:46:21"
         },
         {
             "name": "ongr/oxid-connector-bundle",
@@ -1470,16 +1473,16 @@
         },
         {
             "name": "ongr/router-bundle",
-            "version": "v0.4.2",
+            "version": "v0.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ongr-io/RouterBundle.git",
-                "reference": "2aeb647d24944fd2031365e8d358339fdfb1dbe3"
+                "reference": "2fc8707bd7fce88e190b8cf8dde206e365c8bdf6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ongr-io/RouterBundle/zipball/2aeb647d24944fd2031365e8d358339fdfb1dbe3",
-                "reference": "2aeb647d24944fd2031365e8d358339fdfb1dbe3",
+                "url": "https://api.github.com/repos/ongr-io/RouterBundle/zipball/2fc8707bd7fce88e190b8cf8dde206e365c8bdf6",
+                "reference": "2fc8707bd7fce88e190b8cf8dde206e365c8bdf6",
                 "shasum": ""
             },
             "require": {
@@ -1516,7 +1519,7 @@
                 "router",
                 "seo"
             ],
-            "time": "2015-06-10 12:02:05"
+            "time": "2015-06-22 12:57:33"
         },
         {
             "name": "ongr/translations-bundle",
@@ -2317,30 +2320,29 @@
     "packages-dev": [
         {
             "name": "ongr/ongr-strict-standard",
-            "version": "v2.1.1",
-            "target-dir": "Ongr",
+            "version": "v2.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ongr-io/ongr-strict-standard.git",
-                "reference": "1b2a1c7ce011a103bfe94092206912e02fd0a967"
+                "reference": "83340c954168a332371b68038a84c683b14b6352"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ongr-io/ongr-strict-standard/zipball/1b2a1c7ce011a103bfe94092206912e02fd0a967",
-                "reference": "1b2a1c7ce011a103bfe94092206912e02fd0a967",
+                "url": "https://api.github.com/repos/ongr-io/ongr-strict-standard/zipball/83340c954168a332371b68038a84c683b14b6352",
+                "reference": "83340c954168a332371b68038a84c683b14b6352",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.4"
+                "php": ">=5.4",
+                "squizlabs/php_codesniffer": "~2.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "~4.2",
-                "squizlabs/php_codesniffer": "~2.0"
+                "phpunit/phpunit": "~4.2"
             },
             "type": "library",
             "autoload": {
                 "psr-0": {
-                    "Ongr\\": ""
+                    "": "./"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -2361,7 +2363,7 @@
                 "standard",
                 "symfony"
             ],
-            "time": "2015-04-21 13:37:29"
+            "time": "2015-06-19 11:20:23"
         },
         {
             "name": "phpdocumentor/reflection-docblock",
@@ -2583,16 +2585,16 @@
         },
         {
             "name": "phpunit/php-text-template",
-            "version": "1.2.0",
+            "version": "1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-text-template.git",
-                "reference": "206dfefc0ffe9cebf65c413e3d0e809c82fbf00a"
+                "reference": "31f8b717e51d9a2afca6c9f046f5d69fc27c8686"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-text-template/zipball/206dfefc0ffe9cebf65c413e3d0e809c82fbf00a",
-                "reference": "206dfefc0ffe9cebf65c413e3d0e809c82fbf00a",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-text-template/zipball/31f8b717e51d9a2afca6c9f046f5d69fc27c8686",
+                "reference": "31f8b717e51d9a2afca6c9f046f5d69fc27c8686",
                 "shasum": ""
             },
             "require": {
@@ -2601,20 +2603,17 @@
             "type": "library",
             "autoload": {
                 "classmap": [
-                    "Text/"
+                    "src/"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
-            "include-path": [
-                ""
-            ],
             "license": [
                 "BSD-3-Clause"
             ],
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "email": "sb@sebastian-bergmann.de",
+                    "email": "sebastian@phpunit.de",
                     "role": "lead"
                 }
             ],
@@ -2623,7 +2622,7 @@
             "keywords": [
                 "template"
             ],
-            "time": "2014-01-30 17:20:04"
+            "time": "2015-06-21 13:50:34"
         },
         {
             "name": "phpunit/php-timer",
@@ -2717,16 +2716,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.7.4",
+            "version": "4.7.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "e5f851f324f7add846316f39e668e9deac97a103"
+                "reference": "f6701ef3faea759acd1910a7751d8d102a7fd5bc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/e5f851f324f7add846316f39e668e9deac97a103",
-                "reference": "e5f851f324f7add846316f39e668e9deac97a103",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/f6701ef3faea759acd1910a7751d8d102a7fd5bc",
+                "reference": "f6701ef3faea759acd1910a7751d8d102a7fd5bc",
                 "shasum": ""
             },
             "require": {
@@ -2785,7 +2784,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-06-18 13:33:26"
+            "time": "2015-06-21 07:23:36"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -3180,16 +3179,16 @@
         },
         {
             "name": "sebastian/version",
-            "version": "1.0.5",
+            "version": "1.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/version.git",
-                "reference": "ab931d46cd0d3204a91e1b9a40c4bc13032b58e4"
+                "reference": "58b3a85e7999757d6ad81c787a1fbf5ff6c628c6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/version/zipball/ab931d46cd0d3204a91e1b9a40c4bc13032b58e4",
-                "reference": "ab931d46cd0d3204a91e1b9a40c4bc13032b58e4",
+                "url": "https://api.github.com/repos/sebastianbergmann/version/zipball/58b3a85e7999757d6ad81c787a1fbf5ff6c628c6",
+                "reference": "58b3a85e7999757d6ad81c787a1fbf5ff6c628c6",
                 "shasum": ""
             },
             "type": "library",
@@ -3211,7 +3210,7 @@
             ],
             "description": "Library that helps with managing the version number of Git-hosted PHP projects",
             "homepage": "https://github.com/sebastianbergmann/version",
-            "time": "2015-02-24 06:35:25"
+            "time": "2015-06-21 13:59:46"
         },
         {
             "name": "sensio/generator-bundle",

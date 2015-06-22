@@ -11,9 +11,8 @@
 
 namespace ONGR\DemoBundle\Controller;
 
-use Elasticsearch\Common\Exceptions\Missing404Exception;
-use ONGR\ElasticsearchBundle\Document\DocumentInterface;
 use ONGR\ContentBundle\Service\CategoryService;
+use ONGR\ElasticsearchBundle\Document\DocumentInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,6 +23,29 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  */
 class CategoryController extends Controller
 {
+    /**
+     * Show category page by category id.
+     *
+     * @param Request $request
+     * @param string  $id
+     *
+     * @return Response
+     * @throws NotFoundHttpException
+     */
+    public function showAction(Request $request, $id)
+    {
+        /** @var CategoryService $categoryService */
+        $categoryService = $this->get('ongr_content.category_service');
+
+        $document = $categoryService->getCategory($id);
+
+        // Most actions require an instance of ONGR\ElasticsearchBundle\Document\DocumentInterface
+        // in Request object, so we must inject it.
+        $request->attributes->add(['document' => $document]);
+
+        return $this->documentAction($request, $document);
+    }
+
     /**
      * Show category page with passed document object from router.
      *

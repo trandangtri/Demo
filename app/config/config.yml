@@ -112,17 +112,17 @@ ongr_content:
 ongr_router:
     es_manager: oxid
     seo_routes:
-        productdocument:
+        product:
             _route: ongr_product
             _controller: ONGRDemoBundle:Product:document
             _default_route: ongr_product_show
             _id_param: id
-        categorydocument:
+        category:
             _route: ongr_category
             _default_route: ongr_category_show
             _id_param: id
             _controller: ONGRDemoBundle:Category:document
-        contentdocument:
+        content:
             _route: ongr_content
             _default_route: ongr_content
             _id_param: document
