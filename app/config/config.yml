@@ -63,38 +63,18 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
-ongr_content:
-    es:
-        repositories:
-            product: es.manager.default.product
-            content: es.manager.default.content
-            category: es.manager.default.category
-    category_root_id: rootid
-
 ongr_router:
-    es_manager: default
+    manager: es.manager.default
     seo_routes:
-        product:
-            _route: ongr_product
-            _controller: ONGRDemoBundle:Product:document
-            _default_route: ongr_product
-            _id_param: document
-        category:
-            _route: ongr_category
-            _default_route: ongr_category
-            _id_param: document
-            _controller: ONGRDemoBundle:Category:document
-        content:
-            _route: ongr_content
-            _default_route: ongr_content
-            _id_param: document
-            _controller: ONGRDemoBundle:Content:document
+        product: ONGRDemoBundle:Product:document
+        category: ONGRDemoBundle:Category:document
+        content: ONGRDemoBundle:Content:document
 
 ongr_elasticsearch:
     connections:
         default:
             hosts:
-                - { host: "%es_host%" }
+                - "%es_host%"
             index_name: "%es_index_name%"
             settings:
                 number_of_shards: "%es_number_of_shards%"
@@ -138,7 +118,6 @@ ongr_elasticsearch:
     managers:
         default:
             connection: default
-            debug: "%kernel.debug%"
             mappings:
                 - ONGRDemoBundle
 
@@ -146,7 +125,6 @@ ongr_filter_manager:
     managers:
         product_list:
             filters:
-                - category
                 - country
                 - wine_style
                 - wine_color
@@ -169,10 +147,6 @@ ongr_filter_manager:
             search:
                 request_field: 'q'
                 field: title
-        document_field:
-            category:
-                request_field: 'document'
-                field: category_id
         pager:
             pager:
                 request_field: 'page'
@@ -187,14 +161,3 @@ ongr_filter_manager:
                     - { label: Title ascending, field: title }
                     - { label: Title descending, field: title, order: desc }
 
-ongr_api:
-    default_encoding: json
-    versions:
-        v1:
-            endpoints:
-                default:
-                    manager: es.manager.default
-                    documents:
-                        - "ONGRDemoBundle:Product"
-                        - "ONGRDemoBundle:Category"
-                        - "ONGRDemoBundle:Content"

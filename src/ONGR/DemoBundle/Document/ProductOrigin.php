@@ -23,14 +23,14 @@ class ProductOrigin
     /**
      * @var string
      *
-     * @ES\Property(name="country", type="string", index="not_analyzed")
+     * @ES\Property(name="country", type="string", options={"index"="not_analyzed"})
      */
     public $country;
 
     /**
      * @var string
      *
-     * @ES\Property(name="location", type="string", index="not_analyzed")
+     * @ES\Property(name="location", type="string", options={"index"="not_analyzed"})
      */
     public $location;
 }

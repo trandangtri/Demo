@@ -22,7 +22,7 @@ class AppKernel extends Kernel
             new ONGR\ElasticsearchBundle\ONGRElasticsearchBundle(),
             new ONGR\RouterBundle\ONGRRouterBundle(),
             new ONGR\FilterManagerBundle\ONGRFilterManagerBundle(),
-            new ONGR\ContentBundle\ONGRContentBundle(),
+            // new ONGR\ContentBundle\ONGRContentBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new ONGR\ApiBundle\ONGRApiBundle(),
         );

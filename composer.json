@@ -4,7 +4,9 @@
     "type": "project",
     "description": "Demo application of ONGR.",
     "autoload": {
-        "psr-0": { "": "src/" }
+        "psr-0": {
+            "": "src/"
+        }
     },
     "require": {
         "php": ">=5.3.3",
@@ -18,13 +20,11 @@
         "sensio/distribution-bundle": "~3.0",
         "sensio/framework-extra-bundle": "~3.0",
         "incenteev/composer-parameter-handler": "~2.0",
-
-        "ongr/elasticsearch-bundle": "~0.9",
-        "ongr/filter-manager-bundle": "~0.4",
-        "ongr/content-bundle": "~0.4",
-        "ongr/router-bundle": "~0.4.0",
+        "ongr/elasticsearch-bundle": "dev-master",
+        "ongr/filter-manager-bundle": "dev-master",
+        "ongr/router-bundle": "dev-master",
         "jms/serializer-bundle": "~1.0",
-        "ongr/api-bundle": "~0.1"
+        "ongr/api-bundle": "dev-master"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",
@@ -32,6 +32,28 @@
         "ongr/ongr-strict-standard": "~2.1",
         "squizlabs/php_codesniffer": "~2.0"
     },
+    "repositories": [
+        {
+            "type": "git",
+            "url": "git@github.com:trandangtri/ElasticsearchBundle.git"
+        },
+        {
+            "type": "git",
+            "url": "git@github.com:trandangtri/RouterBundle.git"
+        },
+        {
+            "type": "git",
+            "url": "git@github.com:trandangtri/FilterManagerBundle.git"
+        },
+        {
+            "type": "git",
+            "url": "git@github.com:trandangtri/ContentBundle.git"
+        },
+        {
+            "type": "git",
+            "url": "git@github.com:trandangtri/ApiBundle.git"
+        }
+    ],
     "scripts": {
         "post-root-package-install": [
             "SymfonyStandard\\Composer::hookRootPackageInstall"
@@ -58,5 +80,6 @@
         "incenteev-parameters": {
             "file": "app/config/parameters.yml"
         }
-    }
+    },
+    "minimum-stability": "dev"
 }

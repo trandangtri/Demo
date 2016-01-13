@@ -12,21 +12,20 @@
 namespace ONGR\DemoBundle\Document;
 
 use ONGR\ElasticsearchBundle\Annotation as ES;
-use ONGR\ContentBundle\Document\AbstractCategoryDocument as Base;
 
 /**
  * Stores category data.
  *
  * @ES\Document(type="category")
  */
-class Category extends Base
+class Category
 {
     /**
      * @var string
      *
      * Overriding title field to change search analyzer.
      *
-     * @ES\Property(name="title", type="string", searchAnalyzer="standard")
+     * @ES\Property(name="title", type="string", options={"searchAnalyzer"="standard"})
      */
     public $title;
 }
